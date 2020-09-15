@@ -17,7 +17,7 @@ Connect Four (also known as Four Up, Plot Four, Find Four, Four in a Row, Four i
 
 * RUN from Windows SearchBar.
 
-ENJOY----
+ENJOY----:)
 
 
 ![1](https://user-images.githubusercontent.com/71058061/93195838-4f28fd80-f767-11ea-8014-4bb72649643c.PNG)
