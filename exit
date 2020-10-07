@@ -1,0 +1,26 @@
+[33mcommit d77909eaf450040e092a03fdbe3ac814146828af[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Rahul Lour <71058061+rahullour@users.noreply.github.com>
+Date:   Tue Sep 15 18:17:07 2020 +0530
+
+    Update Readme.md
+
+[33mcommit f5fb968b78711eee21345f2ae2942b55049cb5b5[m
+Merge: aa08785 b46a242
+Author: Rahul Lour <71058061+rahullour@users.noreply.github.com>
+Date:   Tue Sep 15 18:16:13 2020 +0530
+
+    Merge pull request #1 from rahullour/rahullour-CONNECT4
+    
+    Update Readme.md
+
+[33mcommit b46a242f9f7a4c480bb5072816621045cb3e72e3[m
+Author: Rahul Lour <71058061+rahullour@users.noreply.github.com>
+Date:   Tue Sep 15 18:15:54 2020 +0530
+
+    Update Readme.md
+
+[33mcommit aa08785991331c79b0d4adf4b5646eff3475b89e[m
+Author: rahullour <rahullour01@gmail.com>
+Date:   Tue Sep 15 18:06:06 2020 +0530
+
+    Commiting first

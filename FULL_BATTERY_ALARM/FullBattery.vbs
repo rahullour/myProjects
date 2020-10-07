@@ -59,7 +59,7 @@ end if
 
 if bCharging=false and iPercent < 10 Then
 Set objExec = objShell.Exec(strDOSCommand)
-speechobject.speak "BATTERY Extremely LOW,PUT ON CHARGE"
+speechobject.speak "BATTERY Extremely LOW,PUT ON CHARGE USER"
    end if
        
 
