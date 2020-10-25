@@ -21,6 +21,4 @@ Connect Four (also known as Four Up, Plot Four, Find Four, Four in a Row, Four i
 
 ENJOY----:)
 
-![5](https://user-images.githubusercontent.com/71058061/97099683-bc5a7780-16b1-11eb-8ccf-3b0ba936eaa4.png)
-
-
+<img src="https://user-images.githubusercontent.com/71058061/97099683-bc5a7780-16b1-11eb-8ccf-3b0ba936eaa4.png" alt="oooooo">
