@@ -11,7 +11,7 @@ Connect Four (also known as Four Up, Plot Four, Find Four, Four in a Row, Four i
 # HOW TO USE# 
  
  
-* DOWNLOAD AND INSTALL JAVA FIRST-(Windows x64 Installer)-LINK->https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html.
+* DOWNLOAD AND INSTALL JAVA FIRST-(Windows x64 Installer)-LINK->https://www.oracle.com/java/technologies/javase-jdk15-downloads.html
 
 * RUN CONNECT_FOUR-Setup.exe.
 
@@ -20,5 +20,5 @@ Connect Four (also known as Four Up, Plot Four, Find Four, Four in a Row, Four i
 ENJOY----:)
 
 
-![](CONNECT_FOUR\Screenshots\1.png)
-<img src="myProjects/CONNECT_FOUR/Screenshots/images.jfif")
+
+<img src="myProjects/CONNECT_FOUR/Screenshots/5.png")
