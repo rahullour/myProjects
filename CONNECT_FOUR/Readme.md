@@ -22,5 +22,5 @@ Connect Four (also known as Four Up, Plot Four, Find Four, Four in a Row, Four i
 ENJOY----:)
 
 
-<img src="CONNECT_FOUR/Screenshots/5.png" alt="no idea" >
+<img src="myProjects/CONNECT_FOUR/Screenshots/5.png" alt="no idea" >
 
