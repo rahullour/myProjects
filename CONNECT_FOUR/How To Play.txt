@@ -1,3 +1,0 @@
-DOWNLOAD AND INSTALL JAVA FIRST-(Windows x64 Installer)-LINK->https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html
-RUN CONNECT_FOUR.vbs
-ENJOY----:)
