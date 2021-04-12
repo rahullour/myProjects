@@ -7,7 +7,7 @@ Few Screenshots-- <br>
 
 
 Fun thing is, it also stores each player's data in a database  -- <br>
-![3](https://user-images.githubusercontent.com/71058061/114386704-34105600-9baf-11eb-9f28-20bf51c4edfa.PNG) <br>
+![5](https://user-images.githubusercontent.com/71058061/114389374-8d2db900-9bb2-11eb-93a4-71e6da38b9b2.PNG)
 
 
 
