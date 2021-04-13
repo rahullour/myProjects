@@ -1,6 +1,8 @@
+--------------------------------------------------------------For MS Windows Only------------------------------------------------------------------
+# TECH USED- Swings And Awt in Java,Core Java, Mysql
+
 # A Snake Game 
 
-This is a simple Sname Game created by me using Swings And Awt in Java,Core Java, Mysql . <br>
 Few Screenshots-- <br>
 ![1](https://user-images.githubusercontent.com/71058061/114386650-1fcc5900-9baf-11eb-8bc6-035fe14d1fd0.PNG) <br>
 ![4](https://user-images.githubusercontent.com/71058061/114389038-214b5080-9bb2-11eb-9b38-acd7f6db4f9b.PNG) <br>
