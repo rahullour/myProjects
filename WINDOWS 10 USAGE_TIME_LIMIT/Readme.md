@@ -1,7 +1,7 @@
 # Windows 10 Usage Time Limit <br><br>
 
 This application contains powershell script files which are also converted to .exe to function well in windows environment. <br><br>
-It is for local windows accounts usage limitation only.<br<br>
+It is for local windows accounts usage limitation only.<br><br>
 # How it works<br><br>
 The app will get triggered when os boots and will run required scripts before login and after login in local account specified in scripts.<br><br>
 After Running It Will Show Messages Like--<br><br>
