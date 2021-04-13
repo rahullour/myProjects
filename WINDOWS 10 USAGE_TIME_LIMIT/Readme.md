@@ -17,7 +17,6 @@ When OS boots next day it will reset current local acccounts password to old pas
 <br>
 
 # Setup --<br><br>
-
 Extract Project Files in below dir--<br><br>
 
 ![location](https://user-images.githubusercontent.com/71058061/114490978-6cf20e80-9c33-11eb-87d8-306dbbfd5ff9.PNG)
