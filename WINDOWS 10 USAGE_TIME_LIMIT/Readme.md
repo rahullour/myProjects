@@ -3,14 +3,15 @@
 This application contains powershell script files which are also converted to .exe to function well in windows environment. <br><br>
 It is for local windows accounts usage limitation only.<br><br>
 # How it works<br><br>
-The app will get triggered when os boots and will run required scripts before login and after login in local account specified in scripts.<br><br>
-After Running It Will Show Messages Like--<br><br>
+The app will get triggered when OS boots and will run required scripts before login and after login in local account specified in scripts.<br><br>
+After Running At Different Timestamps, It Will Show Messages Like--<br><br>
 ![1](https://user-images.githubusercontent.com/71058061/114491930-23a2be80-9c35-11eb-98ba-1a9a7b31146a.PNG)
 ![2](https://user-images.githubusercontent.com/71058061/114491936-24d3eb80-9c35-11eb-9550-a2fbaaeea3d0.PNG)
 ![3](https://user-images.githubusercontent.com/71058061/114491939-256c8200-9c35-11eb-89bd-a250a87bc367.PNG)
 ![4](https://user-images.githubusercontent.com/71058061/114491941-269daf00-9c35-11eb-8371-4755091bc92a.PNG) <br>
+
 After 90 min Timeout OS will restart and change current local acccounts password to something else which is specified in script.<br><br>
-When OS boots next day it will reset current local acccounts password to old password which is also specified in script.<br><br>
+When OS boots next day it will reset current local acccounts password to old password which is also specified in script and user will be able to login.<br><br>
 
 # Note - It will only stop if checkpost.exe if terminated manually , which can be prevented by renaming .exe file (as Task Manager shows file names as process names).<br>
 <br>
