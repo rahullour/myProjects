@@ -77,11 +77,15 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
 
     public static void createAboutApp() {
-        JOptionPane.showMessageDialog(null, "The player controls a dot, square, or object on a bordered plane. \n" +
+        JOptionPane.showMessageDialog(null, "The player controls a dot, square, or object on a bordered plane.\n" +
                 "As it moves forward, it leaves a trail behind, resembling a moving snake.\n " +
-                "In some games, the end of the trail is in a fixed position, so the snake continually gets longer as it moves. \n" +
+                "In some games, the end of the trail is in a fixed position, so the snake continually gets longer as it moves.\n" +
                 "In another common scheme, the snake has a specific length, so there is a moving tail a fixed number of units away from the head.\n" +
-                "The player loses when the snake runs into the screen border, a trail, other obstacle, or itself.", "ABOUT THIS APP", JOptionPane.INFORMATION_MESSAGE);
+                "The player loses when the snake runs into the screen border, a trail, other obstacle, or itself.\n"+
+                "--------------------------------------------------------------------------------------How To Play----------------------------------------------------------------------------------------------\n"+
+                "Each time the snake eats a piece of food, its tail grows longer, making the game increasingly difficult.\n" +
+                "The user controls the direction of the snake's head (up, down, left, or right), and the snake's body follows.\n" +
+                "The player cannot stop the snake from moving while the game is in progress.", "ABOUT THIS APP", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
@@ -107,6 +111,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             text=":) No-Name ):";
         }
+        mode="Medium";
         var=1;
         left=false;
         right=false;
@@ -129,7 +134,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             imageno=random.nextInt(backimages.length);
         }
-        mode="Medium";
+
     }
 
     public static void Easy() {
@@ -148,6 +153,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             text=":) No-Name ):";
         }
+        mode="Easy";
         var=1;
         left=false;
         right=false;
@@ -170,7 +176,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             imageno=random.nextInt(backimages.length);
         }
-        mode="Easy";
+
     }
 
     public static void Medium() {
@@ -189,6 +195,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             text=":) No-Name ):";
         }
+        mode="Medium";
         var=1;
         left=false;
         right=false;
@@ -211,7 +218,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             imageno=random.nextInt(backimages.length);
         }
-    mode="Medium";
+
     }
 
     public static void Hard() {
@@ -230,6 +237,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             text=":) No-Name ):";
         }
+        mode="Hard";
         var=1;
         left=false;
         right=false;
@@ -252,7 +260,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         {
             imageno=random.nextInt(backimages.length);
         }
-        mode="Hard";
+
     }
 
 
@@ -521,7 +529,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
            g.drawImage(backimageicons[imageno], 0, 0, 1920, 1080, 0, 0, 1920, 1080, null);
 
-            if(imageno==0 || imageno==2 ||imageno==3 ||imageno==4  || imageno==6 || imageno==8  )
+            if(imageno==0 || imageno==2 ||imageno==3 ||imageno==4  || imageno==5 || imageno==6 || imageno==8  )
             {
                 g.setColor(Color.WHITE);
             }
@@ -553,6 +561,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         g.drawString("PlayTime : "+dtime.gettime(),850,30);
         if (score > bestscore) {
             dtext=text;
+            bestscore=score;
 
         }
         //adding to playbox
