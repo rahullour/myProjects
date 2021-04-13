@@ -1,3 +1,5 @@
+--------------------------------------------------------------For MS Windows Only------------------------------------------------------------------
+# TECH USED- PowerShell Scripts
 # Windows 10 Usage Time Limit <br><br>
 
 This application contains powershell script files which are also converted to .exe to function well in windows environment. <br><br>
