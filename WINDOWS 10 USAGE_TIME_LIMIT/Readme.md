@@ -15,6 +15,15 @@ After Running At Different Timestamps, It Will Show Messages Like--<br><br>
 After 90 min Timeout OS will restart and change current local acccounts password to something else which is specified in script.<br><br>
 When OS boots next day it will reset current local acccounts password to old password which is also specified in script and user will be able to login.<br><br>
 
+# When Account Is Locked A Message Is Shown At Boot Like Below --
+
+![Locked](https://user-images.githubusercontent.com/71058061/114809857-91cbba80-9dc8-11eb-903a-71fcad4851ca.jpg)
+
+# When Account Is Locked A Message Is Shown At Boot Like Below --
+
+![Unlocked](https://user-images.githubusercontent.com/71058061/114809842-8c6e7000-9dc8-11eb-94ff-38b1330d6888.jpg)
+
+
 # Note - It will only stop if checkpost.exe if terminated manually , which can be prevented by renaming .exe file (as Task Manager shows file names as process names).<br>
 <br>
 
