@@ -2,17 +2,20 @@ package com.example.librarymanagementsystemstudents;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -35,16 +38,189 @@ import static com.example.librarymanagementsystemstudents.Globals.user_pwd;
 import static com.example.librarymanagementsystemstudents.Globals.loginresult;
 
 
+
 public class MainActivity extends AppCompatActivity {
-    Button forgotbtn,loginbtn,registerbtn,sendlinkbtn;
-    EditText mainenrollment,mainpassword;
+    Button forgotbtn,loginbtn,registerbtn,visibilitybutton;
+    EditText mainenrollment;
+    TextInputEditText mainpassword;
+
+
+    int show=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] demo={"asdas","Asdsa"};
         loadingDialog=new LoadingDialog(MainActivity.this);
+
+        final ExecutorService executorServiceGetCredentials = Executors.newSingleThreadExecutor();
+        executorServiceGetCredentials.execute(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+
+
+                Context context=getApplicationContext();
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(context);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                user_id=sharedPreferences.getString("mainenrollment", "null");
+                user_pwd=sharedPreferences.getString("mainpassword", "null");
+
+
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+
+
+                        if(!user_id.equals("null") && !user_pwd.equals("null"))
+                        {  Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ "Auto Login For User Id"+": "+user_id+" In Progress"+  "</b> </font>"), Toast.LENGTH_SHORT);
+
+                            toast.show();
+                            loadingDialog.startLoadingDialog();
+                            NetworkUtil.setConnectivityStatus(getApplicationContext());
+
+                            System.out.println("inside bro");
+                            if(status!=0){
+
+
+
+
+                                final ExecutorService executorServiceStoredLogin= Executors.newSingleThreadExecutor();
+                                executorServiceStoredLogin.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Looper.prepare();
+
+                                       // loadingDialog.startLoadingDialog();
+
+
+                                        try {
+                                            String login_url="https://rahullour.thats.im/login.php";
+                                            //System.out.println("running-----------------------------------------------------------------------");
+
+                                            URL url=new URL(login_url);
+                                            HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
+                                            httpURLConnection.setRequestMethod("POST");
+                                            httpURLConnection.setDoOutput(true);
+                                            httpURLConnection.setDoInput(true);
+                                            OutputStream outputStream=httpURLConnection.getOutputStream();
+                                            BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                                            String post_data= URLEncoder.encode("user_id","UTF-8")+"="+URLEncoder.encode(user_id,"UTF-8")+"&"+
+                                                    URLEncoder.encode("user_pwd","UTF-8")+"="+URLEncoder.encode(user_pwd,"UTF-8");
+
+                                            bufferedWriter.write(post_data);
+                                            bufferedWriter.flush();
+                                            bufferedWriter.close();
+                                            outputStream.close();
+
+
+                                            InputStream inputStream = httpURLConnection.getInputStream();
+                                            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+
+                                            String line="";
+                                            int i=0;
+                                            while((line = bufferedReader.readLine())!= null) {
+                                                loginresult[i]="";
+                                                loginresult[i] += line;
+                                                i++;
+                                            }
+                                            bufferedReader.close();
+                                            inputStream.close();
+                                            httpURLConnection.disconnect();
+
+                                        } catch (MalformedURLException e) {
+                                            e.printStackTrace();
+
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+
+                                        }
+                                        //System.out.println("login result:"+loginresult[0]);
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                if((loginresult[0]==null) || loginresult[0].equals("null")) {
+
+                                                    CharSequence text = ":( Incorrect UserId/Password! ): ";
+                                                    int duration = Toast.LENGTH_SHORT;
+                                                    //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
+                                                    Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
+
+                                                    toast.show();
+
+                                                }
+                                                else
+                                                {   mainenrollment.setText("");
+                                                    mainpassword.setText("");
+                                                    Intent intent = new Intent(context, InsideActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                    startActivity(intent);
+                                                    finish();
+                                                    //System.out.println("result[0]=="+loginresult[0]+"result[1]=="+ loginresult[1]);
+                                                    Globals.user_name=loginresult[0];
+                                                    Globals.user_course=loginresult[1];
+                                                    CharSequence text = loginresult[0];
+                                                    int duration = Toast.LENGTH_SHORT;
+
+                                                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":) Welcome "  + text + " (:  </b> </font>"), duration);
+
+                                                    toast.show();
+                                                    loadingDialog.dismissDialog();
+
+
+                                                }
+                                                //loadingDialog.dismissDialog();
+                                                //System.out.println("Login Dialog Dismissed!");
+
+                                            }
+                                        });
+
+                                    }
+                                });
+
+
+                            }
+                            else {
+                                toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+
+                                toast.show();
+
+
+                            }
+
+
+
+
+                        }
+
+
+
+
+
+
+
+
+
+
+
+                    }
+                });
+            }
+
+
+
+
+        });
+
+
 
         //buttons
         forgotbtn= findViewById(R.id.forgotbutton);
@@ -68,6 +244,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
         });
+
+
+
 
 
 
@@ -190,7 +369,8 @@ public class MainActivity extends AppCompatActivity {
                                }
                                else
                                {
-
+                                   mainenrollment.setText("");
+                                   mainpassword.setText("");
                                    Intent intent = new Intent(context[0], InsideActivity.class);
                                    startActivity(intent);
                                    //System.out.println("result[0]=="+loginresult[0]+"result[1]=="+ loginresult[1]);
@@ -202,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
                                    Toast    toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>"+ ":) Welcome "  + text + " (:  </b> </font>"), duration);
 
                                    toast.show();
+
 
                                }
                                loadingDialog.dismissDialog();

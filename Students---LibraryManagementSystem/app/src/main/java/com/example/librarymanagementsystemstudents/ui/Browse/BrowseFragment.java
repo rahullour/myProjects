@@ -693,7 +693,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
         String[] browse_spinner={"⇓   FIND BY COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};
-        Spinner spinner = (Spinner) root.findViewById(R.id.browse_spinner);
+        Spinner spinner =root.findViewById(R.id.course_spinner);
             spinner.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 // Create an ArrayAdapter using the string array and a default spinner layout
 

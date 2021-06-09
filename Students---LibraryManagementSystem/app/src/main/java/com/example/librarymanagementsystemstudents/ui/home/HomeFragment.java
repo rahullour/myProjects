@@ -1,7 +1,10 @@
 package com.example.librarymanagementsystemstudents.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,7 +58,7 @@ import static com.example.librarymanagementsystemstudents.Globals.spinner_my_boo
 import static com.example.librarymanagementsystemstudents.Globals.spinner_my_book_image;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_my_book_course;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_home_pending_book_name;
-
+import static com.example.librarymanagementsystemstudents.Globals.user_pwd;
 
 
 public class HomeFragment  extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -84,6 +88,10 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
         View root = inflater.inflate(R.layout.fragment_my_books, container, false);
         RecyclerView1 = root.findViewById(R.id.recycleview1);
+
+
+
+
         NetworkUtil.setConnectivityStatus(getContext());
 
         if (status != 0) {
@@ -106,7 +114,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                      home_my_book_name=new String[100];
 
                     try {
-                        String login_url = "https://rahullour.thats.im/get_home_book_name.php";
+                        String login_url = "https:rahullour.thats.im/get_home_book_name.php";
                         //System.out.println("running-----------------------------------------------------------------------");
 
                         URL url = new URL(login_url);
@@ -164,7 +172,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                 public void run() {
                                     home_my_pending_book_name=new String[100];
                                     try {
-                                        String login_url = "https://rahullour.thats.im/get_pending_return_book_name.php";
+                                        String login_url = "https:rahullour.thats.im/get_pending_return_book_name.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url = new URL(login_url);
@@ -220,7 +228,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                     try {
-                                                        String login_url = "https://rahullour.thats.im/get_home_course.php";
+                                                        String login_url = "https:rahullour.thats.im/get_home_course.php";
                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                         URL url = new URL(login_url);
@@ -245,7 +253,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
                                                             home_my_book_course[i] = "";
                                                             home_my_book_course[i] += line;
-                                                            System.out.println("home Book Name : " + i +home_my_book_name[i]);
+                                                            //System.out.println("home Book Course : " + i +home_my_book_name[i]);
                                                             i++;
                                                         }
                                                         bufferedReader.close();
@@ -277,7 +285,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                     try {
-                                                                        String login_url = "https://rahullour.thats.im/get_home_book_borrow_date.php";
+                                                                        String login_url = "https:rahullour.thats.im/get_home_book_borrow_date.php";
                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                         URL url = new URL(login_url);
@@ -301,7 +309,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                         while ((line = bufferedReader.readLine()) != null) {
                                                                             home_my_book_borrow_date[i] = "";
                                                                             home_my_book_borrow_date[i] += line;
-                                                                            //  //System.out.println("home Book Author : " + i +home_my_book_borrow_date[i]);
+                                                                              //System.out.println("home Book Author : " + i +home_my_book_borrow_date[i]);
                                                                             i++;
                                                                         }
                                                                         bufferedReader.close();
@@ -331,7 +339,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                     try {
-                                                                                        String login_url = "https://rahullour.thats.im/get_home_book_return_date.php";
+                                                                                        String login_url = "https:rahullour.thats.im/get_home_book_return_date.php";
                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                         URL url = new URL(login_url);
@@ -386,7 +394,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                     try {
-                                                                                                        String login_url = "https://rahullour.thats.im/update_late_fee.php";
+                                                                                                        String login_url = "https:rahullour.thats.im/update_late_fee.php";
                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                         URL url=new URL(login_url);
@@ -421,7 +429,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                                 public void run() {
 
                                                                                                         try {
-                                                                                                        String login_url = "https://rahullour.thats.im/get_home_book_late_fee.php";
+                                                                                                        String login_url = "https:rahullour.thats.im/get_home_book_late_fee.php";
                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                         URL url = new URL(login_url);
@@ -476,7 +484,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                     try {
-                                                                                                                        String login_url = "https://rahullour.thats.im/get_home_yop.php";
+                                                                                                                        String login_url = "https:rahullour.thats.im/get_home_yop.php";
                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                         URL url = new URL(login_url);
@@ -529,7 +537,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                                     try {
-                                                                                                                                        String login_url = "https://rahullour.thats.im/get_home_available_count.php";
+                                                                                                                                        String login_url = "https:rahullour.thats.im/get_home_available_count.php";
                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                         URL url = new URL(login_url);
@@ -582,7 +590,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                                                     try {
-                                                                                                                                                        String login_url = "https://rahullour.thats.im/get_home_book_images.php";
+                                                                                                                                                        String login_url = "https:rahullour.thats.im/get_home_book_images.php";
                                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                         URL url = new URL(login_url);
@@ -683,7 +691,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                                                                             } else {
                                                                                                                                                                 //System.out.println("Home Books Images Data Download Complete!");
                                                                                                                                                                 RecyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                                                                                                                                //   RecyclerView1.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+                                                                                                                                                                   RecyclerView1.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
                                                                                                                                                                 HomeCustomAdapter ca = new HomeCustomAdapter(getActivity(),home_my_book_name, home_my_book_borrow_date,
                                                                                                                                                                         home_my_book_return_date, home_my_book_late_fee, home_my_book_yop, home_my_book_available_count, home_my_book_image,home_my_book_course);
                                                                                                                                                                 RecyclerView1.setAdapter(ca);
@@ -787,14 +795,14 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
             String[] home_spinner = {"⇓   FIND BY COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};
-            Spinner spinner = (Spinner) root.findViewById(R.id.my_spinner);
+            Spinner spinner = root.findViewById(R.id.my_spinner);
             spinner.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-// Create an ArrayAdapter using the string array and a default spinner layout
+ //Create an ArrayAdapter using the string array and a default spinner layout
 
             ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, home_spinner);
-// Specify the layout to use when the list of choices appears
+ //Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+ //Apply the adapter to the spinner
             spinner.setAdapter(adapter);
             spinner.setOnItemSelectedListener(this);
 
@@ -830,7 +838,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
         else if (position==1)
         {
             //System.out.println("Working In BCA");
-            //    loadingDialog.startLoadingDialog();
+                loadingDialog.startLoadingDialog();
             final ExecutorService executorServiceSpinnerBCA= Executors.newSingleThreadExecutor();
             executorServiceSpinnerBCA.execute(new Runnable() {
                 @Override
@@ -902,7 +910,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
         else if(position==2)
         {  //System.out.println("Working In BBA");
-            //    loadingDialog.startLoadingDialog();
+                loadingDialog.startLoadingDialog();
             final ExecutorService executorServiceSpinnerBBA= Executors.newSingleThreadExecutor();
             executorServiceSpinnerBBA.execute(new Runnable() {
                 @Override
@@ -964,7 +972,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
         }
         else if(position==3)
         {  //System.out.println("Working In B.COM");
-            //    loadingDialog.startLoadingDialog();
+                loadingDialog.startLoadingDialog();
             final ExecutorService executorServiceSpinnerBCom= Executors.newSingleThreadExecutor();
             executorServiceSpinnerBCom.execute(new Runnable() {
                 @Override
@@ -1025,7 +1033,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
         }
         else if(position==4)
         {  //System.out.println("Working In B.TECH");
-            //    loadingDialog.startLoadingDialog();
+                loadingDialog.startLoadingDialog();
             final ExecutorService executorServiceSpinnerBTech= Executors.newSingleThreadExecutor();
             executorServiceSpinnerBTech.execute(new Runnable() {
                 @Override
@@ -1087,7 +1095,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
         }
         else if(position==5)
         {  //System.out.println("Working In LLB");
-            //    loadingDialog.startLoadingDialog();
+                loadingDialog.startLoadingDialog();
             final ExecutorService executorServiceSpinnerLLB= Executors.newSingleThreadExecutor();
             executorServiceSpinnerLLB.execute(new Runnable() {
                 @Override
@@ -1150,7 +1158,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
         else if(position==6)
         {  //System.out.println("Working In BSC");
-            //    loadingDialog.startLoadingDialog();
+                loadingDialog.startLoadingDialog();
             final ExecutorService executorServiceSpinnerBSC= Executors.newSingleThreadExecutor();
             executorServiceSpinnerBSC.execute(new Runnable() {
                 @Override

@@ -1,12 +1,15 @@
 package com.example.librarymanagementsystemstudents;
 
+import android.content.SharedPreferences;
+import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 public class Globals {
     public static int profilepicdownloaded=0;
     public static int status=0;
-    public static int yes_pressed=0;
-    public static int no_pressed=0;
+
 
     public static String user_id;
     public static String user_course;
@@ -44,6 +47,7 @@ public class Globals {
     public static String[] spinner_browse_pending_book_name;
 
     public static String[] spinner_home_pending_book_name;
+
 
 
 

@@ -24,6 +24,7 @@
 
         <activity
             android:name="com.example.librarymanagementsystemstudents.MainActivity"
+            android:noHistory="true"
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +36,7 @@
 
         <activity
             android:name="com.example.librarymanagementsystemstudents.InsideActivity"
-            android:parentActivityName="com.example.librarymanagementsystemstudents.MainActivity"
+            android:noHistory="true"
             android:theme="@style/Theme.Design.Light.NoActionBar">
 
 

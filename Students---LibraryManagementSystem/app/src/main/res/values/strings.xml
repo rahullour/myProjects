@@ -20,7 +20,6 @@
     <string name="registeremailfield">registeremailfield</string>
     <string name="signupbutton">signupbutton</string>
     <string name="textView4">textView4</string>
-    <string name="enter_new_password">Enter New Password:</string>
     <string name="forgotpassword">forgotpassword</string>
     <string name="title_activity_inside">activity_inside</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -33,6 +32,7 @@
     <string name="menu_mybooks">MY BOOKS</string>
     <string name="menu_browsebooks">BROWSE BOOKS</string>
     <string name="menu_latefee">PAYABLE AMOUNT</string>
+    <string name="menu_signout">SIGN OUT</string>
     <string name="menu_itemlist">Items_List</string>
 
 </resources>

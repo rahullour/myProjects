@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystemteachers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -11,10 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.librarymanagementsystemteachers.Globals;
-import com.example.librarymanagementsystemteachers.JavaMailAPI;
-import com.example.librarymanagementsystemteachers.NetworkUtil;
-import com.example.librarymanagementsystemteachers.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -49,14 +47,15 @@ public class ForgotActivity extends AppCompatActivity {
 
 
     Button sendlinkbtn,resetpasswordbtn;
-    EditText emailreset,enteredotp,resetpassword1,resetpassword2;
+    EditText emailreset,enteredotp;
+    TextInputEditText resetpassword1,resetpassword2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot);
-        Context context=getApplicationContext();
+         Context context=getApplicationContext();
 
 
         sendlinkbtn=findViewById(R.id.sendlinkbutton);
@@ -70,7 +69,7 @@ public class ForgotActivity extends AppCompatActivity {
         resetpassword2=findViewById(R.id.resetpasswordfield2);
 
         sendlinkbtn.setOnClickListener(new View.OnClickListener() {
-
+           
 
             @Override
             public void onClick(View v) {
@@ -82,7 +81,7 @@ public class ForgotActivity extends AppCompatActivity {
                 if (emailreset.getText().toString().isEmpty()) {
 
                     Context context = getApplicationContext();
-
+                    
                     CharSequence text = ":( Enter Email! ):";
                     int duration = Toast.LENGTH_SHORT;
 
@@ -92,7 +91,7 @@ public class ForgotActivity extends AppCompatActivity {
                     toast.show();
 
                 } else  if(status!=0) {
-
+                    
                     senpass="";
                     for(int i=0;i<10;i++)
                     {
@@ -103,7 +102,7 @@ public class ForgotActivity extends AppCompatActivity {
                     }
 
                     Context context = getApplicationContext();
-                    Globals.user_email = emailreset.getText().toString().trim();
+                     Globals.user_email = emailreset.getText().toString().trim();
 
                     loadingDialog.startLoadingDialog();
 
@@ -227,7 +226,7 @@ public class ForgotActivity extends AppCompatActivity {
 
                 //email
                 if (enteredotp.getText().toString().isEmpty() || resetpassword1.getText().toString().isEmpty() || resetpassword2.getText().toString().isEmpty()){
-
+                    
                     Context context = getApplicationContext();
                     CharSequence text = ":( Please Fill Remaining Fields! ):";
                     int duration = Toast.LENGTH_SHORT;
@@ -240,7 +239,7 @@ public class ForgotActivity extends AppCompatActivity {
                 }
 
                 else if(resetpassword1.getText().toString().length() < 8 && resetpassword2.getText().toString().length() <8)
-                {
+                {   
                     Context context = getApplicationContext();
                     CharSequence text = ":( Password Length Cannot Be Less Than 8 Char! ):";
                     int duration = Toast.LENGTH_SHORT;
@@ -256,7 +255,7 @@ public class ForgotActivity extends AppCompatActivity {
 
 
                 else if (!resetpassword1.getText().toString().equals(resetpassword2.getText().toString()))
-                {
+                {  
                     Context context = getApplicationContext();
                     CharSequence text = ":( Entered Passwords Do Not Match! ):";
                     int duration = Toast.LENGTH_SHORT;
@@ -270,7 +269,7 @@ public class ForgotActivity extends AppCompatActivity {
 
                 else if(status!=0) {
 
-
+                    
                     Context context = getApplicationContext();
 
                     loadingDialog.startLoadingDialog();
@@ -381,11 +380,26 @@ public class ForgotActivity extends AppCompatActivity {
 
 
 
-            }
+                }
         });
 
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        finish();
+    }
+
+
     private void senEmail(Context context,String[] result,String user_email) {
 
         String mEmail = user_email;

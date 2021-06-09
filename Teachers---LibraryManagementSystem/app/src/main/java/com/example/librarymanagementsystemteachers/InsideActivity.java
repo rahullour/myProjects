@@ -1,12 +1,16 @@
 package com.example.librarymanagementsystemteachers;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Base64;
@@ -58,12 +62,17 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static com.example.librarymanagementsystemteachers.Globals.confirmationDialog;
 import static com.example.librarymanagementsystemteachers.Globals.loadingDialog;
 import static com.example.librarymanagementsystemteachers.Globals.downloadimageresult;
 import static com.example.librarymanagementsystemteachers.Globals.status;
 import static com.example.librarymanagementsystemteachers.Globals.user_course;
 import static com.example.librarymanagementsystemteachers.Globals.user_id;
 import static com.example.librarymanagementsystemteachers.Globals.user_name;
+import static com.example.librarymanagementsystemteachers.Globals.user_pwd;
+import static com.example.librarymanagementsystemteachers.Globals.profilepicdownloaded;
+
+
 
 
 import static com.example.librarymanagementsystemteachers.Globals.uploadimageresult;
@@ -87,6 +96,39 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inside);
+
+        final ExecutorService executorServiceSaveCredentials = Executors.newSingleThreadExecutor();
+        executorServiceSaveCredentials.execute(new Runnable() {
+            @Override
+            public void run() {
+
+
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Context context=getApplicationContext();
+                        SharedPreferences sharedPreferences = PreferenceManager
+                                .getDefaultSharedPreferences(context);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("mainenrollment", user_id);
+                        editor.putString("mainpassword", user_pwd);
+                        editor.apply();
+
+                    }
+                });
+
+            }
+
+
+        });
+
+
+
+
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -206,6 +248,50 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
 
                     break;
+
+            case R.id.nav_sign_out:
+                confirmationDialog  = new ConfirmationDialog(this);
+                AlertDialog dialog=confirmationDialog.startConfirmationDialog();
+
+                TextView  confirm_heading_text= dialog.findViewById(R.id.confirm_heading_text);
+                confirm_heading_text.setText("Are You Sure You Want To Sign Out ?");
+
+                dialog.findViewById(R.id.yes_button).setOnClickListener(new View.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(View v) {
+                                                                                //System.out.println("Grant Yes Working!!");
+                                                                                confirmationDialog.dismissConfirmationDialog();
+                                                                                Context context=getApplicationContext();
+                                                                                SharedPreferences sharedPreferences = PreferenceManager
+                                                                                        .getDefaultSharedPreferences(context);
+                                                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                                                editor.putString("mainenrollment", "null");
+                                                                                editor.putString("mainpassword", "null");
+                                                                                editor.apply();
+
+
+
+                                                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                                                System.gc();
+                                                                                profilepicdownloaded=0;
+                                                                                finish();
+                                                                                startActivity(intent);
+
+
+
+                                                                            }
+                                                                        });
+
+                dialog.findViewById(R.id.no_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        confirmationDialog.dismissConfirmationDialog();
+
+                    }
+                });
+
+
+                break;
 
 
 
@@ -438,6 +524,37 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
         return true;
         }
+
+
+    private Boolean exit = false;
+    @Override
+    public void onBackPressed() {
+        if (exit) {
+            finish();// finish activity
+            System.exit(0);
+
+
+        } else {
+            Toast.makeText(this, "Press Back Again To Exit.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                    System.gc();
+//
+                }
+            }, 5 * 1000);
+
+        }
+
+    }
+
+
+
+
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

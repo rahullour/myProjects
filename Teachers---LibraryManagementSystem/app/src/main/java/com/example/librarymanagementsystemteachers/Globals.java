@@ -5,8 +5,7 @@ import android.widget.ImageView;
 public class Globals {
     public static int profilepicdownloaded=0;
     public static int status=0;
-    public static int yes_pressed=0;
-    public static int no_pressed=0;
+
 
     public static String user_id;
     public static String user_name;

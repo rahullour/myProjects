@@ -30,6 +30,8 @@
                 android:textSize="18sp"
                 android:textStyle="italic" />
 
+
+
             <EditText
                 android:id="@+id/registernamefield"
                 android:layout_width="300dp"
@@ -45,31 +47,73 @@
                 android:inputType="textPersonName"
                 android:textColor="#000000" />
 
-            <EditText
-                android:id="@+id/registerpasswordfield1"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="40dp"
-                android:background="#FFFFFF"
-                android:ems="10"
-                android:layout_gravity="center"
-                android:foregroundGravity="center"
-                android:gravity="center"
-                android:hint="Enter Password:"
-                android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/registerpasswordfield2"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="40dp"
-                android:background="#FFFFFF"
-                android:ems="10"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/resetpasswordfieldlayout1"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="#FFFFFF"
+            android:foregroundGravity="center"
+            app:hintEnabled="false"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textColor="#000000"
+            app:passwordToggleEnabled="true">
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/registerpasswordfield1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:background="#FFFFFF"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:hint="Confirm Password:"
-                android:inputType="textPersonName" />
+                android:hint="Enter Password :"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:textColor="#000000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/resetpasswordfieldlayout2"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="#FFFFFF"
+            android:foregroundGravity="center"
+            app:hintEnabled="false"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textColor="#000000"
+            app:passwordToggleEnabled="true">
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/registerpasswordfield2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="#FFFFFF"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hint="Confirm Password :"
+                android:inputType="textPassword"
+                android:paddingLeft="40dp"
+                android:textColor="#000000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
             <EditText
                 android:id="@+id/registerenrollmentnofield"
@@ -81,21 +125,22 @@
                 android:layout_gravity="center"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:hint="Enter Enrollment No:"
+                android:hint="Enter Enrollment No :"
                 android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/registercoursefield"
+
+            <Spinner
+                android:id="@+id/course_spinner"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
-                android:background="#FFFFFF"
-                android:ems="10"
+                android:background="@drawable/course_ripple_effect"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:hint="Enter Course:"
-                android:inputType="textPersonName" />
+                android:hapticFeedbackEnabled="true" />
+
+
 
             <EditText
                 android:id="@+id/registeremailfield"
@@ -108,7 +153,7 @@
                 android:layout_gravity="center"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:hint="Enter Email:"
+                android:hint="Enter Email :"
                 android:inputType="textEmailAddress" />
 
             <Button
@@ -135,7 +180,7 @@
                 android:background="#FF0000"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:text="All Fields Are Case-Sensitive!"
+                android:text="All Fields Are Case-Sensitive !"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </ScrollView>

@@ -34,6 +34,7 @@
     <string name="menu_books_requests">BOOKS REQUESTS</string>
     <string name="menu_return_books_requests">BOOKS RETURN REQUESTS</string>
     <string name="menu_latefee">PAYABLE AMOUNT</string>
+    <string name="menu_signout">SIGN OUT</string>
     <string name="menu_itemlist">Items_List</string>
 
 </resources>

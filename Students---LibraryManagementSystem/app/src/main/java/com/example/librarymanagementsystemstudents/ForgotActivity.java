@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystemstudents;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -44,7 +47,8 @@ public class ForgotActivity extends AppCompatActivity {
 
 
     Button sendlinkbtn,resetpasswordbtn;
-    EditText emailreset,enteredotp,resetpassword1,resetpassword2;
+    EditText emailreset,enteredotp;
+    TextInputEditText resetpassword1,resetpassword2;
 
 
     @Override
@@ -381,6 +385,21 @@ public class ForgotActivity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        finish();
+    }
+
+
     private void senEmail(Context context,String[] result,String user_email) {
 
         String mEmail = user_email;

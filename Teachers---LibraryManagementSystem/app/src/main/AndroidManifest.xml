@@ -24,6 +24,7 @@
 
         <activity
             android:name="com.example.librarymanagementsystemteachers.MainActivity"
+            android:noHistory="true"
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,26 +36,12 @@
 
         <activity
             android:name="com.example.librarymanagementsystemteachers.InsideActivity"
-            android:parentActivityName="com.example.librarymanagementsystemteachers.MainActivity"
+            android:noHistory="true"
             android:theme="@style/Theme.Design.Light.NoActionBar">
 
 
         </activity>
 
-        <activity
-            android:name="com.example.librarymanagementsystemteachers.ForgotActivity"
-            android:parentActivityName="com.example.librarymanagementsystemteachers.MainActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
-
-
-        </activity>
-
-        <activity
-            android:name="com.example.librarymanagementsystemteachers.RegisterActivity"
-            android:parentActivityName="com.example.librarymanagementsystemteachers.MainActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
-
-        </activity>
     </application>
 
 </manifest>
