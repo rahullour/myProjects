@@ -223,8 +223,8 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
               spinner_allotted_student_course=new String[100];
               spinner_allotted_student_name=new String[100];
               spinner_allotted_student_id=new String[100];
-            
-            
+
+
             loadingDialog = new LoadingDialog(getActivity());
 
             if (profilepicdownloaded == 1) {
@@ -238,7 +238,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
             
 
 
-            Globals.profilepicdownloaded = 1;
+
 
             final ExecutorService executorServiceallottedStudentCourse = Executors.newSingleThreadExecutor();
             executorServiceallottedStudentCourse.execute(new Runnable() {

@@ -287,7 +287,16 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                             {
                                                 int duration = Toast.LENGTH_SHORT;
 
-                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + "Either Your Books Limit Reached Max Or Book Is Not Available !"  + " </b> </font>"), duration);
+                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + "Your Books Limit Has Maxed Out !"  + " </b> </font>"), duration);
+                                                loadingDialog.dismissDialog();
+                                                notifyDataSetChanged();
+                                                toast.show();
+                                            }
+                                            else if(get_book[0].equals("zero"))
+                                            {
+                                                int duration = Toast.LENGTH_SHORT;
+
+                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +browse_book_name[position] +" Is Not Available !"  + " </b> </font>"), duration);
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();

@@ -70,7 +70,6 @@ import static com.example.librarymanagementsystemteachers.Globals.user_course;
 import static com.example.librarymanagementsystemteachers.Globals.user_id;
 import static com.example.librarymanagementsystemteachers.Globals.user_name;
 import static com.example.librarymanagementsystemteachers.Globals.user_pwd;
-import static com.example.librarymanagementsystemteachers.Globals.profilepicdownloaded;
 
 
 
@@ -273,7 +272,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
                                                                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                                                 System.gc();
-                                                                                profilepicdownloaded=0;
+
                                                                                 finish();
                                                                                 startActivity(intent);
 
@@ -500,6 +499,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                                 byte[] decodedImage = Base64.decode(downloadimageresult[0].getBytes(), Base64.DEFAULT);
                                 Bitmap bmp = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.length);
                                 Globals.userimage.setImageBitmap(bmp);
+                                Globals.profilepicdownloaded = 1;
                                 //System.out.println("Image Downloaded");
 
 

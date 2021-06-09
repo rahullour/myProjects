@@ -32,6 +32,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static com.example.librarymanagementsystemstudents.Globals.loadingDialog;
+import static com.example.librarymanagementsystemstudents.Globals.profilepicdownloaded;
 import static com.example.librarymanagementsystemstudents.Globals.status;
 import static com.example.librarymanagementsystemstudents.Globals.user_id;
 import static com.example.librarymanagementsystemstudents.Globals.user_pwd;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        profilepicdownloaded=0;
         loadingDialog=new LoadingDialog(MainActivity.this);
 
         final ExecutorService executorServiceGetCredentials = Executors.newSingleThreadExecutor();

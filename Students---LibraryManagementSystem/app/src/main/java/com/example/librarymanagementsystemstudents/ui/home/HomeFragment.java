@@ -104,7 +104,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
             }
 
 
-            Globals.profilepicdownloaded = 1;
+
 
 
             final ExecutorService executorServicehomeBookName = Executors.newSingleThreadExecutor();
