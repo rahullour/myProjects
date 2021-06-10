@@ -216,7 +216,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                 drawer.closeDrawer(GravityCompat.START);
 
 
-            
+
                 AllottedBooksFragment abf=new AllottedBooksFragment();
                 FragmentTransaction  transaction=getSupportFragmentManager().beginTransaction();
 
@@ -336,7 +336,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        Globals.userimage = findViewById(R.id.home_userimage);
+        Globals.userimage = findViewById(R.id.home_user_image);
         final Context[] context = {getApplicationContext()};
         tvname = findViewById(R.id.home_username);
         tvid = findViewById(R.id.home_userid);
@@ -493,6 +493,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
                             if ((downloadimageresult[0] == null) || downloadimageresult[0].equals("null")) {
                                 //System.out.println(":( Image Doesn't Exist! ):");
+                                Globals.profilepicdownloaded = 1;
 
                             } else {
 

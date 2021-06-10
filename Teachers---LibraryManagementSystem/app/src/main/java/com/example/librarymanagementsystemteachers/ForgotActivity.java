@@ -38,6 +38,8 @@ import static com.example.librarymanagementsystemteachers.Globals.user_email;
 public class ForgotActivity extends AppCompatActivity {
 
     String senpass="";
+    String senotpreplace="";
+    String existingMail="";
 
 
     public char[] pass = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
@@ -55,9 +57,9 @@ public class ForgotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot);
-         Context context=getApplicationContext();
+        Context context=getApplicationContext();
 
-
+        loadingDialog=new LoadingDialog(this);
         sendlinkbtn=findViewById(R.id.sendlinkbutton);
         resetpasswordbtn=findViewById(R.id.resetpasswordbutton);
 
@@ -67,9 +69,10 @@ public class ForgotActivity extends AppCompatActivity {
         enteredotp=findViewById(R.id.otpfield);
         resetpassword1=findViewById(R.id.resetpasswordfield1);
         resetpassword2=findViewById(R.id.resetpasswordfield2);
+        user_email="null";
 
         sendlinkbtn.setOnClickListener(new View.OnClickListener() {
-           
+
 
             @Override
             public void onClick(View v) {
@@ -81,8 +84,8 @@ public class ForgotActivity extends AppCompatActivity {
                 if (emailreset.getText().toString().isEmpty()) {
 
                     Context context = getApplicationContext();
-                    
-                    CharSequence text = ":( Enter Email! ):";
+
+                    CharSequence text = ":( Enter Email ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
 
@@ -91,7 +94,7 @@ public class ForgotActivity extends AppCompatActivity {
                     toast.show();
 
                 } else  if(status!=0) {
-                    
+
                     senpass="";
                     for(int i=0;i<10;i++)
                     {
@@ -101,8 +104,10 @@ public class ForgotActivity extends AppCompatActivity {
 
                     }
 
+
+
                     Context context = getApplicationContext();
-                     Globals.user_email = emailreset.getText().toString().trim();
+                    Globals.user_email = emailreset.getText().toString().trim();
 
                     loadingDialog.startLoadingDialog();
 
@@ -113,7 +118,7 @@ public class ForgotActivity extends AppCompatActivity {
 
                             try {
 
-                                String login_url="https://rahullour.thats.im/sendlink.php";
+                                String login_url="https://rahullour.thats.im/sendlinkteacher.php";
                                 //System.out.println("running-----------------------------------------------------------------------");
                                 URL url=new URL(login_url);
                                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
@@ -161,7 +166,7 @@ public class ForgotActivity extends AppCompatActivity {
                                     if((sendlinkresult[0]==null) || sendlinkresult[0].equals("null"))
                                     {
                                         // //System.out.println("null Executing");
-                                        CharSequence text = ":( Please Register! ):";
+                                        CharSequence text = ":( Please Register ! ):";
                                         int duration = Toast.LENGTH_SHORT;
 
                                         Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -175,11 +180,11 @@ public class ForgotActivity extends AppCompatActivity {
                                         //  //System.out.println("SENMAIL EXECUTED:");
                                         senEmail(context,sendlinkresult,user_email);
 
-                                        CharSequence text = ":) Please Check Your MailBox (:";
                                         int duration = Toast.LENGTH_SHORT;
 
-                                        Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
+                                        Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" +" :) Please Check Your MailBox (: " + "</b> </font>"), duration);
                                         toast.show();
+                                        existingMail=user_email;
 
 
 
@@ -204,7 +209,7 @@ public class ForgotActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
                     toast.show();
 
@@ -226,9 +231,9 @@ public class ForgotActivity extends AppCompatActivity {
 
                 //email
                 if (enteredotp.getText().toString().isEmpty() || resetpassword1.getText().toString().isEmpty() || resetpassword2.getText().toString().isEmpty()){
-                    
+
                     Context context = getApplicationContext();
-                    CharSequence text = ":( Please Fill Remaining Fields! ):";
+                    CharSequence text = ":( Please Fill Remaining Fields ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
 
@@ -239,9 +244,9 @@ public class ForgotActivity extends AppCompatActivity {
                 }
 
                 else if(resetpassword1.getText().toString().length() < 8 && resetpassword2.getText().toString().length() <8)
-                {   
+                {
                     Context context = getApplicationContext();
-                    CharSequence text = ":( Password Length Cannot Be Less Than 8 Char! ):";
+                    CharSequence text = ":( Password Length Cannot Be Less Than 8 Char ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
 
@@ -255,9 +260,9 @@ public class ForgotActivity extends AppCompatActivity {
 
 
                 else if (!resetpassword1.getText().toString().equals(resetpassword2.getText().toString()))
-                {  
+                {
                     Context context = getApplicationContext();
-                    CharSequence text = ":( Entered Passwords Do Not Match! ):";
+                    CharSequence text = ":( Entered Passwords Do Not Match ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
 
@@ -268,8 +273,16 @@ public class ForgotActivity extends AppCompatActivity {
                 }
 
                 else if(status!=0) {
+                    senotpreplace="";
+                    for(int i=0;i<10;i++)
+                    {
+                        int pos=random.nextInt(pass.length);
+                        Character ch=pass[pos];
+                        senotpreplace+=ch.toString();
 
-                    
+                    }
+
+
                     Context context = getApplicationContext();
 
                     loadingDialog.startLoadingDialog();
@@ -281,7 +294,7 @@ public class ForgotActivity extends AppCompatActivity {
                             try {
 
 
-                                String login_url="https://rahullour.thats.im/resetpass.php";
+                                String login_url="https://rahullour.thats.im/resetpassteacher.php";
                                 //System.out.println("running-----------------------------------------------------------------------");
                                 URL url=new URL(login_url);
                                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
@@ -292,7 +305,9 @@ public class ForgotActivity extends AppCompatActivity {
                                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
                                 String post_data=
                                         URLEncoder.encode("user_otp","UTF-8")+"="+URLEncoder.encode(enteredotp.getText().toString().trim(),"UTF-8")+"&"+
-                                                URLEncoder.encode("user_resetpass","UTF-8")+"="+URLEncoder.encode(resetpassword1.getText().toString().trim(),"UTF-8");
+                                                URLEncoder.encode("user_resetpass","UTF-8")+"="+URLEncoder.encode(resetpassword1.getText().toString().trim(),"UTF-8")+"&"+
+                                                URLEncoder.encode("user_otp_replace","UTF-8")+"="+URLEncoder.encode(senotpreplace,"UTF-8")+"&"+
+                                                URLEncoder.encode("user_email","UTF-8")+"="+URLEncoder.encode(existingMail,"UTF-8");
 
 
                                 bufferedWriter.write(post_data);
@@ -334,7 +349,19 @@ public class ForgotActivity extends AppCompatActivity {
                                     if((resetpassresult[0]==null) || resetpassresult[0].equals("null"))
                                     {
                                         // //System.out.println("null Executing");
-                                        CharSequence text = ":( Incorrect OTP! ):";
+                                        CharSequence text = ":( Incorrect OTP ! ):";
+                                        int duration = Toast.LENGTH_SHORT;
+
+                                        Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
+                                        toast.show();
+
+
+
+                                    }
+                                    else if(resetpassresult[0].equals("same"))
+                                    {
+                                        // //System.out.println("null Executing");
+                                        CharSequence text = ":( New Password Is Same As Old One , Please Use A Different New Password ! ):";
                                         int duration = Toast.LENGTH_SHORT;
 
                                         Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -350,6 +377,12 @@ public class ForgotActivity extends AppCompatActivity {
 
                                         Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
                                         toast.show();
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        startActivity(intent);
+                                        finish();
 
 
 
@@ -371,7 +404,7 @@ public class ForgotActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
                     toast.show();
                 }
@@ -380,7 +413,7 @@ public class ForgotActivity extends AppCompatActivity {
 
 
 
-                }
+            }
         });
 
 
@@ -404,8 +437,9 @@ public class ForgotActivity extends AppCompatActivity {
 
         String mEmail = user_email;
         String mSubject ="This mail contains information about your MSI Library App Pass-:";
-        String mMessage = "Your old password is:"+result[0]+"\n If you wish to change your password,your OTP is:"+senpass+
-                "\n Don't share this otp with anyone.";
+        String mMessage = "Your current password is: "+result[0]+"\nIf you wish to change your password, your OTP is: "+senpass+
+                "\nDon't share this otp with anyone." +
+                "\nNote -: Above otp is only valid once !";
         JavaMailAPI javaMailAPI = new JavaMailAPI(context, mEmail, mSubject, mMessage);
         javaMailAPI.execute();
         //System.out.println("Email Sent!");

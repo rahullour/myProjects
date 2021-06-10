@@ -56,7 +56,7 @@
                 android:foregroundGravity="center"
                 android:gravity="center"
                 android:hapticFeedbackEnabled="true"
-                android:text="Send Link"
+                android:text="SEND OTP"
                 app:backgroundTint="#FFFFFF"
                 app:rippleColor="#00E1FD" />
 
@@ -101,7 +101,7 @@
                     android:hint="Enter New Password :"
 
                     android:inputType="textPassword"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="40dp"
                     android:textColor="#000000" />
 
 

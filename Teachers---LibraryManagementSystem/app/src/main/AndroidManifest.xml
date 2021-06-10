@@ -34,9 +34,17 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name="com.example.librarymanagementsystemteachers.ForgotActivity"
+            android:parentActivityName="com.example.librarymanagementsystemteachers.MainActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
+
+
+        </activity>
+
         <activity
             android:name="com.example.librarymanagementsystemteachers.InsideActivity"
-            android:noHistory="true"
             android:theme="@style/Theme.Design.Light.NoActionBar">
 
 

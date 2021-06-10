@@ -151,11 +151,11 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                     Intent intent = new Intent(Intent.ACTION_SENDTO);
                     intent.setData(Uri.parse("mailto:")); // only email apps should handle this
                     intent.putExtra(Intent.EXTRA_EMAIL, addresses);
-                    intent.putExtra(Intent.EXTRA_SUBJECT, Globals.user_id.toString() + " Query! <-  (Please don't change this.)");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, Globals.user_id.toString() + "'s Query ! <-  (Please don't change this.)");
                     startActivity(intent);
                 }
                 else {
-                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
                     toast.show();
 
@@ -327,7 +327,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        Globals.userimage = findViewById(R.id.home_userimage);
+        Globals.user_image = findViewById(R.id.home_user_image);
         final Context[] context = {getApplicationContext()};
         tvname = findViewById(R.id.home_username);
         tvid = findViewById(R.id.home_userid);
@@ -397,7 +397,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
         }
 
 
-        Globals.userimage.setOnClickListener(new View.OnClickListener() {
+        Globals.user_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NetworkUtil.setConnectivityStatus(context[0]);
@@ -412,7 +412,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
                 } else {
-                    Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
                     toast.show();
                 }
@@ -484,15 +484,15 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
                             if ((downloadimageresult[0] == null) || downloadimageresult[0].equals("null")) {
                                 //System.out.println(":( Image Doesn't Exist! ):");
-
+                                profilepicdownloaded=1;
                             } else {
 
                                 byte[] decodedImage = Base64.decode(downloadimageresult[0].getBytes(), Base64.DEFAULT);
                                 Bitmap bmp = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.length);
-                                Globals.userimage.setImageBitmap(bmp);
+                                Globals.user_image.setImageBitmap(bmp);
                                 Globals.profilepicdownloaded = 1;
                                 //System.out.println("Image Downloaded");
-
+                                profilepicdownloaded=1;
 
                             }
 
@@ -507,7 +507,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
             });
         }
         else {
-            Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found ! " + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
             toast.show();
         }
@@ -562,7 +562,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                Globals.userimage.setImageBitmap(resizedBitmap);
+                Globals.user_image.setImageBitmap(resizedBitmap);
                 byte[] imageBytes = baos.toByteArray();
                 String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 

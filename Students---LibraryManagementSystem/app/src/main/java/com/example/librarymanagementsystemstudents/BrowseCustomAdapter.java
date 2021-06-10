@@ -52,6 +52,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
     private String[] browse_yop;
     private String[] internal_browse_available_count;
     private String[] browse_image;
+    private int pending=0;
 
    
     private Activity activity;
@@ -150,7 +151,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
         viewHolder.browse_course_field().setText(browse_course[position]);
         viewHolder.browse_yop_field().setText(browse_yop[position]);
         viewHolder.browse_available_count_field().setText(internal_browse_available_count[position]);
-        System.out.println("Error In Book Image :"+browse_book_name[position]);
+        //System.out.println("Error In Book Image :"+browse_book_name[position]);
         byte[] decodedImage = Base64.decode(browse_image[position].getBytes(), Base64.DEFAULT);
                 Bitmap bmp = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.length);
 //        Bitmap resizedBitmap = Bitmap.createScaledBitmap(
@@ -330,6 +331,8 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + browse_book_name[position] +"'s Allocation Request Sent !" + " </b> </font>"), duration);
                                                 viewHolder.browse_available_count_field().setText(get_book[1]);
                                                 viewHolder.browse_get_button_book_name_button().setText("PENDING");
+                                                viewHolder.browse_get_button_book_name_button().setBackground(ContextCompat.getDrawable(activity.getApplicationContext(), R.drawable.pending_book_ripple_effect));
+                                                viewHolder.browse_get_button_book_name_button().setTextColor(Color.parseColor("#0000FF"));
 
                                                 final ExecutorService executorServiceShift1 = Executors.newSingleThreadExecutor();
                                                 executorServiceShift1.execute(new Runnable() {
@@ -337,10 +340,10 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                     public void run() {
 
 
-                                                //System.out.println("BROWSE BUTTON BOOK LENGTH:"+spinner_browse_pending_book_name.length);
+                                                System.out.println("BROWSE BUTTON BOOK LENGTH:"+spinner_browse_pending_book_name.length);
 
                                                 int length=spinner_browse_pending_book_name .length;
-                                                int i=0;
+
 
                                                 String[] temp=new String[length+1];
 
@@ -349,7 +352,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                     temp[p]=spinner_browse_pending_book_name[p];
                                                 }
 
-                                                temp[length-1]=browse_book_name[position];
+                                                temp[temp.length-1]=browse_book_name[position];
                                                 spinner_browse_pending_book_name=temp;
                                                 spinner_browse_pending_book_name=temp;
 //                                                internal_browse_available_count[position]=get_book[1];
@@ -358,15 +361,11 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
 
 
 
-                                                viewHolder.browse_get_button_book_name_button().setBackground(ContextCompat.getDrawable(activity.getApplicationContext(), R.drawable.pending_book_ripple_effect));
-                                                viewHolder.browse_get_button_book_name_button().setTextColor(Color.parseColor("#0000FF"));
                                                 toast.show();
 
                                                         activity.runOnUiThread(new Runnable() {
                                                             @Override
-                                                            public void run() {
-
-                                                                loadingDialog.dismissDialog();
+                                                            public void run() { loadingDialog.dismissDialog();
                                                                 notifyDataSetChanged();
                                                                 //System.out.println("Request Book Complete!");
 
@@ -416,6 +415,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
         });
 
     }
+
 
 
     // Return the size of your dataset (invoked by the layout manager)

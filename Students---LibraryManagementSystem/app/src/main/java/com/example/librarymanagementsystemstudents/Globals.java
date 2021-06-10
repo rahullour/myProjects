@@ -15,7 +15,7 @@ public class Globals {
     public static String user_course;
     public static String user_name;
     public static String user_pwd;
-    public static ImageView userimage;
+    public static ImageView user_image;
     public static String user_email;
     public static LoadingDialog loadingDialog;
     public static ConfirmationDialog confirmationDialog;

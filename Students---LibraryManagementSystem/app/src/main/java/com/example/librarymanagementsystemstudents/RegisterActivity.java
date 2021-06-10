@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
             EditText registername,registerenrollmentno,registeremail;
             TextInputEditText registerpassword1,registerpassword2;
-        Spinner spinner = null;
+        final  Spinner spinner  = findViewById(R.id.course_spinner);
         //buttons
 
 
@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         registeremail =  findViewById(R.id.registeremailfield);
 
 
-        Spinner finalSpinner = spinner;
+
         signupbtn.setOnClickListener(new View.OnClickListener() {
 
             Context context=getApplicationContext();
@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
                     
                     Context context = getApplicationContext();
-                    CharSequence text = ":( PLease Fill Remaining Fields! ):";
+                    CharSequence text = ":( PLease Fill Remaining Fields ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -95,9 +95,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     toast.show();
 
                 }
-                else if (finalSpinner.getSelectedItemPosition()==0 )
+                else if (spinner.getSelectedItemPosition()==0 )
                 {
-                    CharSequence text = ":( PLease Select A Valid Course! ):";
+                    CharSequence text = ":( PLease Select A Valid Course ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -109,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 else if(registerpassword1.getText().toString().length() < 8 && registerpassword2.getText().toString().length() < 8 )
                 {  
                     Context context = getApplicationContext();
-                    CharSequence text = ":( Password Length Cannot Be Less Than 8 Char! ):";
+                    CharSequence text = ":( Password Length Cannot Be Less Than 8 Char ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
 
@@ -125,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 else if (!registerpassword1.getText().toString().equals(registerpassword2.getText().toString()))
                 {   
                     Context context = getApplicationContext();
-                    CharSequence text = ":( Entered Passwords Do Not Match! ):";
+                    CharSequence text = ":( Entered Passwords Do Not Match ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
 
@@ -206,7 +206,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                    
 
                                     if((signupresult[0]==null) || signupresult[0].equals("null")) {
-                                        CharSequence text = ":( SignUp Failed! Please Check Your Id/Email ):";
+                                        CharSequence text = ":( SignUp Failed ! Please Check Your Id/Email ):";
                                         int duration = Toast.LENGTH_SHORT;
 
                                         Toast    toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -217,7 +217,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                         //System.out.println("signupresult[0]=="+signupresult[0]+"signupresult[1]=="+signupresult[1]);
                                         CharSequence text = signupresult[0];
                                         int duration = Toast.LENGTH_SHORT;
-                                        Toast    toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>"+ ":) Welcome "  + text + "(: </b> </font>"), duration);
+                                        Toast    toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>"+ ":) Welcome "  + text + " (: </b> </font>"), duration);
 
                                         toast.show();
                                         context[0] = getApplicationContext();
@@ -239,7 +239,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
                 }
                 else {
-                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
                     toast.show();
 
@@ -252,7 +252,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
         String[] browse_spinner={"⇓   SELECT COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};
-         spinner = findViewById(R.id.course_spinner);
+
         spinner.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 // Create an ArrayAdapter using the string array and a default spinner layout
 

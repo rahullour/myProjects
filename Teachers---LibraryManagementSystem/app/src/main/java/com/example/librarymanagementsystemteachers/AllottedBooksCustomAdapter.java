@@ -33,8 +33,6 @@ import static com.example.librarymanagementsystemteachers.Globals.return_book;
 import static com.example.librarymanagementsystemteachers.Globals.loadingDialog;
 import static com.example.librarymanagementsystemteachers.Globals.confirmationDialog;
 import static com.example.librarymanagementsystemteachers.Globals.status;
-
-
 import static com.example.librarymanagementsystemteachers.Globals.spinner_allotted_book_available_count;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_allotted_book_borrow_date;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_allotted_book_course;

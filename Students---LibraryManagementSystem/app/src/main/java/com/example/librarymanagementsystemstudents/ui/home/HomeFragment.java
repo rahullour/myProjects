@@ -42,10 +42,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-import static com.example.librarymanagementsystemstudents.Globals.latefee;
 import static com.example.librarymanagementsystemstudents.Globals.loadingDialog;
 import static com.example.librarymanagementsystemstudents.Globals.profilepicdownloaded;
-import static com.example.librarymanagementsystemstudents.Globals.spinner_browse_get_button_book_name;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_browse_pending_book_name;
 import static com.example.librarymanagementsystemstudents.Globals.status;
 import static com.example.librarymanagementsystemstudents.Globals.user_id;
@@ -58,7 +56,6 @@ import static com.example.librarymanagementsystemstudents.Globals.spinner_my_boo
 import static com.example.librarymanagementsystemstudents.Globals.spinner_my_book_image;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_my_book_course;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_home_pending_book_name;
-import static com.example.librarymanagementsystemstudents.Globals.user_pwd;
 
 
 public class HomeFragment  extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -630,26 +627,6 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
                                                                                                                                                     }
 
-                                                                                                                                                    int length=0;
-                                                                                                                                                    int i=0;
-
-                                                                                                                                                    while(!(home_my_book_name[i] ==null))
-                                                                                                                                                    { length++;
-                                                                                                                                                        i++;
-                                                                                                                                                    }
-                                                                                                                                                    spinner_my_return_button_book_name=new String[length];
-
-                                                                                                                                                    for(int p=0;p<spinner_my_return_button_book_name.length;p++)
-                                                                                                                                                    {
-                                                                                                                                                        spinner_my_return_button_book_name[p]=home_my_book_name[p];
-                                                                                                                                                    }
-
-                                                                                                                                                    for(int p=0;p< spinner_my_return_button_book_name.length;p++)
-                                                                                                                                                    {
-                                                                                                                                                        //System.out.println("Allocated Book Data In HomeFragment  :"+spinner_my_return_button_book_name[p]);
-                                                                                                                                                        //System.out.println();
-
-                                                                                                                                                    }
 
 
 
@@ -658,28 +635,56 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                                                                         public void run() {
 
 
+                                                                                                                                                            int length = 0;
+                                                                                                                                                            int i = 0;
 
 
-                                                                                                                                                           int length=0;
-                                                                                                                                                            int i=0;
+                                                                                                                                                            if (home_my_book_name[0].equals("null")) {
+                                                                                                                                                                System.out.println("length 0 set");
+                                                                                                                                                                spinner_my_return_button_book_name = new String[0];
+                                                                                                                                                            } else {
+                                                                                                                                                                while (!(home_my_book_name[i] == null)) {
+                                                                                                                                                                    length++;
+                                                                                                                                                                    i++;
+                                                                                                                                                                }
+                                                                                                                                                                spinner_my_return_button_book_name = new String[length];
 
-                                                                                                                                                            while(!(home_my_pending_book_name[i] ==null))
-                                                                                                                                                            { length++;
+                                                                                                                                                                for (int p = 0; p < spinner_my_return_button_book_name.length; p++) {
+                                                                                                                                                                    spinner_my_return_button_book_name[p] = home_my_book_name[p];
+                                                                                                                                                                }
+
+                                                                                                                                                                for (int p = 0; p < spinner_my_return_button_book_name.length; p++) {
+                                                                                                                                                                    //System.out.println("Allocated Book Data In HomeFragment  :"+spinner_my_return_button_book_name[p]);
+                                                                                                                                                                    //System.out.println();
+
+                                                                                                                                                                }
+                                                                                                                                                            }
+
+
+                                                                                                                                                            length = 0;
+                                                                                                                                                            i = 0;
+
+                                                                                                                                                            if (home_my_pending_book_name[0].equals("null")) {
+                                                                                                                                                                System.out.println("length 0 set");
+                                                                                                                                                                spinner_home_pending_book_name = new String[0];
+                                                                                                                                                            }
+                                                                                                                                                            else {
+                                                                                                                                                            while (!(home_my_pending_book_name[i] == null)) {
+                                                                                                                                                                length++;
                                                                                                                                                                 i++;
                                                                                                                                                             }
-                                                                                                                                                            spinner_home_pending_book_name=new String[length];
+                                                                                                                                                            spinner_home_pending_book_name = new String[length];
 
-                                                                                                                                                            for(int p=0;p<spinner_home_pending_book_name.length;p++)
-                                                                                                                                                            {
-                                                                                                                                                                spinner_home_pending_book_name[p]=home_my_pending_book_name[p];
+                                                                                                                                                            for (int p = 0; p < spinner_home_pending_book_name.length; p++) {
+                                                                                                                                                                spinner_home_pending_book_name[p] = home_my_pending_book_name[p];
                                                                                                                                                             }
 
-                                                                                                                                                            for(int p=0;p< spinner_home_pending_book_name.length;p++)
-                                                                                                                                                            {
+                                                                                                                                                            for (int p = 0; p < spinner_home_pending_book_name.length; p++) {
                                                                                                                                                                 //System.out.println("Home Pending Book Data :"+spinner_home_pending_book_name[p]);
                                                                                                                                                                 //System.out.println();
 
                                                                                                                                                             }
+                                                                                                                                                        }
 
 
 
@@ -809,7 +814,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
         }
         else {
-            Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
             toast.show();
         }

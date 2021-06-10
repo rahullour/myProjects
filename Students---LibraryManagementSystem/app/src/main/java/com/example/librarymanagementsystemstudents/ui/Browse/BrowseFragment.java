@@ -362,7 +362,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                     while ((line = bufferedReader.readLine()) != null) {
                                                                                                         browse_pending_book_name[i] = "";
                                                                                                         browse_pending_book_name[i] += line;
-                                                                                                        //System.out.println("Pending Book :"+i+" "+browse_pending_book_name[i]);
+                                                                                                        System.out.println("Pending Book :"+i+" "+browse_pending_book_name[i]);
                                                                                                         i++;
                                                                                                     }
                                                                                                     bufferedReader.close();
@@ -540,45 +540,60 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                                                                         int length=0;
                                                                                                                                                         int i=0;
 
-                                                                                                                                                        while(!(browse_get_button_book_name[i] ==null))
-                                                                                                                                                        { length++;
-                                                                                                                                                            i++;
-                                                                                                                                                        }
-                                                                                                                                                        spinner_browse_get_button_book_name=new String[length];
-
-                                                                                                                                                        for(int p=0;p<spinner_browse_get_button_book_name.length;p++)
+                                                                                                                                                        if(browse_get_button_book_name[0].equals("null"))
                                                                                                                                                         {
-                                                                                                                                                            spinner_browse_get_button_book_name[p]=browse_get_button_book_name[p];
+                                                                                                                                                            System.out.println("length 0 set");
+                                                                                                                                                            spinner_browse_get_button_book_name=new String[0];
                                                                                                                                                         }
+                                                                                                                                                        else {
 
-                                                                                                                                                        for(int p=0;p< spinner_browse_get_button_book_name.length;p++)
-                                                                                                                                                        {
-                                                                                                                                                            //System.out.println("Allocated Book Data In BrowseFragment :"+spinner_browse_get_button_book_name[p]);
-                                                                                                                                                            //System.out.println();
+                                                                                                                                                            while (!(browse_get_button_book_name[i] == null)) {
+                                                                                                                                                                length++;
+                                                                                                                                                                i++;
+                                                                                                                                                            }
+                                                                                                                                                            spinner_browse_get_button_book_name = new String[length];
 
+                                                                                                                                                            for (int p = 0; p < spinner_browse_get_button_book_name.length; p++) {
+                                                                                                                                                                spinner_browse_get_button_book_name[p] = browse_get_button_book_name[p];
+                                                                                                                                                            }
+
+                                                                                                                                                            for (int p = 0; p < spinner_browse_get_button_book_name.length; p++) {
+                                                                                                                                                                //System.out.println("Allocated Book Data In BrowseFragment :"+spinner_browse_get_button_book_name[p]);
+                                                                                                                                                                //System.out.println();
+
+                                                                                                                                                            }
                                                                                                                                                         }
-
 
                                                                                                                                                          length=0;
                                                                                                                                                          i=0;
+                                                                                                                                                         if(browse_pending_book_name[0].equals("null"))
+                                                                                                                                                         {
+                                                                                                                                                             System.out.println("length 0 set");
+                                                                                                                                                             spinner_browse_pending_book_name=new String[0];
+                                                                                                                                                         }
+                                                                                                                                                         else
+                                                                                                                                                         {
+                                                                                                                                                             while(!(browse_pending_book_name[i] ==null))
+                                                                                                                                                             { length++;
+                                                                                                                                                                 i++;
+                                                                                                                                                             }
+                                                                                                                                                             spinner_browse_pending_book_name=new String[length];
 
-                                                                                                                                                        while(!(browse_pending_book_name[i] ==null))
-                                                                                                                                                        { length++;
-                                                                                                                                                            i++;
-                                                                                                                                                        }
-                                                                                                                                                        spinner_browse_pending_book_name=new String[length];
+                                                                                                                                                             for(int p=0;p<spinner_browse_pending_book_name.length;p++)
+                                                                                                                                                             {
+                                                                                                                                                                 spinner_browse_pending_book_name[p]=browse_pending_book_name[p];
+                                                                                                                                                             }
+                                                                                                                                                             for(int p=0;p< spinner_browse_pending_book_name.length;p++)
+                                                                                                                                                             {
+                                                                                                                                                                 //System.out.println("Pending Book Data :"+spinner_browse_pending_book_name[p]);
+                                                                                                                                                                 //System.out.println();
 
-                                                                                                                                                        for(int p=0;p<spinner_browse_pending_book_name.length;p++)
-                                                                                                                                                        {
-                                                                                                                                                            spinner_browse_pending_book_name[p]=browse_pending_book_name[p];
-                                                                                                                                                        }
+                                                                                                                                                             }
+                                                                                                                                                         }
 
-                                                                                                                                                        for(int p=0;p< spinner_browse_pending_book_name.length;p++)
-                                                                                                                                                        {
-                                                                                                                                                            //System.out.println("Pending Book Data :"+spinner_browse_pending_book_name[p]);
-                                                                                                                                                            //System.out.println();
 
-                                                                                                                                                        }
+
+                                                                                                                                                        System.out.println("Browse Pending Length:"+spinner_browse_pending_book_name.length);
 
 
 
@@ -707,7 +722,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
         else {
-        Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
         toast.show();
     }

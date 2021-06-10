@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +39,7 @@ import static com.example.librarymanagementsystemteachers.Globals.user_pwd;
 import static com.example.librarymanagementsystemteachers.Globals.loginresult;
 
 public class MainActivity extends AppCompatActivity {
-    Button forgotbtn,loginbtn,registerbtn,visibilitybutton;
+    Button forgotbtn,loginbtn,registerbtn;
     EditText mainenrollment;
     TextInputEditText mainpassword;
 
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             loadingDialog.startLoadingDialog();
                             NetworkUtil.setConnectivityStatus(getApplicationContext());
 
-                            System.out.println("inside bro");
+                           // System.out.println("inside bro");
                             if(status!=0){
 
 
@@ -149,7 +147,24 @@ public class MainActivity extends AppCompatActivity {
 
                                                 if((loginresult[0]==null) || loginresult[0].equals("null")) {
 
-                                                    CharSequence text = ":( Incorrect UserId/Password! ): ";
+                                                    CharSequence text = ":( Incorrect UserId/Password ! ): ";
+                                                    int duration = Toast.LENGTH_SHORT;
+                                                    //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
+                                                    Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
+                                                    loadingDialog.dismissDialog();
+                                                    toast.show();
+                                                    Context context=getApplicationContext();
+                                                    SharedPreferences sharedPreferences = PreferenceManager
+                                                            .getDefaultSharedPreferences(context);
+                                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                    editor.putString("mainenrollment", "null");
+                                                    editor.putString("mainpassword", "null");
+                                                    editor.apply();
+
+                                                }
+                                                else if(loginresult[0].equals("register")) {
+
+                                                    CharSequence text = ":) Please Register ! (: ";
                                                     int duration = Toast.LENGTH_SHORT;
                                                     //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
                                                     Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -186,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                             else {
-                                toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+                                toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
                                 toast.show();
 
@@ -227,6 +242,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        forgotbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
+
+
+                Context context = getApplicationContext();
+                Intent intent = new Intent(context, ForgotActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
 
 
 
@@ -252,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     Context context = getApplicationContext();
-                    CharSequence text = ":( PLease Fill Remaining Fields! ):";
+                    CharSequence text = ":( PLease Fill Remaining Fields ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -266,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
                 {
 
                     Context context = getApplicationContext();
-                    CharSequence text = ":( Password Length Has To Be Atleast 8 Char! ):";
+                    CharSequence text = ":( Password Length Has To Be Atleast 8 Char ! ):";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast  toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -338,7 +370,17 @@ public class MainActivity extends AppCompatActivity {
 
                                     if((loginresult[0]==null) || loginresult[0].equals("null")) {
 
-                                        CharSequence text = ":( Incorrect UserId/Password! ): ";
+                                        CharSequence text = ":( Incorrect UserId/Password ! ): ";
+                                        int duration = Toast.LENGTH_SHORT;
+                                        //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
+                                        Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
+
+                                        toast.show();
+
+                                    }
+                                    else if(loginresult[0].equals("register")) {
+
+                                        CharSequence text = ":) Please Register ! (: ";
                                         int duration = Toast.LENGTH_SHORT;
                                         //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
                                         Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -365,6 +407,7 @@ public class MainActivity extends AppCompatActivity {
                                         Toast    toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>"+ ":) Welcome "  + text + " (:  </b> </font>"), duration);
 
                                         toast.show();
+                                        user_id=loginresult[2];
 
 
                                     }
@@ -380,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+                    Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
                     toast.show();
 

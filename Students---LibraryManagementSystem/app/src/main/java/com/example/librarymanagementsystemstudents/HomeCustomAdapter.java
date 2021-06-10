@@ -37,6 +37,7 @@ import static com.example.librarymanagementsystemstudents.Globals.get_book;
 import static com.example.librarymanagementsystemstudents.Globals.return_book;
 import static com.example.librarymanagementsystemstudents.Globals.loadingDialog;
 import static com.example.librarymanagementsystemstudents.Globals.confirmationDialog;
+import static com.example.librarymanagementsystemstudents.Globals.spinner_browse_pending_book_name;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_home_pending_book_name;
 import static com.example.librarymanagementsystemstudents.Globals.status;
 import static com.example.librarymanagementsystemstudents.Globals.user_id;
@@ -290,11 +291,49 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.Vi
                                                
                                                 viewHolder.home_get_button_book_name_button().setText("RETURN PENDING");
                                                 viewHolder.home_get_button_book_name_button().setBackground(ContextCompat.getDrawable(activity.getApplicationContext(), R.drawable.pending_book_ripple_effect));
-
                                                 viewHolder.home_get_button_book_name_button().setTextColor(Color.parseColor("#000000"));
-                                                loadingDialog.dismissDialog();
-                                                notifyDataSetChanged();
+
+                                                
                                                 toast.show();
+                                                final ExecutorService executorServiceShift1 = Executors.newSingleThreadExecutor();
+                                                executorServiceShift1.execute(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+
+
+                                                        //System.out.println("HOME BUTTON BOOK LENGTH:"+spinner_home_pending_book_name.length);
+
+                                                        int length=spinner_home_pending_book_name.length;
+
+
+                                                        String[] temp=new String[length+1];
+
+                                                        for(int p=0;p<spinner_home_pending_book_name.length;p++)
+                                                        {
+                                                            temp[p]=spinner_home_pending_book_name[p];
+                                                        }
+
+                                                        temp[temp.length-1]=my_book_name[position];
+                                                        spinner_home_pending_book_name=temp;
+                                                        spinner_home_pending_book_name=temp;
+//                                                internal_home_available_count[position]=get_book[1];
+//                                                home_available_count[position]=get_book[1];
+
+
+
+
+                                                        toast.show();
+
+                                                        activity.runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() { loadingDialog.dismissDialog();
+                                                                notifyDataSetChanged();
+                                                                //System.out.println("Request Book Complete!");
+
+                                                            }
+                                                        });
+                                                    }
+                                                });
 
 
 
