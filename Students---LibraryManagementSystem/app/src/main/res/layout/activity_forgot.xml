@@ -56,7 +56,7 @@
                 android:foregroundGravity="center"
                 android:gravity="center"
                 android:hapticFeedbackEnabled="true"
-                android:text="Send Link"
+                android:text="SEND OTP"
                 app:backgroundTint="#FFFFFF"
                 app:rippleColor="#00E1FD" />
 
@@ -75,19 +75,18 @@
                 android:textColor="#000000" />
 
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/resetpasswordfieldlayout1"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:background="#FFFFFF"
                 android:foregroundGravity="center"
-                app:hintEnabled="false"
                 android:gravity="center"
                 android:inputType="textPassword"
                 android:textColor="#000000"
+                app:hintEnabled="false"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -101,13 +100,11 @@
                     android:hint="Enter New Password :"
 
                     android:inputType="textPassword"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="40dp"
                     android:textColor="#000000" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -115,15 +112,14 @@
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:background="#FFFFFF"
                 android:foregroundGravity="center"
-                app:hintEnabled="false"
                 android:gravity="center"
                 android:inputType="textPassword"
                 android:textColor="#000000"
+                app:hintEnabled="false"
                 app:passwordToggleEnabled="true">
-
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -141,15 +137,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
             <Button
                 android:id="@+id/resetpasswordbutton"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/ripple_effect"
                 android:clickable="true"
                 android:foregroundGravity="center"
