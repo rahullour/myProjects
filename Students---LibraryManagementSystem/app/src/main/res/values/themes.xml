@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Circular">
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="Square">
+        <item name="cornerSize">0%</item>
+    </style>
+
+</resources>
