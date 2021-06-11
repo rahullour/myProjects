@@ -197,7 +197,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
         viewHolder.return_requested_book_student_id_field().setText(return_requested_book_student_id[position]);
         viewHolder.return_requested_book_student_course_field().setText(return_requested_book_student_course[position]);
 
-
+        System.out.println("Error In :"+return_requested_book_name[position]);
         byte[] decodedImage = Base64.decode(return_requested_book_image[position].getBytes(), Base64.DEFAULT);
         Bitmap bmp = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.length);
 //        Bitmap resizedBitmap = Bitmap.createScaledBitmap(
@@ -733,7 +733,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
         { length++;
             i++;
         }
-        //System.out.println("length:"+length);
+        System.out.println("length:"+length);
         return length;
     }
 }

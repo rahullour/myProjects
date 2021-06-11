@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemteachers.ui.BooksRequests;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,6 +43,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static com.example.librarymanagementsystemteachers.Globals.loadingDialog;
+import static com.example.librarymanagementsystemteachers.Globals.per1;
 import static com.example.librarymanagementsystemteachers.Globals.status;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_name;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_author;
@@ -222,7 +225,8 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
             
         loadingDialog=new LoadingDialog(getActivity());
        // //System.out.println("==================="+loadingDialog.isCancelled());
-        loadingDialog.startLoadingDialog();
+            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+            TextView per1= percentage1.findViewById(R.id.progress_percentage);
 
             final ExecutorService executorServiceRequestedStudentName= Executors.newSingleThreadExecutor();
             executorServiceRequestedStudentName.execute(new Runnable() {
@@ -269,6 +273,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            per1.setText("10.00 %");
                             //System.out.println("Books Requests Student Name Data Download Complete!");
                             final ExecutorService executorServiceRequestedStudentId= Executors.newSingleThreadExecutor();
                             executorServiceRequestedStudentId.execute(new Runnable() {
@@ -315,6 +320,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            per1.setText("20.00 %");
                                             //System.out.println("Books Requests Student Id Data Download Complete!");
                                             final ExecutorService executorServiceRequestedStudentCourse= Executors.newSingleThreadExecutor();
                                             executorServiceRequestedStudentCourse.execute(new Runnable() {
@@ -361,6 +367,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                     getActivity().runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
+                                                            per1.setText("30.00 %");
                                                             //System.out.println("Books Requests Student Course Data Download Complete!");
                                                             final ExecutorService executorServiceRequestedBookName= Executors.newSingleThreadExecutor();
                                                             executorServiceRequestedBookName.execute(new Runnable() {
@@ -408,7 +415,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                                         @Override
                                                                         public void run() {
 
-
+                                                                            per1.setText("40.00 %");
                                                                             //System.out.println("Books Requests Books Name Data Download Complete!");
 
                                                                             final ExecutorService executorServiceRequestedAuthor= Executors.newSingleThreadExecutor();
@@ -458,7 +465,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                                                         @Override
                                                                                         public void run() {
 
-
+                                                                                            per1.setText("50.00 %");
                                                                                             //System.out.println("Books Requests Author Data Download Complete!");
 
                                                                                             final ExecutorService executorServiceRequestedPublisher= Executors.newSingleThreadExecutor();
@@ -508,7 +515,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                                                                         @Override
                                                                                                         public void run() {
 
-
+                                                                                                            per1.setText("60.00 %");
                                                                                                             //System.out.println("Books Requests Publisher Data Download Complete!");
 
 
@@ -556,7 +563,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                                                                                         @Override
                                                                                                                         public void run() {
 
-
+                                                                                                                            per1.setText("70.00 %");
                                                                                                                             //System.out.println("Books Requests Course Data Download Complete!");
 
 
@@ -603,7 +610,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                                                                                                         @Override
                                                                                                                                         public void run() {
 
-
+                                                                                                                                            per1.setText("80.00 %");
                                                                                                                                             //System.out.println("Books Requests Yop Data Download Complete!");
 
 
@@ -650,7 +657,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                                                                                                                         @Override
                                                                                                                                                         public void run() {
 
-
+                                                                                                                                                            per1.setText("90.00 %");
                                                                                                                                                             //System.out.println("Books Requests Available Count Data Download Complete!");
 
 
@@ -715,7 +722,7 @@ public class BooksRequestsFragment extends Fragment implements AdapterView.OnIte
                                                                                                                                                                                 firstRenderComplete=1;
 
                                                                                                                                                                             }
-
+                                                                                                                                                                            per1.setText("100.00 %");
                                                                                                                                                                             Globals.loadingDialog.dismissDialog();
                                                                                                                                                                             //System.out.println("BooksRequests Dialog Dismissed!");
 

@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemteachers.ui.ReturnBooksRequests;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,30 +40,30 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static com.example.librarymanagementsystemteachers.Globals.loadingDialog;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_author;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_available_count;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_course;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_image;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_name;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_publisher;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_yop;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_student_course;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_student_id;
-import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_student_name;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_book_author;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_book_available_count;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_book_course;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_book_image;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_book_name;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_book_publisher;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_book_yop;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_student_course;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_student_id;
+import static com.example.librarymanagementsystemteachers.Globals.spinner_return_requested_student_name;
 import static com.example.librarymanagementsystemteachers.Globals.status;
 
 public class ReturnBooksRequestsFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    String[] requested_book_name=new String[100];
-    String[] requested_book_author=new String[100];
-    String[] requested_book_publisher=new String[100];
-    String[] requested_book_course=new String[100];
-    String[] requested_book_yop=new String[100];
-    String[] requested_book_image=new String[100];
-    String[] requested_book_available_count=new String[100];
-    String[] requested_student_name=new String[100];
-    String[] requested_student_id=new String[100];
-    String[] requested_student_course=new String[100];
+    String[] return_requested_book_name=new String[100];
+    String[] return_requested_book_author=new String[100];
+    String[] return_requested_book_publisher=new String[100];
+    String[] return_requested_book_course=new String[100];
+    String[] return_requested_book_yop=new String[100];
+    String[] return_requested_book_image=new String[100];
+    String[] return_requested_book_available_count=new String[100];
+    String[] return_requested_student_name=new String[100];
+    String[] return_requested_student_id=new String[100];
+    String[] return_requested_student_course=new String[100];
 
 
 
@@ -75,12 +77,12 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_return_books_requests, container, false);
-        RequestedRecyclerView=root.findViewById(R.id.requested_recyclerview);
-        Spinner spinner = (Spinner) root.findViewById(R.id.requested_spinner);
+        RequestedRecyclerView=root.findViewById(R.id.return_requested_recyclerview);
+        Spinner spinner = (Spinner) root.findViewById(R.id.return_requested_spinner);
 
 
-        Button requesteddbutton=root.findViewById(R.id.requested_button);
-        EditText allotted_find_by_id=root.findViewById(R.id.requested_find_by_id);
+        Button requesteddbutton=root.findViewById(R.id.return_requested_button);
+        EditText allotted_find_by_id=root.findViewById(R.id.return_requested_find_by_id);
 
         requesteddbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,8 +96,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
                 if (SearchIdText.isEmpty()) {
                     spinner.setSelection(0);
-                    ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),requested_book_name,requested_book_author,
-                            requested_book_publisher, requested_book_course,requested_book_yop,requested_book_available_count,requested_book_image,requested_student_name,requested_student_id,requested_student_course);
+                    ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),return_requested_book_name,return_requested_book_author,
+                            return_requested_book_publisher, return_requested_book_course,return_requested_book_yop,return_requested_book_available_count,return_requested_book_image,return_requested_student_name,return_requested_student_id,return_requested_student_course);
                     RequestedRecyclerView.setAdapter(ca);
 
 
@@ -113,47 +115,47 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                     executorServiceSearchButton.execute(new Runnable() {
                         @Override
                         public void run() {
-                            for (int i = 0; i < requested_student_id.length; i++) {
-                                spinner_requested_book_course[i]= null;
-                                spinner_requested_book_author[i]= null;
-                                spinner_requested_book_available_count[i]= null;
-                                spinner_requested_book_name[i]= null;
-                                spinner_requested_book_image[i]= null;
-                                spinner_requested_book_publisher[i]= null;
-                                spinner_requested_book_yop[i]= null;
-                                spinner_requested_student_name[i]= null;
-                                spinner_requested_student_id[i]= null;
-                                spinner_requested_student_course[i]= null;
+                            for (int i = 0; i < return_requested_student_id.length; i++) {
+                                spinner_return_requested_book_course[i]= null;
+                                spinner_return_requested_book_author[i]= null;
+                                spinner_return_requested_book_available_count[i]= null;
+                                spinner_return_requested_book_name[i]= null;
+                                spinner_return_requested_book_image[i]= null;
+                                spinner_return_requested_book_publisher[i]= null;
+                                spinner_return_requested_book_yop[i]= null;
+                                spinner_return_requested_student_name[i]= null;
+                                spinner_return_requested_student_id[i]= null;
+                                spinner_return_requested_student_course[i]= null;
 
 
                             }
 
 
                             int i = 0;
-                            for (int j = 0; requested_student_id[j] != null; j++) {
+                            for (int j = 0; return_requested_student_id[j] != null; j++) {
 
-                                if (requested_student_id[j].equals(SearchIdText)) {
-                                    spinner_requested_book_course[i]=requested_book_course[j];
-                                    spinner_requested_book_author[i]=requested_book_author[j];
-                                    spinner_requested_book_available_count[i]=requested_book_available_count[j];
-                                    spinner_requested_book_name[i]=requested_book_name[j];
-                                    spinner_requested_book_image[i]=requested_book_image[j];
-                                    spinner_requested_book_publisher[i]=requested_book_publisher[j];
-                                    spinner_requested_book_yop[i]=requested_book_yop[j];
-                                    spinner_requested_student_name[i]=requested_student_name[j];
-                                    spinner_requested_student_id[i]=requested_student_id[j];
-                                    spinner_requested_student_course[i]=requested_student_course[j];
+                                if (return_requested_student_id[j].equals(SearchIdText)) {
+                                    spinner_return_requested_book_course[i]=return_requested_book_course[j];
+                                    spinner_return_requested_book_author[i]=return_requested_book_author[j];
+                                    spinner_return_requested_book_available_count[i]=return_requested_book_available_count[j];
+                                    spinner_return_requested_book_name[i]=return_requested_book_name[j];
+                                    spinner_return_requested_book_image[i]=return_requested_book_image[j];
+                                    spinner_return_requested_book_publisher[i]=return_requested_book_publisher[j];
+                                    spinner_return_requested_book_yop[i]=return_requested_book_yop[j];
+                                    spinner_return_requested_student_name[i]=return_requested_student_name[j];
+                                    spinner_return_requested_student_id[i]=return_requested_student_id[j];
+                                    spinner_return_requested_student_course[i]=return_requested_student_course[j];
                                     i++;
 
-                                    //System.out.println("Search Button Student Id::" + requested_student_id[i]);
+                                    //System.out.println("Search Button Student Id::" + return_requested_student_id[i]);
                                     found[0] =true;
                                 }
 
 
                             }
 
-                            for (i = 0; i < requested_book_name.length; i++) {
-                                //System.out.println("In BooksRequests Search Button: " + requested_book_name[i] + requested_book_name.length);
+                            for (i = 0; i < return_requested_book_name.length; i++) {
+                                //System.out.println("In BooksRequests Search Button: " + return_requested_book_name[i] + return_requested_book_name.length);
 
                             }
 
@@ -163,8 +165,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                 public void run() {
                                     if(found[0] ==true)
                                     {
-                                        ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_requested_book_name,spinner_requested_book_author,
-                                                spinner_requested_book_publisher, spinner_requested_book_course,spinner_requested_book_yop,spinner_requested_book_available_count,spinner_requested_book_image,spinner_requested_student_name,spinner_requested_student_id,spinner_requested_student_course);
+                                        ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_return_requested_book_name,spinner_return_requested_book_author,
+                                                spinner_return_requested_book_publisher, spinner_return_requested_book_course,spinner_return_requested_book_yop,spinner_return_requested_book_available_count,spinner_return_requested_book_image,spinner_return_requested_student_name,spinner_return_requested_student_id,spinner_return_requested_student_course);
                                         RequestedRecyclerView.setAdapter(ca);
 
                                     }
@@ -202,21 +204,22 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
         NetworkUtil.setConnectivityStatus(getContext());
         if (status != 0) {
-            spinner_requested_book_name=new String[100];
-            spinner_requested_book_author=new String[100];
-            spinner_requested_book_publisher=new String[100];
-            spinner_requested_book_course=new String[100];
-            spinner_requested_book_yop=new String[100];
-            spinner_requested_book_available_count=new String[100];
-            spinner_requested_book_image=new String[100];
-            spinner_requested_student_name=new String[100];
-            spinner_requested_student_id=new String[100];
-            spinner_requested_student_course=new String[100];
+            spinner_return_requested_book_name=new String[100];
+            spinner_return_requested_book_author=new String[100];
+            spinner_return_requested_book_publisher=new String[100];
+            spinner_return_requested_book_course=new String[100];
+            spinner_return_requested_book_yop=new String[100];
+            spinner_return_requested_book_available_count=new String[100];
+            spinner_return_requested_book_image=new String[100];
+            spinner_return_requested_student_name=new String[100];
+            spinner_return_requested_student_id=new String[100];
+            spinner_return_requested_student_course=new String[100];
 
 
             loadingDialog=new LoadingDialog(getActivity());
             // //System.out.println("==================="+loadingDialog.isCancelled());
-            loadingDialog.startLoadingDialog();
+            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+            TextView per1= percentage1.findViewById(R.id.progress_percentage);
 
             final ExecutorService executorServiceRequestedStudentName= Executors.newSingleThreadExecutor();
             executorServiceRequestedStudentName.execute(new Runnable() {
@@ -241,9 +244,9 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                         int i = 0;
                         while ((line = bufferedReader.readLine()) != null) {
 
-                            requested_student_name[i] = "";
-                            requested_student_name[i] += line;
-                            //  //System.out.println("Requested Book Name : " + i +requested_book_name[i]);
+                            return_requested_student_name[i] = "";
+                            return_requested_student_name[i] += line;
+                            //  //System.out.println("Requested Book Name : " + i +return_requested_book_name[i]);
                             i++;
                         }
                         bufferedReader.close();
@@ -263,6 +266,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            per1.setText("10.00 %");
                             //System.out.println("Books Requests Student Name Data Download Complete!");
                             final ExecutorService executorServiceRequestedStudentId= Executors.newSingleThreadExecutor();
                             executorServiceRequestedStudentId.execute(new Runnable() {
@@ -287,9 +291,9 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                         int i = 0;
                                         while ((line = bufferedReader.readLine()) != null) {
 
-                                            requested_student_id[i] = "";
-                                            requested_student_id[i] += line;
-                                            //  //System.out.println("Requested Book Name : " + i +requested_book_name[i]);
+                                            return_requested_student_id[i] = "";
+                                            return_requested_student_id[i] += line;
+                                            //  //System.out.println("Requested Book Name : " + i +return_requested_book_name[i]);
                                             i++;
                                         }
                                         bufferedReader.close();
@@ -309,6 +313,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            per1.setText("20.00 %");
                                             //System.out.println("Books Requests Student Id Data Download Complete!");
                                             final ExecutorService executorServiceRequestedStudentCourse= Executors.newSingleThreadExecutor();
                                             executorServiceRequestedStudentCourse.execute(new Runnable() {
@@ -333,9 +338,9 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                         int i = 0;
                                                         while ((line = bufferedReader.readLine()) != null) {
 
-                                                            requested_student_course[i] = "";
-                                                            requested_student_course[i] += line;
-                                                            //  //System.out.println("Requested Book Name : " + i +requested_book_name[i]);
+                                                            return_requested_student_course[i] = "";
+                                                            return_requested_student_course[i] += line;
+                                                            //  //System.out.println("Requested Book Name : " + i +return_requested_book_name[i]);
                                                             i++;
                                                         }
                                                         bufferedReader.close();
@@ -355,6 +360,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                     getActivity().runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
+                                                            per1.setText("30.00 %");
                                                             //System.out.println("Books Requests Student Course Data Download Complete!");
                                                             final ExecutorService executorServiceRequestedBookName= Executors.newSingleThreadExecutor();
                                                             executorServiceRequestedBookName.execute(new Runnable() {
@@ -379,9 +385,9 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                         int i = 0;
                                                                         while ((line = bufferedReader.readLine()) != null) {
 
-                                                                            requested_book_name[i] = "";
-                                                                            requested_book_name[i] += line;
-                                                                            //  //System.out.println("Requested Book Name : " + i +requested_book_name[i]);
+                                                                            return_requested_book_name[i] = "";
+                                                                            return_requested_book_name[i] += line;
+                                                                            //  //System.out.println("Requested Book Name : " + i +return_requested_book_name[i]);
                                                                             i++;
                                                                         }
                                                                         bufferedReader.close();
@@ -402,7 +408,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                         @Override
                                                                         public void run() {
 
-
+                                                                            per1.setText("40.00 %");
                                                                             //System.out.println("Books Requests Books Name Data Download Complete!");
 
                                                                             final ExecutorService executorServiceRequestedAuthor= Executors.newSingleThreadExecutor();
@@ -429,9 +435,9 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                         String line = "";
                                                                                         int i = 0;
                                                                                         while ((line = bufferedReader.readLine()) != null) {
-                                                                                            requested_book_author[i] = "";
-                                                                                            requested_book_author[i] += line;
-                                                                                            //  //System.out.println("Requested Book Author : " + i +requested_book_author[i]);
+                                                                                            return_requested_book_author[i] = "";
+                                                                                            return_requested_book_author[i] += line;
+                                                                                            //  //System.out.println("Requested Book Author : " + i +return_requested_book_author[i]);
                                                                                             i++;
                                                                                         }
                                                                                         bufferedReader.close();
@@ -452,7 +458,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                         @Override
                                                                                         public void run() {
 
-
+                                                                                            per1.setText("50.00 %");
                                                                                             //System.out.println("Books Requests Author Data Download Complete!");
 
                                                                                             final ExecutorService executorServiceRequestedPublisher= Executors.newSingleThreadExecutor();
@@ -480,8 +486,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                         String line = "";
                                                                                                         int i = 0;
                                                                                                         while ((line = bufferedReader.readLine()) != null) {
-                                                                                                            requested_book_publisher[i] = "";
-                                                                                                            requested_book_publisher[i] += line;
+                                                                                                            return_requested_book_publisher[i] = "";
+                                                                                                            return_requested_book_publisher[i] += line;
                                                                                                             i++;
                                                                                                         }
                                                                                                         bufferedReader.close();
@@ -502,7 +508,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                         @Override
                                                                                                         public void run() {
 
-
+                                                                                                            per1.setText("60.00 %");
                                                                                                             //System.out.println("Books Requests Publisher Data Download Complete!");
 
 
@@ -528,8 +534,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                         String line = "";
                                                                                                                         int i = 0;
                                                                                                                         while ((line = bufferedReader.readLine()) != null) {
-                                                                                                                            requested_book_course[i] = "";
-                                                                                                                            requested_book_course[i] += line;
+                                                                                                                            return_requested_book_course[i] = "";
+                                                                                                                            return_requested_book_course[i] += line;
                                                                                                                             i++;
                                                                                                                         }
                                                                                                                         bufferedReader.close();
@@ -550,7 +556,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                         @Override
                                                                                                                         public void run() {
 
-
+                                                                                                                            per1.setText("70.00 %");
                                                                                                                             //System.out.println("Books Requests Course Data Download Complete!");
 
 
@@ -576,8 +582,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                                         String line = "";
                                                                                                                                         int i = 0;
                                                                                                                                         while ((line = bufferedReader.readLine()) != null) {
-                                                                                                                                            requested_book_yop[i] = "";
-                                                                                                                                            requested_book_yop[i] += line;
+                                                                                                                                            return_requested_book_yop[i] = "";
+                                                                                                                                            return_requested_book_yop[i] += line;
                                                                                                                                             i++;
                                                                                                                                         }
                                                                                                                                         bufferedReader.close();
@@ -597,7 +603,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                                         @Override
                                                                                                                                         public void run() {
 
-
+                                                                                                                                            per1.setText("80.00 %");
                                                                                                                                             //System.out.println("Books Requests Yop Data Download Complete!");
 
 
@@ -623,8 +629,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                                                         String line = "";
                                                                                                                                                         int i = 0;
                                                                                                                                                         while ((line = bufferedReader.readLine()) != null) {
-                                                                                                                                                            requested_book_available_count[i] = "";
-                                                                                                                                                            requested_book_available_count[i] += line;
+                                                                                                                                                            return_requested_book_available_count[i] = "";
+                                                                                                                                                            return_requested_book_available_count[i] += line;
                                                                                                                                                             i++;
                                                                                                                                                         }
                                                                                                                                                         bufferedReader.close();
@@ -644,7 +650,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                                                         @Override
                                                                                                                                                         public void run() {
 
-
+                                                                                                                                                            per1.setText("90.00 %");
                                                                                                                                                             //System.out.println("Books Requests Available Count Data Download Complete!");
 
 
@@ -670,8 +676,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                                                                         String line = "";
                                                                                                                                                                         int i = 0;
                                                                                                                                                                         while ((line = bufferedReader.readLine()) != null) {
-                                                                                                                                                                            requested_book_image[i] = "";
-                                                                                                                                                                            requested_book_image[i] += line;
+                                                                                                                                                                            return_requested_book_image[i] = "";
+                                                                                                                                                                            return_requested_book_image[i] += line;
                                                                                                                                                                             i++;
                                                                                                                                                                         }
                                                                                                                                                                         bufferedReader.close();
@@ -695,7 +701,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                                                                         @Override
                                                                                                                                                                         public void run() {
 
-                                                                                                                                                                            if ((requested_book_image[0] == null) || requested_book_image[0].equals("null")) {
+                                                                                                                                                                            if ((return_requested_book_image[0] == null) || return_requested_book_image[0].equals("null")) {
 
                                                                                                                                                                                 //System.out.println(":(Requested Book Images Don't Exist! ):");
 
@@ -703,13 +709,13 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                                                                                                                                                                                 //System.out.println("Requested Books Images Data Download Complete!");
                                                                                                                                                                                 RequestedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                                                                                                                                                                                 //  RequestedRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
-                                                                                                                                                                                ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),requested_book_name,requested_book_author,
-                                                                                                                                                                                        requested_book_publisher, requested_book_course,requested_book_yop,requested_book_available_count,requested_book_image,requested_student_name,requested_student_id,requested_student_course);
+                                                                                                                                                                                ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),return_requested_book_name,return_requested_book_author,
+                                                                                                                                                                                        return_requested_book_publisher, return_requested_book_course,return_requested_book_yop,return_requested_book_available_count,return_requested_book_image,return_requested_student_name,return_requested_student_id,return_requested_student_course);
                                                                                                                                                                                 RequestedRecyclerView.setAdapter(ca);
                                                                                                                                                                                 firstRenderComplete=1;
 
                                                                                                                                                                             }
-
+                                                                                                                                                                            per1.setText("100.00 %");
                                                                                                                                                                             Globals.loadingDialog.dismissDialog();
                                                                                                                                                                             //System.out.println("BooksRequests Dialog Dismissed!");
 
@@ -809,11 +815,11 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
 
-            String[] Requested_spinner={"⇓   FIND BY BOOK COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};
+            String[] return_requested_spinner={"⇓   FIND BY BOOK COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};
             spinner.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 // Create an ArrayAdapter using the string array and a default spinner layout
 
-            ArrayAdapter adapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,Requested_spinner);
+            ArrayAdapter adapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,return_requested_spinner);
 // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
@@ -838,8 +844,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
         if(position==0)
         { if (firstRenderComplete==1) {
 
-            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(), requested_book_name, requested_book_author,
-                    requested_book_publisher, requested_book_course, requested_book_yop, requested_book_available_count, requested_book_image, requested_student_name, requested_student_id, requested_student_course);
+            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(), return_requested_book_name, return_requested_book_author,
+                    return_requested_book_publisher, return_requested_book_course, return_requested_book_yop, return_requested_book_available_count, return_requested_book_image, return_requested_student_name, return_requested_student_id, return_requested_student_course);
             RequestedRecyclerView.setAdapter(ca);
 
         }
@@ -854,17 +860,17 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
             executorServiceSpinnerBCA.execute(new Runnable() {
                 @Override
                 public void run() {
-                    for(int i=0;i<requested_book_course.length;i++) {
-                        spinner_requested_book_course[i]= null;
-                        spinner_requested_book_author[i]= null;
-                        spinner_requested_book_available_count[i]= null;
-                        spinner_requested_book_name[i]= null;
-                        spinner_requested_book_image[i]= null;
-                        spinner_requested_book_publisher[i]= null;
-                        spinner_requested_book_yop[i]= null;
-                        spinner_requested_student_name[i]= null;
-                        spinner_requested_student_id[i]= null;
-                        spinner_requested_student_course[i]= null;
+                    for(int i=0;i<return_requested_book_course.length;i++) {
+                        spinner_return_requested_book_course[i]= null;
+                        spinner_return_requested_book_author[i]= null;
+                        spinner_return_requested_book_available_count[i]= null;
+                        spinner_return_requested_book_name[i]= null;
+                        spinner_return_requested_book_image[i]= null;
+                        spinner_return_requested_book_publisher[i]= null;
+                        spinner_return_requested_book_yop[i]= null;
+                        spinner_return_requested_student_name[i]= null;
+                        spinner_return_requested_student_id[i]= null;
+                        spinner_return_requested_student_course[i]= null;
 
 
                     }
@@ -873,35 +879,35 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                     int i=0;
-                    for(int j=0;requested_book_course[j]!=null;j++)
+                    for(int j=0;return_requested_book_course[j]!=null;j++)
                     {
 
-                        if (requested_book_course[j].equals("BCA"))
+                        if (return_requested_book_course[j].equals("BCA"))
                         {
-                            spinner_requested_book_course[i]=requested_book_course[j];
-                            spinner_requested_book_author[i]=requested_book_author[j];
-                            spinner_requested_book_available_count[i]=requested_book_available_count[j];
-                            spinner_requested_book_name[i]=requested_book_name[j];
-                            spinner_requested_book_image[i]=requested_book_image[j];
-                            spinner_requested_book_publisher[i]=requested_book_publisher[j];
-                            spinner_requested_book_yop[i]=requested_book_yop[j];
-                            spinner_requested_student_name[i]=requested_student_name[j];
-                            spinner_requested_student_id[i]=requested_student_id[j];
-                            spinner_requested_student_course[i]=requested_student_course[j];
+                            spinner_return_requested_book_course[i]=return_requested_book_course[j];
+                            spinner_return_requested_book_author[i]=return_requested_book_author[j];
+                            spinner_return_requested_book_available_count[i]=return_requested_book_available_count[j];
+                            spinner_return_requested_book_name[i]=return_requested_book_name[j];
+                            spinner_return_requested_book_image[i]=return_requested_book_image[j];
+                            spinner_return_requested_book_publisher[i]=return_requested_book_publisher[j];
+                            spinner_return_requested_book_yop[i]=return_requested_book_yop[j];
+                            spinner_return_requested_student_name[i]=return_requested_student_name[j];
+                            spinner_return_requested_student_id[i]=return_requested_student_id[j];
+                            spinner_return_requested_student_course[i]=return_requested_student_course[j];
 
 
                             i++;
 
-                            // //System.out.println("BCA BOOK NAME:"+spinner_requested_book_name[i]);
+                            // //System.out.println("BCA BOOK NAME:"+spinner_return_requested_book_name[i]);
 
                         }
 
 
                     }
 
-//                    for( i=0;i<spinner_requested_book_course.length;i++)
+//                    for( i=0;i<spinner_return_requested_book_course.length;i++)
 //                    {
-//                        //System.out.println("In Spinner Course: "+spinner_requested_book_course[i]+spinner_requested_book_course.length);
+//                        //System.out.println("In Spinner Course: "+spinner_return_requested_book_course[i]+spinner_return_requested_book_course.length);
 //
 //                    }
 
@@ -912,8 +918,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                         public void run() {
 
 
-                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_requested_book_name,spinner_requested_book_author,
-                                    spinner_requested_book_publisher, spinner_requested_book_course,spinner_requested_book_yop,spinner_requested_book_available_count,spinner_requested_book_image,spinner_requested_student_name,spinner_requested_student_id,spinner_requested_student_course);
+                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_return_requested_book_name,spinner_return_requested_book_author,
+                                    spinner_return_requested_book_publisher, spinner_return_requested_book_course,spinner_return_requested_book_yop,spinner_return_requested_book_available_count,spinner_return_requested_book_image,spinner_return_requested_student_name,spinner_return_requested_student_id,spinner_return_requested_student_course);
                             RequestedRecyclerView.setAdapter(ca);
 
 
@@ -939,37 +945,37 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
             executorServiceSpinnerBBA.execute(new Runnable() {
                 @Override
                 public void run() {
-                    for(int i=0;i<requested_book_course.length;i++) {
-                        spinner_requested_book_course[i]= null;
-                        spinner_requested_book_author[i]= null;
-                        spinner_requested_book_available_count[i]= null;
-                        spinner_requested_book_name[i]= null;
-                        spinner_requested_book_image[i]= null;
-                        spinner_requested_book_publisher[i]= null;
-                        spinner_requested_book_yop[i]= null;
-                        spinner_requested_student_name[i]= null;
-                        spinner_requested_student_id[i]= null;
-                        spinner_requested_student_course[i]= null;
+                    for(int i=0;i<return_requested_book_course.length;i++) {
+                        spinner_return_requested_book_course[i]= null;
+                        spinner_return_requested_book_author[i]= null;
+                        spinner_return_requested_book_available_count[i]= null;
+                        spinner_return_requested_book_name[i]= null;
+                        spinner_return_requested_book_image[i]= null;
+                        spinner_return_requested_book_publisher[i]= null;
+                        spinner_return_requested_book_yop[i]= null;
+                        spinner_return_requested_student_name[i]= null;
+                        spinner_return_requested_student_id[i]= null;
+                        spinner_return_requested_student_course[i]= null;
 
                     }
 
                     int i=0;
 
-                    for(int j=0;requested_book_course[j]!=null;j++)
+                    for(int j=0;return_requested_book_course[j]!=null;j++)
                     {
 
-                        if (requested_book_course[j].equals("BBA"))
+                        if (return_requested_book_course[j].equals("BBA"))
                         {
-                            spinner_requested_book_course[i]=requested_book_course[j];
-                            spinner_requested_book_author[i]=requested_book_author[j];
-                            spinner_requested_book_available_count[i]=requested_book_available_count[j];
-                            spinner_requested_book_name[i]=requested_book_name[j];
-                            spinner_requested_book_image[i]=requested_book_image[j];
-                            spinner_requested_book_publisher[i]=requested_book_publisher[j];
-                            spinner_requested_book_yop[i]=requested_book_yop[j];
-                            spinner_requested_student_name[i]=requested_student_name[j];
-                            spinner_requested_student_id[i]=requested_student_id[j];
-                            spinner_requested_student_course[i]=requested_student_course[j];
+                            spinner_return_requested_book_course[i]=return_requested_book_course[j];
+                            spinner_return_requested_book_author[i]=return_requested_book_author[j];
+                            spinner_return_requested_book_available_count[i]=return_requested_book_available_count[j];
+                            spinner_return_requested_book_name[i]=return_requested_book_name[j];
+                            spinner_return_requested_book_image[i]=return_requested_book_image[j];
+                            spinner_return_requested_book_publisher[i]=return_requested_book_publisher[j];
+                            spinner_return_requested_book_yop[i]=return_requested_book_yop[j];
+                            spinner_return_requested_student_name[i]=return_requested_student_name[j];
+                            spinner_return_requested_student_id[i]=return_requested_student_id[j];
+                            spinner_return_requested_student_course[i]=return_requested_student_course[j];
 
 
                             i++;
@@ -985,8 +991,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                         @Override
                         public void run() {
 
-                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_requested_book_name,spinner_requested_book_author,
-                                    spinner_requested_book_publisher, spinner_requested_book_course,spinner_requested_book_yop,spinner_requested_book_available_count,spinner_requested_book_image,spinner_requested_student_name,spinner_requested_student_id,spinner_requested_student_course);
+                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_return_requested_book_name,spinner_return_requested_book_author,
+                                    spinner_return_requested_book_publisher, spinner_return_requested_book_course,spinner_return_requested_book_yop,spinner_return_requested_book_available_count,spinner_return_requested_book_image,spinner_return_requested_student_name,spinner_return_requested_student_id,spinner_return_requested_student_course);
                             RequestedRecyclerView.setAdapter(ca);
 
 
@@ -1014,38 +1020,38 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                 @Override
                 public void run() {
 
-                    for(int i=0;i<requested_book_course.length;i++) {
-                        spinner_requested_book_course[i]= null;
-                        spinner_requested_book_author[i]= null;
-                        spinner_requested_book_available_count[i]= null;
-                        spinner_requested_book_name[i]= null;
-                        spinner_requested_book_image[i]= null;
-                        spinner_requested_book_publisher[i]= null;
-                        spinner_requested_book_yop[i]= null;
-                        spinner_requested_student_name[i]= null;
-                        spinner_requested_student_id[i]= null;
-                        spinner_requested_student_course[i]= null;
+                    for(int i=0;i<return_requested_book_course.length;i++) {
+                        spinner_return_requested_book_course[i]= null;
+                        spinner_return_requested_book_author[i]= null;
+                        spinner_return_requested_book_available_count[i]= null;
+                        spinner_return_requested_book_name[i]= null;
+                        spinner_return_requested_book_image[i]= null;
+                        spinner_return_requested_book_publisher[i]= null;
+                        spinner_return_requested_book_yop[i]= null;
+                        spinner_return_requested_student_name[i]= null;
+                        spinner_return_requested_student_id[i]= null;
+                        spinner_return_requested_student_course[i]= null;
 
                     }
 
                     int i=0;
 
-                    for(int j=0;requested_book_course[j]!=null;j++)
+                    for(int j=0;return_requested_book_course[j]!=null;j++)
                     {
 
 
-                        if (requested_book_course[j].equals("B.COM"))
+                        if (return_requested_book_course[j].equals("B.COM"))
                         {
-                            spinner_requested_book_course[i]=requested_book_course[j];
-                            spinner_requested_book_author[i]=requested_book_author[j];
-                            spinner_requested_book_available_count[i]=requested_book_available_count[j];
-                            spinner_requested_book_name[i]=requested_book_name[j];
-                            spinner_requested_book_image[i]=requested_book_image[j];
-                            spinner_requested_book_publisher[i]=requested_book_publisher[j];
-                            spinner_requested_book_yop[i]=requested_book_yop[j];
-                            spinner_requested_student_name[i]=requested_student_name[j];
-                            spinner_requested_student_id[i]=requested_student_id[j];
-                            spinner_requested_student_course[i]=requested_student_course[j];
+                            spinner_return_requested_book_course[i]=return_requested_book_course[j];
+                            spinner_return_requested_book_author[i]=return_requested_book_author[j];
+                            spinner_return_requested_book_available_count[i]=return_requested_book_available_count[j];
+                            spinner_return_requested_book_name[i]=return_requested_book_name[j];
+                            spinner_return_requested_book_image[i]=return_requested_book_image[j];
+                            spinner_return_requested_book_publisher[i]=return_requested_book_publisher[j];
+                            spinner_return_requested_book_yop[i]=return_requested_book_yop[j];
+                            spinner_return_requested_student_name[i]=return_requested_student_name[j];
+                            spinner_return_requested_student_id[i]=return_requested_student_id[j];
+                            spinner_return_requested_student_course[i]=return_requested_student_course[j];
 
                             i++;
 
@@ -1060,8 +1066,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                         @Override
                         public void run() {
 
-                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_requested_book_name,spinner_requested_book_author,
-                                    spinner_requested_book_publisher, spinner_requested_book_course,spinner_requested_book_yop,spinner_requested_book_available_count,spinner_requested_book_image,spinner_requested_student_name,spinner_requested_student_id,spinner_requested_student_course);
+                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_return_requested_book_name,spinner_return_requested_book_author,
+                                    spinner_return_requested_book_publisher, spinner_return_requested_book_course,spinner_return_requested_book_yop,spinner_return_requested_book_available_count,spinner_return_requested_book_image,spinner_return_requested_student_name,spinner_return_requested_student_id,spinner_return_requested_student_course);
                             RequestedRecyclerView.setAdapter(ca);
 
 
@@ -1087,17 +1093,17 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
             executorServiceSpinnerBTech.execute(new Runnable() {
                 @Override
                 public void run() {
-                    for(int i=0;i<requested_book_course.length;i++) {
-                        spinner_requested_book_course[i]= null;
-                        spinner_requested_book_author[i]= null;
-                        spinner_requested_book_available_count[i]= null;
-                        spinner_requested_book_name[i]= null;
-                        spinner_requested_book_image[i]= null;
-                        spinner_requested_book_publisher[i]= null;
-                        spinner_requested_book_yop[i]= null;
-                        spinner_requested_student_name[i]= null;
-                        spinner_requested_student_id[i]= null;
-                        spinner_requested_student_course[i]= null;
+                    for(int i=0;i<return_requested_book_course.length;i++) {
+                        spinner_return_requested_book_course[i]= null;
+                        spinner_return_requested_book_author[i]= null;
+                        spinner_return_requested_book_available_count[i]= null;
+                        spinner_return_requested_book_name[i]= null;
+                        spinner_return_requested_book_image[i]= null;
+                        spinner_return_requested_book_publisher[i]= null;
+                        spinner_return_requested_book_yop[i]= null;
+                        spinner_return_requested_student_name[i]= null;
+                        spinner_return_requested_student_id[i]= null;
+                        spinner_return_requested_student_course[i]= null;
 
                     }
 
@@ -1105,22 +1111,22 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
                     int i=0;
 
-                    for(int j=0;requested_book_course[j]!=null;j++)
+                    for(int j=0;return_requested_book_course[j]!=null;j++)
                     {
 
 
-                        if (requested_book_course[j].equals("B.TECH"))
+                        if (return_requested_book_course[j].equals("B.TECH"))
                         {
-                            spinner_requested_book_course[i]=requested_book_course[j];
-                            spinner_requested_book_author[i]=requested_book_author[j];
-                            spinner_requested_book_available_count[i]=requested_book_available_count[j];
-                            spinner_requested_book_name[i]=requested_book_name[j];
-                            spinner_requested_book_image[i]=requested_book_image[j];
-                            spinner_requested_book_publisher[i]=requested_book_publisher[j];
-                            spinner_requested_book_yop[i]=requested_book_yop[j];
-                            spinner_requested_student_name[i]=requested_student_name[j];
-                            spinner_requested_student_id[i]=requested_student_id[j];
-                            spinner_requested_student_course[i]=requested_student_course[j];
+                            spinner_return_requested_book_course[i]=return_requested_book_course[j];
+                            spinner_return_requested_book_author[i]=return_requested_book_author[j];
+                            spinner_return_requested_book_available_count[i]=return_requested_book_available_count[j];
+                            spinner_return_requested_book_name[i]=return_requested_book_name[j];
+                            spinner_return_requested_book_image[i]=return_requested_book_image[j];
+                            spinner_return_requested_book_publisher[i]=return_requested_book_publisher[j];
+                            spinner_return_requested_book_yop[i]=return_requested_book_yop[j];
+                            spinner_return_requested_student_name[i]=return_requested_student_name[j];
+                            spinner_return_requested_student_id[i]=return_requested_student_id[j];
+                            spinner_return_requested_student_course[i]=return_requested_student_course[j];
 
                             i++;
 
@@ -1135,8 +1141,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                         @Override
                         public void run() {
 
-                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_requested_book_name,spinner_requested_book_author,
-                                    spinner_requested_book_publisher, spinner_requested_book_course,spinner_requested_book_yop,spinner_requested_book_available_count,spinner_requested_book_image,spinner_requested_student_name,spinner_requested_student_id,spinner_requested_student_course);
+                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_return_requested_book_name,spinner_return_requested_book_author,
+                                    spinner_return_requested_book_publisher, spinner_return_requested_book_course,spinner_return_requested_book_yop,spinner_return_requested_book_available_count,spinner_return_requested_book_image,spinner_return_requested_student_name,spinner_return_requested_student_id,spinner_return_requested_student_course);
                             RequestedRecyclerView.setAdapter(ca);
 
 
@@ -1162,38 +1168,38 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
             executorServiceSpinnerLLB.execute(new Runnable() {
                 @Override
                 public void run() {
-                    for(int i=0;i<requested_book_course.length;i++) {
-                        spinner_requested_book_course[i]= null;
-                        spinner_requested_book_author[i]= null;
-                        spinner_requested_book_available_count[i]= null;
-                        spinner_requested_book_name[i]= null;
-                        spinner_requested_book_image[i]= null;
-                        spinner_requested_book_publisher[i]= null;
-                        spinner_requested_book_yop[i]= null;
-                        spinner_requested_student_name[i]= null;
-                        spinner_requested_student_id[i]= null;
-                        spinner_requested_student_course[i]= null;
+                    for(int i=0;i<return_requested_book_course.length;i++) {
+                        spinner_return_requested_book_course[i]= null;
+                        spinner_return_requested_book_author[i]= null;
+                        spinner_return_requested_book_available_count[i]= null;
+                        spinner_return_requested_book_name[i]= null;
+                        spinner_return_requested_book_image[i]= null;
+                        spinner_return_requested_book_publisher[i]= null;
+                        spinner_return_requested_book_yop[i]= null;
+                        spinner_return_requested_student_name[i]= null;
+                        spinner_return_requested_student_id[i]= null;
+                        spinner_return_requested_student_course[i]= null;
 
                     }
 
 
                     int i=0;
 
-                    for(int j=0;requested_book_course[j]!=null;j++)
+                    for(int j=0;return_requested_book_course[j]!=null;j++)
                     {
 
-                        if (requested_book_course[j].equals("LLB"))
+                        if (return_requested_book_course[j].equals("LLB"))
                         {
-                            spinner_requested_book_course[i]=requested_book_course[j];
-                            spinner_requested_book_author[i]=requested_book_author[j];
-                            spinner_requested_book_available_count[i]=requested_book_available_count[j];
-                            spinner_requested_book_name[i]=requested_book_name[j];
-                            spinner_requested_book_image[i]=requested_book_image[j];
-                            spinner_requested_book_publisher[i]=requested_book_publisher[j];
-                            spinner_requested_book_yop[i]=requested_book_yop[j];
-                            spinner_requested_student_name[i]=requested_student_name[j];
-                            spinner_requested_student_id[i]=requested_student_id[j];
-                            spinner_requested_student_course[i]=requested_student_course[j];
+                            spinner_return_requested_book_course[i]=return_requested_book_course[j];
+                            spinner_return_requested_book_author[i]=return_requested_book_author[j];
+                            spinner_return_requested_book_available_count[i]=return_requested_book_available_count[j];
+                            spinner_return_requested_book_name[i]=return_requested_book_name[j];
+                            spinner_return_requested_book_image[i]=return_requested_book_image[j];
+                            spinner_return_requested_book_publisher[i]=return_requested_book_publisher[j];
+                            spinner_return_requested_book_yop[i]=return_requested_book_yop[j];
+                            spinner_return_requested_student_name[i]=return_requested_student_name[j];
+                            spinner_return_requested_student_id[i]=return_requested_student_id[j];
+                            spinner_return_requested_student_course[i]=return_requested_student_course[j];
                             i++;
                         }
 
@@ -1206,8 +1212,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                         @Override
                         public void run() {
 
-                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_requested_book_name,spinner_requested_book_author,
-                                    spinner_requested_book_publisher, spinner_requested_book_course,spinner_requested_book_yop,spinner_requested_book_available_count,spinner_requested_book_image,spinner_requested_student_name,spinner_requested_student_id,spinner_requested_student_course);
+                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_return_requested_book_name,spinner_return_requested_book_author,
+                                    spinner_return_requested_book_publisher, spinner_return_requested_book_course,spinner_return_requested_book_yop,spinner_return_requested_book_available_count,spinner_return_requested_book_image,spinner_return_requested_student_name,spinner_return_requested_student_id,spinner_return_requested_student_course);
                             RequestedRecyclerView.setAdapter(ca);
 
                             //  Globals.loadingDialog.dismissDialog();
@@ -1231,17 +1237,17 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
             executorServiceSpinnerBSC.execute(new Runnable() {
                 @Override
                 public void run() {
-                    for(int i=0;i<requested_book_course.length;i++) {
-                        spinner_requested_book_course[i]= null;
-                        spinner_requested_book_author[i]= null;
-                        spinner_requested_book_available_count[i]= null;
-                        spinner_requested_book_name[i]= null;
-                        spinner_requested_book_image[i]= null;
-                        spinner_requested_book_publisher[i]= null;
-                        spinner_requested_book_yop[i]= null;
-                        spinner_requested_student_name[i]= null;
-                        spinner_requested_student_id[i]= null;
-                        spinner_requested_student_course[i]= null;
+                    for(int i=0;i<return_requested_book_course.length;i++) {
+                        spinner_return_requested_book_course[i]= null;
+                        spinner_return_requested_book_author[i]= null;
+                        spinner_return_requested_book_available_count[i]= null;
+                        spinner_return_requested_book_name[i]= null;
+                        spinner_return_requested_book_image[i]= null;
+                        spinner_return_requested_book_publisher[i]= null;
+                        spinner_return_requested_book_yop[i]= null;
+                        spinner_return_requested_student_name[i]= null;
+                        spinner_return_requested_student_id[i]= null;
+                        spinner_return_requested_student_course[i]= null;
 
                     }
 
@@ -1249,35 +1255,35 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                     int i=0;
-                    for(int j=0;requested_book_course[j]!=null;j++)
+                    for(int j=0;return_requested_book_course[j]!=null;j++)
                     {
 
-                        if (requested_book_course[j].equals("BSC"))
+                        if (return_requested_book_course[j].equals("BSC"))
                         {
-                            spinner_requested_book_course[i]=requested_book_course[j];
-                            spinner_requested_book_author[i]=requested_book_author[j];
-                            spinner_requested_book_available_count[i]=requested_book_available_count[j];
-                            spinner_requested_book_name[i]=requested_book_name[j];
-                            spinner_requested_book_image[i]=requested_book_image[j];
-                            spinner_requested_book_publisher[i]=requested_book_publisher[j];
-                            spinner_requested_book_yop[i]=requested_book_yop[j];
-                            spinner_requested_student_name[i]=requested_student_name[j];
-                            spinner_requested_student_id[i]=requested_student_id[j];
-                            spinner_requested_student_course[i]=requested_student_course[j];
+                            spinner_return_requested_book_course[i]=return_requested_book_course[j];
+                            spinner_return_requested_book_author[i]=return_requested_book_author[j];
+                            spinner_return_requested_book_available_count[i]=return_requested_book_available_count[j];
+                            spinner_return_requested_book_name[i]=return_requested_book_name[j];
+                            spinner_return_requested_book_image[i]=return_requested_book_image[j];
+                            spinner_return_requested_book_publisher[i]=return_requested_book_publisher[j];
+                            spinner_return_requested_book_yop[i]=return_requested_book_yop[j];
+                            spinner_return_requested_student_name[i]=return_requested_student_name[j];
+                            spinner_return_requested_student_id[i]=return_requested_student_id[j];
+                            spinner_return_requested_student_course[i]=return_requested_student_course[j];
 
 
                             i++;
 
-                            //System.out.println("BSC BOOK NAME:"+spinner_requested_book_name[i]);
+                            //System.out.println("BSC BOOK NAME:"+spinner_return_requested_book_name[i]);
 
                         }
 
 
                     }
 
-                    for( i=0;i<spinner_requested_book_course.length;i++)
+                    for( i=0;i<spinner_return_requested_book_course.length;i++)
                     {
-                        //System.out.println("In Spinner Course: "+spinner_requested_book_course[i]+spinner_requested_book_course.length);
+                        //System.out.println("In Spinner Course: "+spinner_return_requested_book_course[i]+spinner_return_requested_book_course.length);
 
                     }
 
@@ -1288,8 +1294,8 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
                         public void run() {
 
 
-                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_requested_book_name,spinner_requested_book_author,
-                                    spinner_requested_book_publisher, spinner_requested_book_course,spinner_requested_book_yop,spinner_requested_book_available_count,spinner_requested_book_image,spinner_requested_student_name,spinner_requested_student_id,spinner_requested_student_course);
+                            ReturnBooksRequestsCustomAdapter ca = new ReturnBooksRequestsCustomAdapter(getActivity(),spinner_return_requested_book_name,spinner_return_requested_book_author,
+                                    spinner_return_requested_book_publisher, spinner_return_requested_book_course,spinner_return_requested_book_yop,spinner_return_requested_book_available_count,spinner_return_requested_book_image,spinner_return_requested_student_name,spinner_return_requested_student_id,spinner_return_requested_student_course);
                             RequestedRecyclerView.setAdapter(ca);
 
 

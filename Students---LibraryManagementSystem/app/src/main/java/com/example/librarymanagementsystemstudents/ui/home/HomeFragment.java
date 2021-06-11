@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemstudents.ui.home;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,6 +58,8 @@ import static com.example.librarymanagementsystemstudents.Globals.spinner_my_boo
 import static com.example.librarymanagementsystemstudents.Globals.spinner_my_book_image;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_my_book_course;
 import static com.example.librarymanagementsystemstudents.Globals.spinner_home_pending_book_name;
+import static com.example.librarymanagementsystemstudents.Globals.per1;
+import static com.example.librarymanagementsystemstudents.Globals.percentage1;
 
 
 public class HomeFragment  extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -92,19 +96,25 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
         NetworkUtil.setConnectivityStatus(getContext());
 
         if (status != 0) {
-            loadingDialog = new LoadingDialog(getActivity());
+
 
             if (profilepicdownloaded == 1) {
+                loadingDialog = new LoadingDialog(getActivity());
+                 percentage1 =  loadingDialog.startLoadingDialog();
+                 per1= percentage1.findViewById(R.id.progress_percentage);
 
-                loadingDialog.startLoadingDialog();
 
             }
+
+
+           
 
 
 
 
 
             final ExecutorService executorServicehomeBookName = Executors.newSingleThreadExecutor();
+            
             executorServicehomeBookName.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -159,7 +169,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
+                    per1.setText("10.00 %");
                             //System.out.println("Home Books Name Data Download Complete!");
 
 
@@ -213,7 +223,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-
+                                            per1.setText("20.00 %");
                                             //System.out.println("Pending Return Data Update Complete!");
 
 
@@ -270,7 +280,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                         @Override
                                                         public void run() {
 
-
+                                                            per1.setText("30.00 %");
                                                             //System.out.println("Home Books Course Data Download Complete!");
 
 
@@ -326,7 +336,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                         @Override
                                                                         public void run() {
 
-
+                                                                            per1.setText("40.00 %");
                                                                             //System.out.println("Home Books Borrow Date Data Download Complete!");
 
                                                                             final ExecutorService executorServicehomeReturnDate = Executors.newSingleThreadExecutor();
@@ -380,7 +390,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                         @Override
                                                                                         public void run() {
 
-
+                                                                                            per1.setText("50.00 %");
                                                                                             //System.out.println("Home Books Return Date Data Download Complete!");
 
 
@@ -416,7 +426,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                     getActivity().runOnUiThread(new Runnable() {
                                                                                                         @Override
                                                                                                         public void run() {
-
+                                                                                                            per1.setText("60.00 %");
                                                                                                             //System.out.println("Late Fee Data Update Complete !");
 
 
@@ -470,7 +480,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                         @Override
                                                                                                         public void run() {
 
-
+                                                                                                            per1.setText("70.00 %");
                                                                                                             //System.out.println("Home Books Late Fee Data Download Complete!");
 
 
@@ -524,7 +534,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                                         @Override
                                                                                                                         public void run() {
 
-
+                                                                                                                            per1.setText("80.00 %");
                                                                                                                             //System.out.println("Home Books Yop Data Download Complete!");
 
                                                                                                                             final ExecutorService executorServicehomeAvailableCount = Executors.newSingleThreadExecutor();
@@ -577,7 +587,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                                                         @Override
                                                                                                                                         public void run() {
 
-
+                                                                                                                                            per1.setText("90.00 %");
                                                                                                                                             //System.out.println("Home Books Available Count Data Download Complete!");
 
                                                                                                                                             final ExecutorService executorServicehomeImages = Executors.newSingleThreadExecutor();
@@ -704,7 +714,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                                                             }
-
+                                                                                                                                                            per1.setText("100.00 %");
                                                                                                                                                             Globals.loadingDialog.dismissDialog();
                                                                                                                                                             //System.out.println("HomeFragment Dialog Dismissed!");
 

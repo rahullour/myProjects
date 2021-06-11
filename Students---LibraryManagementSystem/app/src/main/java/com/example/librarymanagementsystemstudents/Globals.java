@@ -1,8 +1,10 @@
 package com.example.librarymanagementsystemstudents;
 
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -30,7 +32,8 @@ public class Globals {
     public static String[] get_book=new String[5];
     public static String[] return_book=new String[5];
 
-
+    public static AlertDialog percentage1 ;
+    public static TextView per1 =null;
 
 
     public static  String[]  spinner_my_book_name=new String[100];

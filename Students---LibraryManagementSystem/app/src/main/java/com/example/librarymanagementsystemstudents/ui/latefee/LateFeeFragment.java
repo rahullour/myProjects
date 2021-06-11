@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemstudents.ui.latefee;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -48,7 +49,9 @@ public class LateFeeFragment extends Fragment {
 
 
            Globals.loadingDialog=new LoadingDialog(getActivity());
-                Globals.loadingDialog.startLoadingDialog();
+            AlertDialog percentage1 =  Globals.loadingDialog.startLoadingDialog();
+            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+            per1.setText("50.00 %");
 
         final ExecutorService executorServiceLateFee= Executors.newSingleThreadExecutor();
         executorServiceLateFee.execute(new Runnable() {
@@ -108,7 +111,7 @@ public class LateFeeFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
+                        per1.setText("100.00 %");
                           loadingDialog.dismissDialog();
                         //System.out.println("Late Fee Data Download Complete!");
                       TextView late_fee= root.findViewById(R.id.late_fee);

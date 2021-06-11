@@ -55,6 +55,8 @@ import static com.example.librarymanagementsystemteachers.Globals.spinner_allott
 import static com.example.librarymanagementsystemteachers.Globals.spinner_allotted_student_course;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_allotted_student_name;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_allotted_student_id;
+import static com.example.librarymanagementsystemteachers.Globals.percentage1;
+import static com.example.librarymanagementsystemteachers.Globals.per1;
 
 
 
@@ -225,11 +227,14 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
               spinner_allotted_student_id=new String[100];
 
 
-            loadingDialog = new LoadingDialog(getActivity());
+
 
             if (profilepicdownloaded == 1) {
 
-                loadingDialog.startLoadingDialog();
+                loadingDialog = new LoadingDialog(getActivity());
+                percentage1 =  loadingDialog.startLoadingDialog();
+                per1= percentage1.findViewById(R.id.progress_percentage);
+
 
             }
             
@@ -286,7 +291,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
+                                per1.setText("08.33 %");
                             //System.out.println("allotted Books Student Course Data Download Complete!");
 
 
@@ -337,6 +342,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            per1.setText("16.66 %");
 
                                             //System.out.println("allotted Books Student Name Data Download Complete!");
 
@@ -383,6 +389,8 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                     getActivity().runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
+                                                            per1.setText("24.99 %");
+
                                                             //System.out.println("allotted Books Student Id Data Download Complete!");
 
                                                             final ExecutorService executorServiceallottedBookName = Executors.newSingleThreadExecutor();
@@ -428,6 +436,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                     getActivity().runOnUiThread(new Runnable() {
                                                                         @Override
                                                                         public void run() {
+                                                                            per1.setText("33.33 %");
 
                                                                             //System.out.println("allotted Books Name Data Download Complete!");
 
@@ -463,6 +472,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                                     getActivity().runOnUiThread(new Runnable() {
                                                                                         @Override
                                                                                         public void run() {
+                                                                                            per1.setText("41.66 %");
 
                                                                                             //System.out.println("Late Fee Data Update Complete !");
 
@@ -514,6 +524,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                                         @Override
                                                                                         public void run() {
 
+                                                                                            per1.setText("49.99 %");
 
                                                                                             //System.out.println("Late Fee Data Update Complete!");
 
@@ -564,6 +575,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                                                         @Override
                                                                                                         public void run() {
 
+                                                                                                            per1.setText("58.33 %");
 
                                                                                                             //System.out.println("allotted Books Course Data Download Complete!");
 
@@ -612,6 +624,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                                                                         @Override
                                                                                                                         public void run() {
 
+                                                                                                                            per1.setText("66.66 %");
 
                                                                                                                             //System.out.println("allotted Books Borrow Date Data Download Complete!");
 
@@ -669,6 +682,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                                                                                                         @Override
                                                                                                                                                         public void run() {
 
+                                                                                                                                                            per1.setText("74.99 %");
 
                                                                                                                                                             //System.out.println("allotted Books Late Fee Data Download Complete!");
 
@@ -715,6 +729,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                                                                                                                         @Override
                                                                                                                                                                         public void run() {
 
+                                                                                                                                                                            per1.setText("83.33 %");
 
                                                                                                                                                                             //System.out.println("allotted Books Yop Data Download Complete!");
 
@@ -760,6 +775,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                                                                                                                                                         @Override
                                                                                                                                                                                         public void run() {
 
+                                                                                                                                                                                            per1.setText("91.66 %");
 
                                                                                                                                                                                             //System.out.println("allotted Books Available Count Data Download Complete!");
 
@@ -846,6 +862,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                                                                                                                                             }
+                                                                                                                                                                                                            per1.setText("100.00 %");
 
                                                                                                                                                                                                             Globals.loadingDialog.dismissDialog();
                                                                                                                                                                                                             //System.out.println("AllottedBooksFragment Dialog Dismissed!");

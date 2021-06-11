@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemstudents.ui.Browse;
 
+import android.app.AlertDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -81,7 +83,9 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
         if (status != 0) {
         loadingDialog=new LoadingDialog(getActivity());
        // //System.out.println("==================="+loadingDialog.isCancelled());
-        loadingDialog.startLoadingDialog();
+            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+
 
             browse_available_count=new String[100];
 
@@ -131,7 +135,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                     @Override
                     public void run() {
 
-
+                        per1.setText("11.11 %");
                         //System.out.println("Browse Books Name Data Download Complete!");
 
                         final ExecutorService executorServiceBrowseAuthor= Executors.newSingleThreadExecutor();
@@ -181,7 +185,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                     @Override
                                     public void run() {
 
-
+                                        per1.setText("22.22 %");
                                         //System.out.println("Browse Books Author Data Download Complete!");
 
                                         final ExecutorService executorServiceBrowsePublisher= Executors.newSingleThreadExecutor();
@@ -232,7 +236,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                     @Override
                                                     public void run() {
 
-
+                                                        per1.setText("33.33 %");
                                                         //System.out.println("Browse Books Publisher Data Download Complete!");
 
 
@@ -280,7 +284,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                     @Override
                                                                     public void run() {
 
-
+                                                                        per1.setText("44.44 %");
                                                                         //System.out.println("Browse Books Course Data Download Complete!");
 
 
@@ -327,7 +331,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                     @Override
                                                                                     public void run() {
 
-
+                                                                                        per1.setText("55.55 %");
                                                                                         //System.out.println("Browse Books Yop Data Download Complete!");
 
                                                                                         final ExecutorService executorServiceBrowsePendingBookName= Executors.newSingleThreadExecutor();
@@ -381,7 +385,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                     @Override
                                                                                                     public void run() {
 
-
+                                                                                                        per1.setText("66.66 %");
                                                                                                         //System.out.println("Browse Pending Books Data Download Complete!");
 
                                                                                                         final ExecutorService executorServiceBrowseAvailableCount= Executors.newSingleThreadExecutor();
@@ -427,7 +431,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                                     @Override
                                                                                                                     public void run() {
 
-
+                                                                                                                        per1.setText("77.77 %");
                                                                                                                         //System.out.println("Browse Books Available Count Data Download Complete!");
 
 
@@ -485,7 +489,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                                                     @Override
                                                                                                                                     public void run() {
 
-
+                                                                                                                                        per1.setText("88.88 %");
                                                                                                                                         //System.out.println("Browse Books Get Button Book Name Data Download Complete!");
 
                                                                                                                                         final ExecutorService executorServiceBrowseImages= Executors.newSingleThreadExecutor();
@@ -619,7 +623,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                                                                             firstRenderComplete=1;
 
                                                                                                                                                         }
-
+                                                                                                                                                        per1.setText("100.00 %");
                                                                                                                                                         Globals.loadingDialog.dismissDialog();
                                                                                                                                                         //System.out.println("BrowseFragment Dialog Dismissed!");
 

@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemstudents;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -137,7 +139,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
                 else if(status!=0){
-                    loadingDialog.startLoadingDialog();
+                    AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                    TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                    per1.setText("50.00 %");
                     
                     final Context[] context = {getApplicationContext()};
                    user_id = registerenrollmentno.getText().toString().trim();
@@ -227,6 +231,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
                                     }
+                                    per1.setText("100.00 %");
                                     Globals.loadingDialog.dismissDialog();
                                     //System.out.println("Signup Dialog Dismissed!");
 

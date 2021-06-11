@@ -11,7 +11,7 @@ public class LoadingDialog {
     {
 this.activity=myActivity;
     }
-public void startLoadingDialog()
+public AlertDialog startLoadingDialog()
 {
     AlertDialog.Builder builder=new AlertDialog.Builder(activity);
     LayoutInflater inflater=activity.getLayoutInflater();
@@ -19,6 +19,7 @@ public void startLoadingDialog()
     builder.setCancelable(false);
     dialog= builder.create();
     dialog.show();
+    return dialog;
 
 
 }

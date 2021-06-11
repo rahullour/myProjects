@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemteachers;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -80,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
                         {  Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ "Auto Login For User Id"+": "+user_id+" In Progress"+  "</b> </font>"), Toast.LENGTH_SHORT);
 
                             toast.show();
-                            loadingDialog.startLoadingDialog();
+                            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                            per1.setText("50.00 %");
                             NetworkUtil.setConnectivityStatus(getApplicationContext());
 
                            // System.out.println("inside bro");
@@ -186,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
                                                     Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ ":) Welcome "  + text + " (:  </b> </font>"), duration);
 
                                                     toast.show();
+                                                    per1.setText("100.00 %");
                                                     loadingDialog.dismissDialog();
 
 
@@ -309,7 +314,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 else if(status!=0){
-                    loadingDialog.startLoadingDialog();
+                    AlertDialog percentage2 =  loadingDialog.startLoadingDialog();
+                    TextView per2= percentage2.findViewById(R.id.progress_percentage);
+                    per2.setText("50.00 %");
                     final Context[] context = {getApplicationContext()};
                     user_id = mainenrollment.getText().toString().trim();
                     user_pwd = mainpassword.getText().toString().trim();
@@ -411,6 +418,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                     }
+                                    per2.setText("100.00 %");
                                     loadingDialog.dismissDialog();
                                     //System.out.println("Login Dialog Dismissed!");
 

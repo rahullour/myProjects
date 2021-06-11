@@ -1,6 +1,8 @@
 package com.example.librarymanagementsystemteachers;
 
+import android.app.AlertDialog;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Globals {
     public static int profilepicdownloaded=0;
@@ -26,7 +28,8 @@ public class Globals {
     public static String[] return_book=new String[5];
 
 
-
+    public static AlertDialog percentage1 ;
+    public static TextView per1 =null;
 
 
     public static String[]  spinner_allotted_book_available_count;

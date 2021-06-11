@@ -70,6 +70,8 @@ import static com.example.librarymanagementsystemteachers.Globals.user_course;
 import static com.example.librarymanagementsystemteachers.Globals.user_id;
 import static com.example.librarymanagementsystemteachers.Globals.user_name;
 import static com.example.librarymanagementsystemteachers.Globals.user_pwd;
+import static com.example.librarymanagementsystemteachers.Globals.per1;
+import static com.example.librarymanagementsystemteachers.Globals.percentage1;
 
 
 
@@ -436,7 +438,8 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
         NetworkUtil.setConnectivityStatus(context[0]);
         if (status != 0) {
-            loadingDialog.startLoadingDialog();
+            percentage1 =  loadingDialog.startLoadingDialog();
+            per1= percentage1.findViewById(R.id.progress_percentage);
 
             final ExecutorService executorServiceDownloadImage = Executors.newSingleThreadExecutor();
             executorServiceDownloadImage.execute(new Runnable() {
@@ -584,7 +587,9 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                 //Background Work
                 Context context = getApplicationContext();
 
-                loadingDialog.startLoadingDialog();
+                AlertDialog  percentage2 =  loadingDialog.startLoadingDialog();
+                TextView  per2= percentage2.findViewById(R.id.progress_percentage);
+                per2.setText("50.00 %");
 
                 final ExecutorService executorServiceUploadImage= Executors.newSingleThreadExecutor();
                 executorServiceUploadImage.execute(new Runnable() {
@@ -642,7 +647,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
+                                      per2.setText("100.00 %");
                                     //System.out.println("Image Uploaded!");
                                     Globals.loadingDialog.dismissDialog();
                                 //System.out.println("Upload Image Dialog Dismissed!");

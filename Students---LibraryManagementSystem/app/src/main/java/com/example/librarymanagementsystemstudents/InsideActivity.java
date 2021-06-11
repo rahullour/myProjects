@@ -71,8 +71,8 @@ import static com.example.librarymanagementsystemstudents.Globals.user_course;
 import static com.example.librarymanagementsystemstudents.Globals.user_id;
 import static com.example.librarymanagementsystemstudents.Globals.user_name;
 import static com.example.librarymanagementsystemstudents.Globals.profilepicdownloaded;
-
-
+import static com.example.librarymanagementsystemstudents.Globals.percentage1;
+import static com.example.librarymanagementsystemstudents.Globals.per1;
 import static com.example.librarymanagementsystemstudents.Globals.uploadimageresult;
 import static com.example.librarymanagementsystemstudents.Globals.user_pwd;
 
@@ -427,7 +427,9 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
         NetworkUtil.setConnectivityStatus(context[0]);
         if (status != 0) {
-            loadingDialog.startLoadingDialog();
+             percentage1 =  loadingDialog.startLoadingDialog();
+             per1= percentage1.findViewById(R.id.progress_percentage);
+
 
             final ExecutorService executorServiceDownloadImage = Executors.newSingleThreadExecutor();
             executorServiceDownloadImage.execute(new Runnable() {
@@ -485,6 +487,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                             if ((downloadimageresult[0] == null) || downloadimageresult[0].equals("null")) {
                                 //System.out.println(":( Image Doesn't Exist! ):");
                                 profilepicdownloaded=1;
+                                per1.setText("100.00 %");
                             } else {
 
                                 byte[] decodedImage = Base64.decode(downloadimageresult[0].getBytes(), Base64.DEFAULT);
@@ -493,7 +496,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                                 Globals.profilepicdownloaded = 1;
                                 //System.out.println("Image Downloaded");
                                 profilepicdownloaded=1;
-
+                                per1.setText("100.00 %");
                             }
 
                             //System.out.println("Download Image Dialog Dismissed!");
@@ -569,7 +572,9 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                 //Background Work
                 Context context = getApplicationContext();
 
-                loadingDialog.startLoadingDialog();
+               AlertDialog  percentage2 =  loadingDialog.startLoadingDialog();
+               TextView  per2= percentage2.findViewById(R.id.progress_percentage);
+                per2.setText("50.00 %");
 
                 final ExecutorService executorServiceUploadImage= Executors.newSingleThreadExecutor();
                 executorServiceUploadImage.execute(new Runnable() {
@@ -627,7 +632,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
+                                 per2.setText("100.00 %");
                                     //System.out.println("Image Uploaded!");
                                     Globals.loadingDialog.dismissDialog();
                                 //System.out.println("Upload Image Dialog Dismissed!");

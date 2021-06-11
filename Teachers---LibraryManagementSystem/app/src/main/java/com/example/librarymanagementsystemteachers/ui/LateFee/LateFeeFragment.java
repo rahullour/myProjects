@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystemteachers.ui.LateFee;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,6 +44,7 @@ import java.util.concurrent.Executors;
 
 
 import static com.example.librarymanagementsystemteachers.Globals.loadingDialog;
+import static com.example.librarymanagementsystemteachers.Globals.per1;
 import static com.example.librarymanagementsystemteachers.Globals.profilepicdownloaded;
 import static com.example.librarymanagementsystemteachers.Globals.status;
 
@@ -456,7 +459,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                                                     @Override
                                                                                     public void run() {
                                                                                         //System.out.println("late_fee_student_book_count Data Download Complete!");
-
+                                                                                        per1.setText("100.00 %");
                                                                                         loadingDialog.dismissDialog();
 
 
@@ -529,22 +532,8 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
 
             loadingDialog = new LoadingDialog(getActivity());
 
-            if (profilepicdownloaded == 1) {
-
-                loadingDialog.startLoadingDialog();
-
-            }
-
-
-
-
-
-
-            Globals.profilepicdownloaded = 1;
-            
-
-
-
+            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+            TextView per1= percentage1.findViewById(R.id.progress_percentage);
 
 
             String[] late_fee_spinner = {"⇓   FIND BY STUDENT COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};

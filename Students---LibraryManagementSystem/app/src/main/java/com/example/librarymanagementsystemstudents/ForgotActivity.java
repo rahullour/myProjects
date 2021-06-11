@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystemstudents;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,7 +109,10 @@ public class ForgotActivity extends AppCompatActivity {
                     Context context = getApplicationContext();
                      Globals.user_email = emailreset.getText().toString().trim();
 
-                    loadingDialog.startLoadingDialog();
+
+                    AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                    TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                    per1.setText("50.00 %");
 
                     final ExecutorService executorServiceSendLink= Executors.newSingleThreadExecutor();
                     executorServiceSendLink.execute(new Runnable() {
@@ -187,7 +192,7 @@ public class ForgotActivity extends AppCompatActivity {
 
 
                                     }
-
+                                    per1.setText("100.00 %");
                                     //System.out.println("Link Sent!");
                                     loadingDialog.dismissDialog();
                                     //System.out.println("SendLink Dialog Dismissed!");
@@ -283,7 +288,9 @@ public class ForgotActivity extends AppCompatActivity {
 
                     Context context = getApplicationContext();
 
-                    loadingDialog.startLoadingDialog();
+                    AlertDialog percentage2 =  loadingDialog.startLoadingDialog();
+                    TextView per2= percentage2.findViewById(R.id.progress_percentage);
+                    per2.setText("50.00 %");
 
                     final ExecutorService executorServiceResetPass= Executors.newSingleThreadExecutor();
                     executorServiceResetPass.execute(new Runnable() {
@@ -386,7 +393,7 @@ public class ForgotActivity extends AppCompatActivity {
 
 
                                     }
-
+                                    per2.setText("100.00 %");
                                     loadingDialog.dismissDialog();
                                     //System.out.println("ResetPass Dialog Dismissed!");
 

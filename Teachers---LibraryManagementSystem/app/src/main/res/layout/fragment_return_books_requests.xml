@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/requested_find_by_id"
+                android:id="@+id/return_requested_find_by_id"
                 android:layout_width="wrap_content"
                 android:layout_height="57dp"
                 android:layout_gravity="center"
@@ -31,7 +31,7 @@
                 android:inputType="textPersonName" />
 
             <Button
-                android:id="@+id/requested_button"
+                android:id="@+id/return_requested_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -45,7 +45,7 @@
 
 
         <Spinner
-            android:id="@+id/requested_spinner"
+            android:id="@+id/return_requested_spinner"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -55,7 +55,7 @@
             android:hapticFeedbackEnabled="true" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/requested_recyclerview"
+            android:id="@+id/return_requested_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="0dp"
