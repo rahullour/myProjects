@@ -640,7 +640,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                                                             if (home_my_book_name[0].equals("null")) {
-                                                                                                                                                                System.out.println("length 0 set");
+                                                                                                                                                             //   System.out.println("length 0 set");
                                                                                                                                                                 spinner_my_return_button_book_name = new String[0];
                                                                                                                                                             } else {
                                                                                                                                                                 while (!(home_my_book_name[i] == null)) {
@@ -665,7 +665,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                                                                             i = 0;
 
                                                                                                                                                             if (home_my_pending_book_name[0].equals("null")) {
-                                                                                                                                                                System.out.println("length 0 set");
+                                                                                                                                                            //    System.out.println("length 0 set");
                                                                                                                                                                 spinner_home_pending_book_name = new String[0];
                                                                                                                                                             }
                                                                                                                                                             else {

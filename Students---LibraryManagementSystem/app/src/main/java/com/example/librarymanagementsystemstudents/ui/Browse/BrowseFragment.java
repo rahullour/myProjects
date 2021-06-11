@@ -362,7 +362,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                     while ((line = bufferedReader.readLine()) != null) {
                                                                                                         browse_pending_book_name[i] = "";
                                                                                                         browse_pending_book_name[i] += line;
-                                                                                                        System.out.println("Pending Book :"+i+" "+browse_pending_book_name[i]);
+                                                                                                      //  System.out.println("Pending Book :"+i+" "+browse_pending_book_name[i]);
                                                                                                         i++;
                                                                                                     }
                                                                                                     bufferedReader.close();
@@ -542,7 +542,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
                                                                                                                                                         if(browse_get_button_book_name[0].equals("null"))
                                                                                                                                                         {
-                                                                                                                                                            System.out.println("length 0 set");
+                                                                                                                                                          //  System.out.println("length 0 set");
                                                                                                                                                             spinner_browse_get_button_book_name=new String[0];
                                                                                                                                                         }
                                                                                                                                                         else {
@@ -568,7 +568,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                                                                                          i=0;
                                                                                                                                                          if(browse_pending_book_name[0].equals("null"))
                                                                                                                                                          {
-                                                                                                                                                             System.out.println("length 0 set");
+                                                                                                                                                          //   System.out.println("length 0 set");
                                                                                                                                                              spinner_browse_pending_book_name=new String[0];
                                                                                                                                                          }
                                                                                                                                                          else
@@ -593,7 +593,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
 
-                                                                                                                                                        System.out.println("Browse Pending Length:"+spinner_browse_pending_book_name.length);
+                                                                                                                                                      //  System.out.println("Browse Pending Length:"+spinner_browse_pending_book_name.length);
 
 
 

@@ -317,7 +317,7 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.Vi
 
 
                                                             loadingDialog.dismissDialog();
-                                                                notifyDataSetChanged();
+                                                               // notifyDataSetChanged();
                                                                 //System.out.println("Request Book Complete!");
 
 

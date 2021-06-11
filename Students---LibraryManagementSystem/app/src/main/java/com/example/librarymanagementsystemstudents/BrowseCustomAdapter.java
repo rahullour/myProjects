@@ -339,7 +339,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                     public void run() {
 
 
-                                                System.out.println("BROWSE BUTTON BOOK LENGTH:"+spinner_browse_pending_book_name.length);
+                                               // System.out.println("BROWSE BUTTON BOOK LENGTH:"+spinner_browse_pending_book_name.length);
 
                                                 int length=spinner_browse_pending_book_name .length;
 
