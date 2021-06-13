@@ -113,7 +113,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                                       Allotted_RecyclerView.setAdapter(ca);
 
                                                   } else if (!android.text.TextUtils.isDigitsOnly(SearchIdText)) {
-                                                      CharSequence text = ":( Please Enter A Numeric Value! ):";
+                                                      CharSequence text = ":( Please Enter A Numeric Value ! ):";
                                                       int duration = Toast.LENGTH_SHORT;
 
                                                       Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -181,7 +181,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
                                                                       }
                                                                       else {
-                                                                          CharSequence text = ":( Student Id : "+SearchIdText+" Not Found! ):";
+                                                                          CharSequence text = ":( Student Id : "+SearchIdText+" Not Found ! ):";
                                                                           int duration = Toast.LENGTH_SHORT;
 
                                                                           Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
@@ -1005,7 +1005,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
         }
         else {
-            Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found!" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + ":( " + "Internet Connection Not Found !" + " ):  </b> </font>"), Toast.LENGTH_SHORT);
 
             toast.show();
         }

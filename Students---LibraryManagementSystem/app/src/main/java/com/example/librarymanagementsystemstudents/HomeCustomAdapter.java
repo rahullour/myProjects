@@ -214,7 +214,9 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.Vi
 
                             loadingDialog = new LoadingDialog(activity);
                             // //System.out.println("==================="+loadingDialog.isCancelled());
-                            loadingDialog.startLoadingDialog();
+                            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                            per1.setText("50.00 %");
 
 
                             final ExecutorService executorServiceHomeReturnBook = Executors.newSingleThreadExecutor();
@@ -275,6 +277,7 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.Vi
                                                 int duration = Toast.LENGTH_SHORT;
 
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +my_book_name[position]+ "'s Return Is Pending !"  + " </b> </font>"), duration);
+                                                per1.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -315,7 +318,7 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.Vi
                                                         spinner_home_pending_book_name=temp;
                                                         toast.show();
 
-
+                                                        per1.setText("100.00 %");
                                                             loadingDialog.dismissDialog();
                                                                // notifyDataSetChanged();
                                                                 //System.out.println("Request Book Complete!");

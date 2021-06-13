@@ -246,8 +246,9 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
 
                             loadingDialog = new LoadingDialog(activity);
                             // //System.out.println("==================="+loadingDialog.isCancelled());
-                            loadingDialog.startLoadingDialog();
-
+                            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                            per1.setText("50.00 %");
 
                             final ExecutorService executorServicerequestedGrantBook = Executors.newSingleThreadExecutor();
                             executorServicerequestedGrantBook.execute(new Runnable() {
@@ -507,7 +508,9 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
 
                             loadingDialog = new LoadingDialog(activity);
                             // //System.out.println("==================="+loadingDialog.isCancelled());
-                            loadingDialog.startLoadingDialog();
+                            AlertDialog percentage2 =  loadingDialog.startLoadingDialog();
+                            TextView per2= percentage2.findViewById(R.id.progress_percentage);
+                            per2.setText("50.00 %");
 
 
                             final ExecutorService executorServicerequestedDenyBook = Executors.newSingleThreadExecutor();
@@ -568,7 +571,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
                                                 int duration = Toast.LENGTH_SHORT;
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +":( "+requested_book_name[position] +"'s Request Not Found ! ):"  + " </b> </font>"), duration);
 
-
+                                                per2.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -663,7 +666,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
                                                         activity.runOnUiThread(new Runnable() {
                                                             @Override
                                                             public void run() {
-
+                                                                per2.setText("100.00 %");
                                                                 loadingDialog.dismissDialog();
                                                                 notifyDataSetChanged();
                                                                 //System.out.println("Deny Book Complete!");

@@ -228,7 +228,9 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
 
                             loadingDialog = new LoadingDialog(activity);
                             // //System.out.println("==================="+loadingDialog.isCancelled());
-                            loadingDialog.startLoadingDialog();
+                            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                            per1.setText("50.00 %");
 
 
                             final ExecutorService executorServiceBrowseGetBook = Executors.newSingleThreadExecutor();
@@ -289,6 +291,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                 int duration = Toast.LENGTH_SHORT;
 
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + "Your Books Limit Has Maxed Out !"  + " </b> </font>"), duration);
+                                                per1.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -298,6 +301,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                 int duration = Toast.LENGTH_SHORT;
 
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +browse_book_name[position] +" Is Not Available !"  + " </b> </font>"), duration);
+                                                per1.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -307,6 +311,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                 int duration = Toast.LENGTH_SHORT;
 
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +browse_book_name[position]+ "'s Allocation Is Pending !"  + " </b> </font>"), duration);
+                                                per1.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -317,6 +322,7 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
                                                 int duration = Toast.LENGTH_SHORT;
 
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +browse_book_name[position]+ " Is Already Acquired !"  + " </b> </font>"), duration);
+                                                per1.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -362,7 +368,9 @@ public class  BrowseCustomAdapter extends RecyclerView.Adapter<BrowseCustomAdapt
 
                                                         activity.runOnUiThread(new Runnable() {
                                                             @Override
-                                                            public void run() { loadingDialog.dismissDialog();
+                                                            public void run() {
+                                                                per1.setText("100.00 %");
+                                                                loadingDialog.dismissDialog();
                                                                 notifyDataSetChanged();
                                                                 //System.out.println("Request Book Complete!");
 

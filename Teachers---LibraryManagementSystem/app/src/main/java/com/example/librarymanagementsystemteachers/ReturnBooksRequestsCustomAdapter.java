@@ -244,7 +244,9 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
 
                             loadingDialog = new LoadingDialog(activity);
                             // //System.out.println("==================="+loadingDialog.isCancelled());
-                            loadingDialog.startLoadingDialog();
+                            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                            per1.setText("50.00 %");
 
 
                             final ExecutorService executorServicerequestedGrantBook = Executors.newSingleThreadExecutor();
@@ -307,6 +309,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + "Either Student's Return Limit Reached Max Or Book Not Available , Report To Developer !"  + " </b> </font>"), duration);
 
                                                 toast.show();
+                                                per1.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                             }
@@ -422,7 +425,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
                                                         activity.runOnUiThread(new Runnable() {
                                                             @Override
                                                             public void run() {
-
+                                                              per1.setText("100.00 %");
                                                                 loadingDialog.dismissDialog();
                                                                 notifyDataSetChanged();
                                                                 //System.out.println("Grant Book Complete!");
@@ -505,7 +508,9 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
 
                             loadingDialog = new LoadingDialog(activity);
                             // //System.out.println("==================="+loadingDialog.isCancelled());
-                            loadingDialog.startLoadingDialog();
+                            AlertDialog percentage2 =  loadingDialog.startLoadingDialog();
+                            TextView per2= percentage2.findViewById(R.id.progress_percentage);
+                            per2.setText("50.00 %");
 
 
                             final ExecutorService executorServicerequestedDenyBook = Executors.newSingleThreadExecutor();
@@ -566,7 +571,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
                                                 int duration = Toast.LENGTH_SHORT;
                                                 Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +":( "+return_requested_book_name[position] +"'s Request Not Found ! ):"  + " </b> </font>"), duration);
 
-
+                                                per2.setText("100.00 %");
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -660,7 +665,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
                                                         activity.runOnUiThread(new Runnable() {
                                                             @Override
                                                             public void run() {
-
+                                                                per2.setText("100.00 %");
                                                                 loadingDialog.dismissDialog();
                                                                 notifyDataSetChanged();
                                                                 //System.out.println("Deny Book Complete!");

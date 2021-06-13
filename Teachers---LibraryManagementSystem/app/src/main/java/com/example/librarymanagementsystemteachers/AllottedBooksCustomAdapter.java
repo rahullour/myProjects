@@ -243,7 +243,9 @@ public class AllottedBooksCustomAdapter extends RecyclerView.Adapter<AllottedBoo
 
                             loadingDialog = new LoadingDialog(activity);
                             // //System.out.println("==================="+loadingDialog.isCancelled());
-                            loadingDialog.startLoadingDialog();
+                            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+                            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+                            per1.setText("50.00 %");
 
 
                             final ExecutorService executorServiceHomeReturnBook = Executors.newSingleThreadExecutor();
