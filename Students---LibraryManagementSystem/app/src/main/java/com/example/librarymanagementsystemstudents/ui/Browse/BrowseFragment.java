@@ -1,14 +1,18 @@
 package com.example.librarymanagementsystemstudents.ui.Browse;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +75,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
     int firstRenderComplete =0;
 
     RecyclerView RecyclerView2;
+    Spinner spinner;
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -79,6 +84,121 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
         View root = inflater.inflate(R.layout.fragment_browse_books, container, false);
         RecyclerView2=root.findViewById(R.id.recycleview2);
+        spinner =root.findViewById(R.id.course_spinner);
+
+
+
+        Button browse_button=root.findViewById(R.id.browse_button);
+        EditText browse_book_by_name=root.findViewById(R.id.browse_book_by_name);
+
+        browse_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                InputMethodManager inputMethodManager = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
+
+                String SearchNameText = browse_book_by_name.getText().toString().trim().toUpperCase();
+                browse_book_by_name.setText("");
+
+                if (SearchNameText.isEmpty()) {
+                    spinner.setSelection(0);
+                    BrowseCustomAdapter ca = new BrowseCustomAdapter(getActivity(),browse_book_name,browse_author,
+                            browse_publisher, browse_course,browse_yop,browse_available_count,browse_image);
+                    RecyclerView2.setAdapter(ca);
+
+                } else if (android.text.TextUtils.isDigitsOnly(SearchNameText)) {
+                    CharSequence text = ":( Please Enter An Alphabetic Value ! ):";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
+
+                    toast.show();
+
+                } else {
+                    final Boolean[] found = {false};
+                    final ExecutorService executorServiceSearchButton = Executors.newSingleThreadExecutor();
+                    executorServiceSearchButton.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (int i = 0; i < browse_book_name.length; i++) {
+                                spinner_browse_book_name[i] = null;
+                                spinner_browse_course[i] =null;
+                                spinner_browse_publisher[i] =null;
+                                spinner_browse_author[i] = null;
+                                spinner_browse_available_count[i] = null;
+                                spinner_browse_image[i] = null;
+                                spinner_browse_yop[i] = null;
+
+
+                            }
+
+
+                            int i = 0;
+                            for (int j = 0; browse_book_name[j] != null; j++) {
+
+                                  if (browse_book_name[j].toUpperCase().contains(SearchNameText)) {
+                                    spinner_browse_book_name[i] = browse_book_name[j];
+                                    spinner_browse_course[i] = browse_course[j];
+                                    spinner_browse_publisher[i] = browse_publisher[j];
+                                    spinner_browse_author[i] = browse_author[j];
+                                    spinner_browse_available_count[i] = browse_available_count[j];
+                                    spinner_browse_image[i] = browse_image[j];
+                                    spinner_browse_yop[i] = browse_yop[j];
+                                    i++;
+
+
+
+                                    //System.out.println("Search Button Student Id::" + allotted_student_id[i]);
+                                    found[0] =true;
+                                }
+
+
+                            }
+
+                            for (i = 0; i < browse_book_name.length; i++) {
+                                //System.out.println("In Allotted Search Button: " + allotted_book_name[i] + allotted_book_name.length);
+
+                            }
+
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(found[0] ==true)
+                                    {
+
+                                        BrowseCustomAdapter ca = new BrowseCustomAdapter(getActivity(),spinner_browse_book_name,spinner_browse_author,
+                                                spinner_browse_publisher, spinner_browse_course,spinner_browse_yop,spinner_browse_available_count,spinner_browse_image);
+                                        RecyclerView2.setAdapter(ca);
+                                    }
+                                    else {
+                                        CharSequence text = ":( "+SearchNameText+" Book Not Found ! ):";
+                                        int duration = Toast.LENGTH_SHORT;
+
+                                        Toast toast = Toast.makeText(getContext(), Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
+
+                                        toast.show();
+
+                                    }
+
+
+
+
+                                }
+                            });
+
+                        }
+                    });
+
+
+                }
+            }
+
+        });
+        
+        
+        
         NetworkUtil.setConnectivityStatus(getContext());
         if (status != 0) {
         loadingDialog=new LoadingDialog(getActivity());
@@ -712,7 +832,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
         String[] browse_spinner={"⇓   FIND BY COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};
-        Spinner spinner =root.findViewById(R.id.course_spinner);
+
             spinner.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 // Create an ArrayAdapter using the string array and a default spinner layout
 

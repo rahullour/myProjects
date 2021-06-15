@@ -13,6 +13,37 @@
         android:clickable="true"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/browse_book_by_name"
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:ems="10"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hint="FIND BOOK BY NAME"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/browse_button"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:background="@drawable/search_ripple_effect"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:text="Search"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+
+
 
         <Spinner
             android:id="@+id/course_spinner"

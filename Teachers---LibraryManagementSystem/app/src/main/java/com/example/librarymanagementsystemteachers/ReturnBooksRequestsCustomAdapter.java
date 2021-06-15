@@ -321,7 +321,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
                                                 int duration = Toast.LENGTH_SHORT;
                                                 //
                                                 // //System.out.println("grant_return_book[0]==" + grant_return_book[0] + "grant_return_book[1]==" + grant_return_book[1]);
-                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + return_requested_book_name[position] +"'s Retain Successful !" + " </b> </font>"), duration);
+                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + return_requested_book_name[position] +"'s Retain From : "+return_requested_book_student_name[position]+" Successful !" + " </b> </font>"), duration);
                                                 viewHolder.return_requested_book_available_count_field().setText(grant_return_book[0]);
 
                                                 toast.show();

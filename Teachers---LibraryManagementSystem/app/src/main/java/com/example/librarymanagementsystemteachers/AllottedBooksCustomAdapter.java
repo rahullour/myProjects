@@ -306,7 +306,7 @@ public class AllottedBooksCustomAdapter extends RecyclerView.Adapter<AllottedBoo
                                                 //System.out.println("Return book doesn't exist!");
                                                 int duration = Toast.LENGTH_SHORT;
                                                 //System.out.println("return_book[0]==" + return_book[0] + "return_book[1]==" + return_book[1]);
-                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + allotted_book_name[position] +"'s Return Doesn't Exist !" + " </b> </font>"), duration);
+                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + allotted_book_name[position] +"'s Return Doesn't Exist , Report To Developer !" + " </b> </font>"), duration);
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -316,7 +316,7 @@ public class AllottedBooksCustomAdapter extends RecyclerView.Adapter<AllottedBoo
                                             {
                                                 int duration = Toast.LENGTH_SHORT;
                                                 //System.out.println("return_book[0]==" + return_book[0] + "return_book[1]==" + return_book[1]);
-                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + allotted_book_name[position] +"'s Retain Complete !" + " </b> </font>"), duration);
+                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + allotted_book_name[position] +"'s Retain "+"From : "+allotted_student_name[position]+" Complete !" + " </b> </font>"), duration);
                                                 viewHolder.allotted_book_available_count_field().setText(return_book[0]);
                                                 toast.show();
 

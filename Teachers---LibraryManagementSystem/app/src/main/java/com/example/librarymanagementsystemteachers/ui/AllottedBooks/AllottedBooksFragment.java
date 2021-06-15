@@ -91,7 +91,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
         View root = inflater.inflate(R.layout.fragment_alotted_books, container, false);
         Allotted_RecyclerView = root.findViewById(R.id.allotted_recyclerview);
-         spinner = (Spinner) root.findViewById(R.id.alloted_spinner);
+        spinner  = (Spinner) root.findViewById(R.id.alloted_spinner);
 
         Button allottedbutton=root.findViewById(R.id.allotted_button);
         EditText allotted_find_by_id=root.findViewById(R.id.allotted_find_by_id);

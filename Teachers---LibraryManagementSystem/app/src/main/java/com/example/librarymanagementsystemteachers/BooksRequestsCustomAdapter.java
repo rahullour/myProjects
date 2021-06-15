@@ -307,7 +307,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
                                             {
                                                 int duration = Toast.LENGTH_SHORT;
 
-                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + "Either Your Books Limit Reached Max Or Book Not Available !"  + " </b> </font>"), duration);
+                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" + "Either Their Books Limit Reached Max Or Book Not Available , Report To Developer !"  + " </b> </font>"), duration);
                                                 loadingDialog.dismissDialog();
                                                 notifyDataSetChanged();
                                                 toast.show();
@@ -321,7 +321,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
                                                 int duration = Toast.LENGTH_SHORT;
                                                 //
                                                 // //System.out.println("grant_book[0]==" + grant_book[0] + "grant_book[1]==" + grant_book[1]);
-                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +" "+ requested_book_name[position] +"'s Allocation Successful !" + " </b> </font>"), duration);
+                                                Toast toast = Toast.makeText(activity.getApplicationContext(), Html.fromHtml("<font color='#FF0000' > <b>" +" "+ requested_book_name[position] +"'s Allocation To : "+requested_book_student_name[position]+" Successful !" + " </b> </font>"), duration);
                                                 viewHolder.requested_book_available_count_field().setText(grant_book[0]);
 
                                                 toast.show();
