@@ -43,7 +43,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static com.example.librarymanagementsystemteachers.Globals.loadingDialog;
-import static com.example.librarymanagementsystemteachers.Globals.per1;
 import static com.example.librarymanagementsystemteachers.Globals.status;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_name;
 import static com.example.librarymanagementsystemteachers.Globals.spinner_requested_book_author;

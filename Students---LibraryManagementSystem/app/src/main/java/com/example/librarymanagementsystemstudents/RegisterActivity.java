@@ -226,7 +226,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                         toast.show();
                                         context[0] = getApplicationContext();
                                         Intent intent = new Intent(context[0], InsideActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                         startActivity(intent);
+                                        finish();
                                        
 
 

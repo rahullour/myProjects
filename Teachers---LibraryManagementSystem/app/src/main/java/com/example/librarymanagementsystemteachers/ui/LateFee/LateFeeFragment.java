@@ -44,8 +44,6 @@ import java.util.concurrent.Executors;
 
 
 import static com.example.librarymanagementsystemteachers.Globals.loadingDialog;
-import static com.example.librarymanagementsystemteachers.Globals.per1;
-import static com.example.librarymanagementsystemteachers.Globals.profilepicdownloaded;
 import static com.example.librarymanagementsystemteachers.Globals.status;
 
 
@@ -189,8 +187,21 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
 
         });
 
+        NetworkUtil.setConnectivityStatus(getContext());
 
-        final ExecutorService executorServiceUpdateLateFee = Executors.newSingleThreadExecutor();
+        if (status != 0) {
+
+
+
+
+            loadingDialog = new LoadingDialog(getActivity());
+
+            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
+            TextView per1= percentage1.findViewById(R.id.progress_percentage);
+
+
+
+            final ExecutorService executorServiceUpdateLateFee = Executors.newSingleThreadExecutor();
         executorServiceUpdateLateFee.execute(new Runnable() {
             @Override
             public void run() {
@@ -226,7 +237,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
 
                         //System.out.println("Late Fee Data Update Complete !");
 
-
+                        per1.setText("16.66 %");
 
 
                         final ExecutorService executorServiceStudentLateFee = Executors.newSingleThreadExecutor();
@@ -274,6 +285,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                     @Override
                     public void run() {
                         //System.out.println("late_fee_student_late_fee Data Download Complete!");
+                        per1.setText("33.33 %");
                         final ExecutorService executorServiceStudentId = Executors.newSingleThreadExecutor();
                         executorServiceStudentId.execute(new Runnable() {
                             @Override
@@ -319,6 +331,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                     @Override
                                     public void run() {
                                         //System.out.println("late_fee_student_id Data Download Complete!");
+                                        per1.setText("49.99 %");
                                         final ExecutorService executorServiceStudentCourse = Executors.newSingleThreadExecutor();
                                         executorServiceStudentCourse.execute(new Runnable() {
                                             @Override
@@ -367,6 +380,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                     @Override
                                                     public void run() {
                                                         //System.out.println("late_fee_student_course Data Download Complete!");
+                                                        per1.setText("66.66 %");
                                                         final ExecutorService executorServiceStudentName = Executors.newSingleThreadExecutor();
                                                         executorServiceStudentName.execute(new Runnable() {
                                                             @Override
@@ -412,7 +426,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                                     @Override
                                                                     public void run() {
                                                                         //System.out.println("late_fee_student_name Data Download Complete!");
-
+                                                                        per1.setText("83.33 %");
 
                                                                         final ExecutorService executorServiceStudentBookCount = Executors.newSingleThreadExecutor();
                                                                         executorServiceStudentBookCount.execute(new Runnable() {
@@ -517,23 +531,6 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
         });
 
 
-
-
-
-
-
-
-        NetworkUtil.setConnectivityStatus(getContext());
-
-        if (status != 0) {
-
-
-
-
-            loadingDialog = new LoadingDialog(getActivity());
-
-            AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
-            TextView per1= percentage1.findViewById(R.id.progress_percentage);
 
 
             String[] late_fee_spinner = {"⇓   FIND BY STUDENT COURSE   ⇓","BCA","BBA","B.COM","B.TECH","LLB","BSC"};
