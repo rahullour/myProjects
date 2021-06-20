@@ -179,6 +179,9 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        navigationView.getCheckedItem().setTitle(Html.fromHtml("<font color='#ff3824'>MY BOOKS</font>"));
+
+
 
      navigationView.setNavigationItemSelectedListener(this);
 
@@ -210,11 +213,13 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
         switch (item.getItemId()) {
             case R.id.nav_mybooks:
                 //System.out.println("hello mybooks");
+                item.setTitle(Html.fromHtml("<font color='#ff0000'>MY BOOKS</font>"));
+                navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BROWSE BOOKS</font>"));
+                navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>PAYABLE AMOUNT</font>"));
+                navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>SIGN OUT</font>"));
+
                 actionBar.setTitle("MY BOOKS");
                 drawer.closeDrawer(GravityCompat.START);
-
-
-            
                 HomeFragment hf=new HomeFragment();
                 FragmentTransaction  transaction=getSupportFragmentManager().beginTransaction();
 
@@ -231,7 +236,11 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
                 case R.id.nav_browse:
                 //System.out.println("hello browse");
-                    actionBar.setTitle("BROWSE BOOKS");
+                    item.setTitle(Html.fromHtml("<font color='#ff0000'>BROWSE BOOKS</font>"));
+                    navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>SIGN OUT</font>"));
+                    navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>PAYABLE AMOUNT</font>"));
+                    navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>MY BOOKS</font>"));
+
                     drawer.closeDrawer(GravityCompat.START);
 
 
@@ -248,7 +257,13 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
             case R.id.nav_late_fee:
                //System.out.println("hello latefee");
+               item.setTitle(Html.fromHtml("<font color='#ff0000'>PAYABLE AMOUNT</font>"));
+                navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BROWSE BOOKS</font>"));
+                navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>SIGN OUT</font>"));
+                navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>MY BOOKS</font>"));
+
                 actionBar.setTitle("PAYABLE AMOUNT");
+
                 drawer.closeDrawer(GravityCompat.START);
 
                 LateFeeFragment lf=new LateFeeFragment();
@@ -260,7 +275,12 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                 break;
 
             case R.id.nav_sign_out:
-           ConfirmationDialog confirmationDialog  = new ConfirmationDialog(this);
+                item.setTitle(Html.fromHtml("<font color='#ff0000'>SIGN OUT</font>"));
+                navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BROWSE BOOKS</font>"));
+                navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>PAYABLE AMOUNT</font>"));
+                navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>MY BOOKS</font>"));
+
+                ConfirmationDialog confirmationDialog  = new ConfirmationDialog(this);
                 AlertDialog dialog=confirmationDialog.startConfirmationDialog();
 
                 TextView  confirm_heading_text= dialog.findViewById(R.id.confirm_heading_text);

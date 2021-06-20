@@ -7,28 +7,19 @@
         <item
             android:id="@+id/nav_mybooks"
             android:clickable="true"
-
-            android:foreground="@drawable/ripple_effect"
-
             android:title="@string/menu_mybooks" />
         <item
             android:id="@+id/nav_browse"
             android:clickable="true"
-            android:foreground="@drawable/ripple_effect"
-
             android:title="@string/menu_browsebooks" />
         <item
             android:id="@+id/nav_late_fee"
             android:clickable="true"
-            android:foreground="@drawable/ripple_effect"
-
             android:title="@string/menu_latefee" />
 
         <item
             android:id="@+id/nav_sign_out"
             android:clickable="true"
-            android:foreground="@drawable/ripple_effect"
-            android:iconTint="@color/black"
             android:title="@string/menu_signout" />
 
     </group>

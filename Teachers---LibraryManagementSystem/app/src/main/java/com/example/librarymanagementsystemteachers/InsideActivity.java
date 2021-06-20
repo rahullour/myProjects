@@ -182,7 +182,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+        navigationView.getCheckedItem().setTitle(Html.fromHtml("<font color='#ff3824'>ALLOTTED BOOKS</font>"));
      navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -213,8 +213,13 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
         switch (item.getItemId()) {
             case R.id.nav_mybooks:
                 //System.out.println("hello ALLOTTED BOOKS");
-                actionBar.setTitle("ALLOTTED BOOKS");
+                item.setTitle(Html.fromHtml("<font color='#ff0000'>ALLOTTED BOOKS</font>"));
+                navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BOOKS REQUESTS</font>"));
+                navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>BOOKS RETURN REQUESTS</font>"));
+                navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>RECEIVABLE AMOUNT</font>"));
+                navigationView.getMenu().getItem(4).setTitle(Html.fromHtml("<font color='#000000'>SIGN OUT</font>"));
 
+                actionBar.setTitle("ALLOTTED BOOKS");
                 drawer.closeDrawer(GravityCompat.START);
 
 
@@ -235,6 +240,12 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
                 case R.id.nav_browse:
                 //System.out.println("hello BOOKS REQUESTS");
+                    item.setTitle(Html.fromHtml("<font color='#ff0000'>BOOKS REQUESTS</font>"));
+                    navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>ALLOTTED BOOKS</font>"));
+                    navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>BOOKS RETURN REQUESTS</font>"));
+                    navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>RECEIVABLE AMOUNT</font>"));
+                    navigationView.getMenu().getItem(4).setTitle(Html.fromHtml("<font color='#000000'>SIGN OUT</font>"));
+
                     actionBar.setTitle("BOOKS REQUESTS");
                     drawer.closeDrawer(GravityCompat.START);
 
@@ -251,6 +262,12 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                     break;
 
             case R.id.nav_sign_out:
+                item.setTitle(Html.fromHtml("<font color='#ff0000'>SIGN OUT</font>"));
+                navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BOOKS REQUESTS</font>"));
+                navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>BOOKS RETURN REQUESTS</font>"));
+                navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>RECEIVABLE AMOUNT</font>"));
+                navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>ALLOTTED BOOKS</font>"));
+
                 confirmationDialog  = new ConfirmationDialog(this);
                 AlertDialog dialog=confirmationDialog.startConfirmationDialog();
 
@@ -298,6 +315,12 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
             case R.id.nav_return_books_requests:
                 //System.out.println("hello RETURN BOOKS REQUESTS");
+                item.setTitle(Html.fromHtml("<font color='#ff0000'>BOOKS RETURN REQUESTS</font>"));
+                navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BOOKS REQUESTS</font>"));
+                navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>ALLOTTED BOOKS</font>"));
+                navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>RECEIVABLE AMOUNT</font>"));
+                navigationView.getMenu().getItem(4).setTitle(Html.fromHtml("<font color='#000000'>SIGN OUT</font>"));
+
                 actionBar.setTitle("BOOKS RETURN REQUESTS");
                 drawer.closeDrawer(GravityCompat.START);
 
@@ -315,7 +338,13 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
             case R.id.nav_late_fee:
                //System.out.println("hello latefee");
-                actionBar.setTitle("PAYABLE AMOUNT");
+                actionBar.setTitle("RECEIVABLE AMOUNT");
+                item.setTitle(Html.fromHtml("<font color='#ff0000'>RECEIVABLE AMOUNT</font>"));
+                navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BOOKS REQUESTS</font>"));
+                navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>BOOKS RETURN REQUESTS</font>"));
+                navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>ALLOTTED BOOKS</font>"));
+                navigationView.getMenu().getItem(4).setTitle(Html.fromHtml("<font color='#000000'>SIGN OUT</font>"));
+
                 drawer.closeDrawer(GravityCompat.START);
 
                 LateFeeFragment lf=new LateFeeFragment();
