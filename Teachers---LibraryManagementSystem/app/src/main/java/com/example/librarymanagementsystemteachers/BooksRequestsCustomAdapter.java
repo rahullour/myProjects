@@ -349,6 +349,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
                                                     requested_book_author[i]=requested_book_author[i+1];
                                                     requested_book_publisher[i]=requested_book_publisher[i+1];
                                                     requested_book_course[i]=requested_book_course[i+1];
+                                                    requested_book_image[i]=requested_book_image[i+1];
                                                     requested_book_yop[i]=requested_book_yop[i+1];                                                    
                                                     requested_book_student_name[i]=requested_book_student_name[i+1];
                                                     requested_book_student_id[i]=requested_book_student_id[i+1];

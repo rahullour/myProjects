@@ -351,6 +351,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
                                                     return_requested_book_publisher[i]=return_requested_book_publisher[i+1];
                                                     return_requested_book_course[i]=return_requested_book_course[i+1];
                                                     return_requested_book_yop[i]=return_requested_book_yop[i+1];
+                                                    return_requested_book_image[i]=return_requested_book_image[i+1];
                                                     return_requested_book_student_name[i]=return_requested_book_student_name[i+1];
                                                     return_requested_book_student_id[i]=return_requested_book_student_id[i+1];
                                                     return_requested_book_student_course[i]=return_requested_book_student_course[i+1];

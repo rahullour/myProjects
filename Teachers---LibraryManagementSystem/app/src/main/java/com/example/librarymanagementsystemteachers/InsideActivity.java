@@ -268,6 +268,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                 navigationView.getMenu().getItem(3).setTitle(Html.fromHtml("<font color='#000000'>RECEIVABLE AMOUNT</font>"));
                 navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>ALLOTTED BOOKS</font>"));
 
+
                 confirmationDialog  = new ConfirmationDialog(this);
                 AlertDialog dialog=confirmationDialog.startConfirmationDialog();
 

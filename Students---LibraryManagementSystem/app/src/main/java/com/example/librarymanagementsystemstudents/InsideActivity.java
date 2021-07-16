@@ -241,6 +241,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                     navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>PAYABLE AMOUNT</font>"));
                     navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>MY BOOKS</font>"));
 
+                    actionBar.setTitle("BROWSE BOOKS");
                     drawer.closeDrawer(GravityCompat.START);
 
 
@@ -279,6 +280,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                 navigationView.getMenu().getItem(1).setTitle(Html.fromHtml("<font color='#000000'>BROWSE BOOKS</font>"));
                 navigationView.getMenu().getItem(2).setTitle(Html.fromHtml("<font color='#000000'>PAYABLE AMOUNT</font>"));
                 navigationView.getMenu().getItem(0).setTitle(Html.fromHtml("<font color='#000000'>MY BOOKS</font>"));
+
 
                 ConfirmationDialog confirmationDialog  = new ConfirmationDialog(this);
                 AlertDialog dialog=confirmationDialog.startConfirmationDialog();

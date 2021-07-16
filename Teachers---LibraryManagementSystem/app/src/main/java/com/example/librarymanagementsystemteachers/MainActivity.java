@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         if(!user_id.equals("null") && !user_pwd.equals("null"))
-                        {  Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ "Auto Login For User Id"+": "+user_id+" In Progress"+  "</b> </font>"), Toast.LENGTH_SHORT);
+                        {  Toast    toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>"+ "Auto Login For Admin Id"+": "+user_id+" In Progress"+  "</b> </font>"), Toast.LENGTH_SHORT);
 
                             toast.show();
                             AlertDialog percentage1 =  loadingDialog.startLoadingDialog();
