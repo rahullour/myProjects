@@ -1,6 +1,6 @@
 # LibraryManagementSystem
  A Library Books Management App For Students With Features Like Books Allocated,Books Available With Full Detail, Late Fee Details , Auto-Login,Find Book By Course.
- <img src="https://user-images.githubusercontent.com/71058061/129172704-4e6ae484-5902-48fe-a7bb-43c61a606166.jpg" width="500" height="500">
+ <img src="https://user-images.githubusercontent.com/71058061/129172704-4e6ae484-5902-48fe-a7bb-43c61a606166.jpg" width="300" height="400">
  
 ![Screenshot_20210812-121452333](https://user-images.githubusercontent.com/71058061/129172704-4e6ae484-5902-48fe-a7bb-43c61a606166.jpg=250x250)
 ![Screenshot_20210812-121638143](https://user-images.githubusercontent.com/71058061/129172715-5dfd0ed1-b1a4-4d90-9da0-8e9ab489a2c4.jpg)
