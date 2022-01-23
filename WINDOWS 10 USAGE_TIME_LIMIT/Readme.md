@@ -2,7 +2,7 @@
 # TECH USED- PowerShell Scripts
 # Windows 10 Usage Time Limit <br><br>
 
-This application contains powershell script files which are also converted to .exe to function well in windows environment. <br><br>
+This application contains POWERSHELL SCRIPT files which are also converted to .exe to function well in windows environment. <br><br>
 It is for local windows accounts usage limitation only.<br><br>
 # How it works<br><br>
 The app will get triggered when OS boots and will run required scripts before login and after login in local account specified in scripts.<br><br>
@@ -19,7 +19,7 @@ When OS boots next day it will reset current local acccounts password to old pas
 
 ![Locked](https://user-images.githubusercontent.com/71058061/114809857-91cbba80-9dc8-11eb-903a-71fcad4851ca.jpg)
 
-# When Account Is Locked A Message Is Shown At Boot Like Below --
+# When Account Is UnLocked A Message Is Shown At Boot Like Below --
 
 ![Unlocked](https://user-images.githubusercontent.com/71058061/114809842-8c6e7000-9dc8-11eb-94ff-38b1330d6888.jpg)
 
