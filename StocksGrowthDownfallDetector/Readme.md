@@ -6,7 +6,7 @@ By behaviour i mean pick those particular stocks whose price have had an increas
 
 # This helps in figuring out which companies are worth investing in .
 
-Screenshot-- <br>
+Screenshots-- <br>
 ![1](https://user-images.githubusercontent.com/71058061/153758845-fcfa131e-5f6d-4045-ae52-17a0ac799a2b.png)
 ![2](https://user-images.githubusercontent.com/71058061/153758846-c58152d8-646d-4bc6-b57f-5fd4e5edc2b0.png)
 
