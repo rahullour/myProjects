@@ -1,11 +1,11 @@
-# Electricity Bill Calculator For Two Parties With Shared Connection 
+# Electric And Water Bill Calculator For Two Parties With Shared Connection 
 # TECH USED- Java , Swing
 
-The purpose of this project was to calculate electricity bill for two parties with shared metre connection where one party has a metre and other doesn't and 
-there is one main metre outside the house for both parties.
-All the bills details are stored in a database which can be retrieved via tha app.
+The purpose of this project was to calculate electricity bill for two parties with shared electricity connection , there is one shared units measuring device for both parties -"main metre" and one party has a separate metre and other doesn't. There is also a shared water units measuring metre shared by both parties.
 
+# The task is to calculate electric and water bill for each party separately from the combined bill and also to verify the bill for any errors recieved from the service provider by doing calculations from previous bill records automatically.
 
+# All the bills details are stored in a database which can be retrieved via tha application .
 Screenshots-- <br>
 ![1](https://user-images.githubusercontent.com/71058061/154055212-113340c5-b1ee-4e42-9f19-b5990ec9f0fb.png)
 ![2](https://user-images.githubusercontent.com/71058061/154055218-54134eb6-6713-46b8-afaa-28319705d7f1.png)
