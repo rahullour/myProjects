@@ -5,7 +5,7 @@ The purpose of this project was to calculate electricity bill for two parties wi
 
 # The task is to calculate electric and water bill for each party separately from the combined bill and also to verify the bill for any errors recieved from the service provider by doing calculations from previous bill records automatically.
 
-# All the bills details are stored in a database which can be retrieved via the application .
+# All the bills' details are stored in a database which can be retrieved via the application .
 Screenshots-- <br>
 ![1](https://user-images.githubusercontent.com/71058061/154055212-113340c5-b1ee-4e42-9f19-b5990ec9f0fb.png)
 ![2](https://user-images.githubusercontent.com/71058061/154055218-54134eb6-6713-46b8-afaa-28319705d7f1.png)

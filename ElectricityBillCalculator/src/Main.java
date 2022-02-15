@@ -37,23 +37,23 @@ public class Main {
     static final String PASS = "admin";
     static int id_old_val;
     static float main_meter_units;
-    static float om_home_meter_units;
+    static float User1_home_meter_units;
     static float new_main_meter_units;
     static float bill_amt_input;
-    static float om_home_meter_new_units_input;
+    static float User1_home_meter_new_units_input;
     static float new_water_units_input;
-    static float water_units_om_percentage_input;
+    static float water_units_User1_percentage_input;
     static float total_bill_units;
     static float per_unit_amt;
-    static float om_home_units;
+    static float User1_home_units;
     static float total_water_units;
-    static float om_water_units;
-    static float balwan_water_units;
-    static float balwan_home_units;
-    static float total_om_units;
-    static float total_balwan_units;
-    static float payable_om_amt;
-    static float payable_balwan_amt;
+    static float User1_water_units;
+    static float User2_water_units;
+    static float User2_home_units;
+    static float total_User1_units;
+    static float total_User2_units;
+    static float payable_User1_amt;
+    static float payable_User2_amt;
 
     public Main() {
     }
@@ -65,24 +65,24 @@ public class Main {
         JButton show_last_records = new JButton("SHOW LAST RECORDS");
         final JTextField nbu = new JTextField();
         final JTextField bill_amt = new JTextField();
-        final JTextField om_home_meter_new_units = new JTextField();
+        final JTextField User1_home_meter_new_units = new JTextField();
         final JTextField new_water_units = new JTextField();
-        final JTextField new_water_units_om_percentage = new JTextField();
+        final JTextField new_water_units_User1_percentage = new JTextField();
         JLabel nbu_label = new JLabel("Main Meter New Units  :");
         JLabel nb_amt_label = new JLabel("New Bill Total Amount  :");
-        JLabel om_home_meter_new_units_label = new JLabel("Om Home Meter New Units  :");
+        JLabel User1_home_meter_new_units_label = new JLabel("User1_ Home Meter New Units  :");
         JLabel new_water_units_label = new JLabel("Total Water Units Consumed  :");
-        JLabel new_water_units_om_percentage_label = new JLabel("Water Units Om Share Percentage :");
+        JLabel new_water_units_User1_percentage_label = new JLabel("Water Units User1_ Share Percentage :");
         nbu_label.setBounds(195, 50, 250, 25);
         nb_amt_label.setBounds(195, 75, 250, 25);
-        om_home_meter_new_units_label.setBounds(166, 100, 250, 25);
+        User1_home_meter_new_units_label.setBounds(166, 100, 250, 25);
         new_water_units_label.setBounds(156, 125, 250, 25);
-        new_water_units_om_percentage_label.setBounds(127, 150, 250, 25);
+        new_water_units_User1_percentage_label.setBounds(127, 150, 250, 25);
         nbu.setBounds(350, 50, 150, 25);
         bill_amt.setBounds(350, 75, 150, 25);
-        om_home_meter_new_units.setBounds(350, 100, 150, 25);
+        User1_home_meter_new_units.setBounds(350, 100, 150, 25);
         new_water_units.setBounds(350, 125, 150, 25);
-        new_water_units_om_percentage.setBounds(350, 150, 150, 25);
+        new_water_units_User1_percentage.setBounds(350, 150, 150, 25);
         calculate_button.setBounds(200, 250, 200, 50);
         calculate_button.setBackground(Color.GREEN);
         calculate_button.setForeground(Color.BLACK);
@@ -93,14 +93,14 @@ public class Main {
         update_button.setBackground(Color.RED);
         update_button.setForeground(Color.WHITE);
         f.setLayout((LayoutManager)null);
-        f.add(new_water_units_om_percentage);
+        f.add(new_water_units_User1_percentage);
         f.add(nbu);
         f.add(bill_amt);
         f.add(new_water_units);
-        f.add(om_home_meter_new_units);
+        f.add(User1_home_meter_new_units);
         f.add(new_water_units_label);
-        f.add(new_water_units_om_percentage_label);
-        f.add(om_home_meter_new_units_label);
+        f.add(new_water_units_User1_percentage_label);
+        f.add(User1_home_meter_new_units_label);
         f.add(nbu_label);
         f.add(nb_amt_label);
         f.add(calculate_button);
@@ -147,7 +147,7 @@ public class Main {
         }
 
         try {
-            sql = "CREATE TABLE BillRecord(\n  id int(5)  NOT NULL UNIQUE,\n  main_meter_units float(20,4) PRIMARY KEY NOT NULL,\n  total_bill_units float(15, 4),\n  total_bill_amount float(15, 4),\n  per_unit_amount float(5, 3),\n  om_home_meter_units float(20, 4),\n  om_bill_units float(15, 4),\n  balwan_bill_units float(15, 4),\n  water_units float(10, 4),\n  om_water_units_percentage float(5, 3),\n  balwan_water_units_percentage float(5, 3),\n  om_water_units float(10, 4),\n  balwan_water_units float(10, 4),\n  total_payable_om_units float(10,4),\n  total_payable_balwan_units float(10,4),\n  om_bill_amount float(15,4),\n  balwan_bill_amount float(15,4)\n);\n";
+            sql = "CREATE TABLE BillRecord(\n  id int(5)  NOT NULL UNIQUE,\n  main_meter_units float(20,4) PRIMARY KEY NOT NULL,\n  total_bill_units float(15, 4),\n  total_bill_amount float(15, 4),\n  per_unit_amount float(5, 3),\n  User1_home_meter_units float(20, 4),\n  User1_bill_units float(15, 4),\n  User2_bill_units float(15, 4),\n  water_units float(10, 4),\n  User1_water_units_percentage float(5, 3),\n  User2_water_units_percentage float(5, 3),\n  User1_water_units float(10, 4),\n  User2_water_units float(10, 4),\n  total_payable_User1_units float(10,4),\n  total_payable_User2_units float(10,4),\n  User1_bill_amount float(15,4),\n  User2_bill_amount float(15,4)\n);\n";
             stmt.executeUpdate(sql);
             System.out.println("Table Created Successfully...");
         } catch (SQLException var21) {
@@ -155,13 +155,13 @@ public class Main {
         }
 
         try {
-            sql = "select id,main_meter_units,om_home_meter_units from BillRecord ORDER BY id DESC LIMIT 1;";
+            sql = "select id,main_meter_units,User1_home_meter_units from BillRecord ORDER BY id DESC LIMIT 1;";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             rs.next();
             id_old_val = rs.getInt("id");
             main_meter_units = rs.getFloat("main_meter_units");
-            om_home_meter_units = rs.getFloat("om_home_meter_units");
+            User1_home_meter_units = rs.getFloat("User1_home_meter_units");
             System.out.println("Data Selection Successfull!");
             conn.close();
         } catch (SQLException var20) {
@@ -174,22 +174,22 @@ public class Main {
                 try {
                     Main.new_main_meter_units = Float.parseFloat(nbu.getText());
                     Main.bill_amt_input = Float.parseFloat(bill_amt.getText());
-                    Main.om_home_meter_new_units_input = Float.parseFloat(om_home_meter_new_units.getText());
+                    Main.User1_home_meter_new_units_input = Float.parseFloat(User1_home_meter_new_units.getText());
                     Main.new_water_units_input = Float.parseFloat(new_water_units.getText());
-                    Main.water_units_om_percentage_input = Float.parseFloat(new_water_units_om_percentage.getText());
+                    Main.water_units_User1_percentage_input = Float.parseFloat(new_water_units_User1_percentage.getText());
                     if (Main.new_main_meter_units >= Main.main_meter_units) {
                         Main.total_bill_units = Main.new_main_meter_units - Main.main_meter_units;
                         Main.per_unit_amt = Main.bill_amt_input / Main.total_bill_units;
-                        Main.om_home_units = Main.om_home_meter_new_units_input - Main.om_home_meter_units;
+                        Main.User1_home_units = Main.User1_home_meter_new_units_input - Main.User1_home_meter_units;
                         Main.total_water_units = Main.new_water_units_input;
-                        Main.om_water_units = Main.total_water_units / 100.0F * Main.water_units_om_percentage_input;
-                        Main.balwan_water_units = Main.total_water_units - Main.om_water_units;
-                        Main.balwan_home_units = Main.total_bill_units - Main.total_water_units - Main.om_home_units;
-                        Main.total_om_units = Main.om_water_units + Main.om_home_units;
-                        Main.total_balwan_units = Main.total_bill_units - Main.total_om_units;
-                        Main.payable_om_amt = Main.total_om_units * Main.per_unit_amt;
-                        Main.payable_balwan_amt = Main.total_balwan_units * Main.per_unit_amt;
-                        JOptionPane.showMessageDialog(f, "                                                 Electricity Cost = " + Main.per_unit_amt + " Rs./Unit. \n\n------------------------------------------------------------------------------------------------------------------\n\nOm Parkash Bill Units(Not Water) = " + Main.om_home_units + "\nOm Parkash Water Units = " + Main.om_water_units + "\nOm Parkash Total Bill Units = " + Main.total_om_units + "\nOm Parkash Bill To Be Paid = " + Main.payable_om_amt + " Rs. \n\n------------------------------------------------------------------------------------------------------------------\n\nBalwan Bill Units(Not Water) = " + Main.balwan_home_units + "\nBalwan Water Units = " + Main.balwan_water_units + "\nBalwan Total Bill Units = " + Main.total_balwan_units + "\nBalwan Bill To Be Paid = " + Main.payable_balwan_amt + " Rs. ", "Bill Amount Shares :)", -1);
+                        Main.User1_water_units = Main.total_water_units / 100.0F * Main.water_units_User1_percentage_input;
+                        Main.User2_water_units = Main.total_water_units - Main.User1_water_units;
+                        Main.User2_home_units = Main.total_bill_units - Main.total_water_units - Main.User1_home_units;
+                        Main.total_User1_units = Main.User1_water_units + Main.User1_home_units;
+                        Main.total_User2_units = Main.total_bill_units - Main.total_User1_units;
+                        Main.payable_User1_amt = Main.total_User1_units * Main.per_unit_amt;
+                        Main.payable_User2_amt = Main.total_User2_units * Main.per_unit_amt;
+                        JOptionPane.showMessageDialog(f, "                                                 Electricity Cost = " + Main.per_unit_amt + " Rs./Unit. \n\n------------------------------------------------------------------------------------------------------------------\n\nUser1_ Parkash Bill Units(Not Water) = " + Main.User1_home_units + "\nUser1_ Parkash Water Units = " + Main.User1_water_units + "\nUser1_ Parkash Total Bill Units = " + Main.total_User1_units + "\nUser1_ Parkash Bill To Be Paid = " + Main.payable_User1_amt + " Rs. \n\n------------------------------------------------------------------------------------------------------------------\n\nUser2 Bill Units(Not Water) = " + Main.User2_home_units + "\nUser2 Water Units = " + Main.User2_water_units + "\nUser2 Total Bill Units = " + Main.total_User2_units + "\nUser2 Bill To Be Paid = " + Main.payable_User2_amt + " Rs. ", "Bill Amount Shares :)", -1);
                     } else {
                         JOptionPane.showMessageDialog(f, "Main meter units consumption cannot be less than the last consumed units !", "Error!", 0);
                     }
@@ -207,9 +207,9 @@ public class Main {
                 try {
                     Main.new_main_meter_units = Float.parseFloat(nbu.getText());
                     Main.bill_amt_input = Float.parseFloat(bill_amt.getText());
-                    Main.om_home_meter_new_units_input = Float.parseFloat(om_home_meter_new_units.getText());
+                    Main.User1_home_meter_new_units_input = Float.parseFloat(User1_home_meter_new_units.getText());
                     Main.new_water_units_input = Float.parseFloat(new_water_units.getText());
-                    Main.water_units_om_percentage_input = Float.parseFloat(new_water_units_om_percentage.getText());
+                    Main.water_units_User1_percentage_input = Float.parseFloat(new_water_units_User1_percentage.getText());
                     String[] options = new String[]{"NO", "YES"};
                     int selectedOption = JOptionPane.showOptionDialog(f, "Are You Sure You Want To Update Bill Record With Above Input Values ! ", "COFIRMATION TO PROCEED !", -1, 1, (Icon)null, options, options[0]);
                     if (1 == selectedOption) {
@@ -241,24 +241,24 @@ public class Main {
                         }
 
                         try {
-                            sql = "INSERT INTO BillRecord(main_meter_units , total_bill_units , total_bill_amount , per_unit_amount , om_home_meter_units , om_bill_units , balwan_bill_units , water_units , om_water_units_percentage , balwan_water_units_percentage , om_water_units , balwan_water_units , total_payable_om_units ,total_payable_balwan_units , om_bill_amount , balwan_bill_amount ,id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                            sql = "INSERT INTO BillRecord(main_meter_units , total_bill_units , total_bill_amount , per_unit_amount , User1_home_meter_units , User1_bill_units , User2_bill_units , water_units , User1_water_units_percentage , User2_water_units_percentage , User1_water_units , User2_water_units , total_payable_User1_units ,total_payable_User2_units , User1_bill_amount , User2_bill_amount ,id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
                             PreparedStatement statement = conn.prepareStatement(sql);
                             statement.setFloat(1, Main.new_main_meter_units);
                             statement.setFloat(2, Main.total_bill_units);
                             statement.setFloat(3, Main.bill_amt_input);
                             statement.setFloat(4, Main.per_unit_amt);
-                            statement.setFloat(5, Main.om_home_meter_new_units_input);
-                            statement.setFloat(6, Main.om_home_units);
-                            statement.setFloat(7, Main.balwan_home_units);
+                            statement.setFloat(5, Main.User1_home_meter_new_units_input);
+                            statement.setFloat(6, Main.User1_home_units);
+                            statement.setFloat(7, Main.User2_home_units);
                             statement.setFloat(8, Main.total_water_units);
-                            statement.setFloat(9, Main.water_units_om_percentage_input);
-                            statement.setFloat(10, 100.0F - Main.water_units_om_percentage_input);
-                            statement.setFloat(11, Main.om_water_units);
-                            statement.setFloat(12, Main.balwan_water_units);
-                            statement.setFloat(13, Main.total_om_units);
-                            statement.setFloat(14, Main.total_balwan_units);
-                            statement.setFloat(15, Main.payable_om_amt);
-                            statement.setFloat(16, Main.payable_balwan_amt);
+                            statement.setFloat(9, Main.water_units_User1_percentage_input);
+                            statement.setFloat(10, 100.0F - Main.water_units_User1_percentage_input);
+                            statement.setFloat(11, Main.User1_water_units);
+                            statement.setFloat(12, Main.User2_water_units);
+                            statement.setFloat(13, Main.total_User1_units);
+                            statement.setFloat(14, Main.total_User2_units);
+                            statement.setFloat(15, Main.payable_User1_amt);
+                            statement.setFloat(16, Main.payable_User2_amt);
                             statement.setInt(17, Main.id_old_val + 1);
                             statement.executeUpdate();
                             System.out.println("Data Insertion Successful");
@@ -368,7 +368,7 @@ public class Main {
                             return c;
                         }
                     });
-                    JOptionPane.showMessageDialog(f, sp, "OLD BILL RECORD", -1);
+                    JOptionPane.showMessageDialog(f, sp, "OLD BILLS RECORD", -1);
                     stmt.close();
                     System.out.println("Show last records - Data Selection Successfull!");
                 } catch (SQLException var21) {
