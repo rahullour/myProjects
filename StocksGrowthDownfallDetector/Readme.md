@@ -1,4 +1,4 @@
-# Stocks Uprise / Downfall Detector 
+# Stocks Growth / Downfall Detector 
 # TECH USED- Python
 
 This code was written to find out the behavior of stocks of a particular firm from a CSV file with stock records having data of changes of stock prices on a day to day basis. By behavior i mean to find out those particular stocks whose price have had an increase/decrease for n number of days continuously meaning if there was an increase after first day then its price went on increase till n days and vice versa .
