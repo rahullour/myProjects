@@ -1,4 +1,4 @@
-# Stocks Uprise / Downfall Calculator 
+# Stocks Uprise / Downfall Detector 
 # TECH USED- Python
 
 This code was written to find out the behaviour of stocks from a csv file which can have infinity number of stock records. 
