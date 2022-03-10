@@ -7,9 +7,6 @@ public class DisplayTime implements Runnable{
     {
         sec=0;
         stop=i;
-
-
-
     }
 
     @Override

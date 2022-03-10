@@ -463,7 +463,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         bodyimages[6] = new ImageIcon("7.png");
         try {
 
-            backimageicons[0] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\1.png"));
+            backimageicons[0] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back1.jpg"));
             backimageicons[1] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back2.jpg"));
             backimageicons[2] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back3.jpg"));
             backimageicons[3] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back4.jpg"));
