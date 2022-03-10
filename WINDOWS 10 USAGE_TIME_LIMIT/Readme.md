@@ -47,7 +47,7 @@ One needs to be in admin account (as it needs admin rights to function) and from
 ![3-5](https://user-images.githubusercontent.com/71058061/114490977-6c597800-9c33-11eb-85c6-eb03058ed7b6.PNG)
 
 # One More Thing<br><br>
-We need to edit two files(checkpost.ps1 & runpostlogin.ps1) before extracting then in req directory,<br><br>
+We need to edit two files(checkpost.ps1 & runpostlogin.ps1) before pasting them in req directory,<br><br>
 ![file1](https://user-images.githubusercontent.com/71058061/114493301-f277bd80-9c37-11eb-85de-2213400fd868.png)
 ![file2](https://user-images.githubusercontent.com/71058061/114493307-f4418100-9c37-11eb-8f1e-0b879fafc3e8.png)
 

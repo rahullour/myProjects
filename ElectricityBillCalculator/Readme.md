@@ -3,7 +3,7 @@
 
 The purpose of this project was to calculate electricity bill for two parties with shared electricity connection , there is one shared units measuring device for both parties -"main metre" and one party has a separate metre and other doesn't. There is also a shared water units measuring metre shared by both parties.
 
-# The task is to calculate electric and water bill for each party separately from the combined bill and also to verify the bill for any errors recieved from the service provider by doing calculations from previous bill records automatically.
+# The task is to calculate electric and water bill for each party separately from the combined bill and also to verify the bill for any errors received from the service provider by doing calculations from previous bill records automatically.
 
 # All the bills' details are stored in a database which can be retrieved via the application .
 Screenshots-- <br>

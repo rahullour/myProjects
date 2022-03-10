@@ -17,4 +17,4 @@
 
 * NOW REBOOT.
 
-##NOTE For Developers- Manipulate Alarm Trigger Levels By Editing "Full_Battery.vbs" File.
+# NOTE For Developers- Manipulate Alarm Trigger Levels By Editing "Full_Battery.vbs" File.
