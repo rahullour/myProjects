@@ -463,17 +463,17 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
         bodyimages[6] = new ImageIcon("7.png");
         try {
 
-            backimageicons[0] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back1.jpg"));
-            backimageicons[1] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back2.jpg"));
-            backimageicons[2] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back3.jpg"));
-            backimageicons[3] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back4.jpg"));
-            backimageicons[4] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back5.jpg"));
-            backimageicons[5] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back6.jpg"));
-            backimageicons[6] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back7.jpg"));
-            backimageicons[7] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back8.jpg"));
-            backimageicons[8] = ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back9.jpg"));
-            backimageicons[9]=ImageIO.read(new File("C:\\Program Files\\SnakeGame\\back10.jpg"));
-            enemy=ImageIO.read(new File("C:\\Program Files\\SnakeGame\\enemy.png"));
+            backimageicons[0] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\1.png"));
+            backimageicons[1] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back2.jpg"));
+            backimageicons[2] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back3.jpg"));
+            backimageicons[3] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back4.jpg"));
+            backimageicons[4] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back5.jpg"));
+            backimageicons[5] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back6.jpg"));
+            backimageicons[6] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back7.jpg"));
+            backimageicons[7] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back8.jpg"));
+            backimageicons[8] = ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back9.jpg"));
+            backimageicons[9]=ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\back10.jpg"));
+            enemy=ImageIO.read(new File("Z:\\GIT-REPO\\GitHub\\SNAKE_GAME\\enemy.png"));
         }
         catch (Exception e)
         {
