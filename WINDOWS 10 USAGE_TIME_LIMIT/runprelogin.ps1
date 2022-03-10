@@ -1,4 +1,4 @@
-﻿ Get-WmiObject Win32_process -filter 'name = "runprelogin.exe"' | foreach-object { $_.SetPriority(32768) } 
+﻿ Get-WmiObject Win32_process -filter 'name = "runprelogin.exe"' | foreach-object { $_.SetPriority(256) } 
 $currentday=[int](Get-Date).Day
 $oldday=[int](Get-Content -Path C:\Windows\Logs\Windows\olddatedata.txt)
 

@@ -92,7 +92,7 @@ Public Class Form1
     End Sub
 
     Private Sub AxWindowsMediaPlayer1_Enter(sender As Object, e As EventArgs) Handles AxWindowsMediaPlayer1.Enter
-        AxWindowsMediaPlayer1.URL = "C:\Program Files\IMAGE\Resources\backv.mp4"
+        AxWindowsMediaPlayer1.URL = "Z:\GIT-REPO\GitHub\IMAGE_STEGANOGRAPHY TOOL\IMAGE\Resources\backv.mp4"
         AxWindowsMediaPlayer1.Ctlcontrols.play()
 
     End Sub

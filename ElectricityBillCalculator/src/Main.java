@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 public class Main {
-    static JFrame obj;
+
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/";
     static final String USER = "root";
@@ -156,8 +156,7 @@ public class Main {
 
         try {
             sql = "select id,main_meter_units,User1_home_meter_units from BillRecord ORDER BY id DESC LIMIT 1;";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
+            ResultSet rs = stmt.executeQuery(sql);
             rs.next();
             id_old_val = rs.getInt("id");
             main_meter_units = rs.getFloat("main_meter_units");
@@ -263,13 +262,13 @@ public class Main {
                             statement.executeUpdate();
                             System.out.println("Data Insertion Successful");
                             dialog = new JOptionPane();
-                            JOptionPane.showMessageDialog(f, "New Bill Record Updated !", "BILL RECORD UPDATE STATUS", -1);
+                            dialog.showMessageDialog(f, "New Bill Record Updated !", "BILL RECORD UPDATE STATUS", -1);
                             stmt.close();
                             System.out.println("Show last records - Data Selection Successfull!");
                         } catch (SQLException var9) {
                             System.out.println("Data Insertion Failed! " + var9);
                             dialog = new JOptionPane();
-                            JOptionPane.showMessageDialog(f, "Update Failed !", "BILL RECORD UPDATE STATUS", 0);
+                            dialog.showMessageDialog(f, "Update Failed !", "BILL RECORD UPDATE STATUS", 0);
                         }
                     }
                 } catch (Exception var13) {

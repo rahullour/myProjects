@@ -12,7 +12,7 @@ diff = []
 
 
 def readData():
-    filename = "C://Users/rahul.DESKTOP-Q5Q2EO1.000/Desktop/tmp/EPZM.csv"
+    filename = "Z://GIT-REPO/GitHub/StocksGrowthDownfallDetector/tmp/EPZM.csv"
     # initializing the titles and rows list
     rows = []
     # reading csv file
@@ -47,7 +47,7 @@ def plotGraph_Days_vs_High_Low_Difference(days,weeks,months,years):
 
     if(days!=0):
             days=days-1
-            print "Showing Data For Last ", days+1, " Days."
+            print("Showing Data For Last ", days+1, " Days.")
             y = diff[len(diff)-days:len(diff)]
             # corresponding x axis values
             x = []
@@ -71,7 +71,7 @@ def plotGraph_Days_vs_High_Low_Difference(days,weeks,months,years):
 
     elif(weeks!=0):
             days=weeks*7-1
-            print "Showing Data For Last", weeks ," Weeks."
+            print("Showing Data For Last", weeks ," Weeks.")
             y = diff[len(diff)-days:len(diff)]
             # corresponding x axis values
             x = []
@@ -95,7 +95,7 @@ def plotGraph_Days_vs_High_Low_Difference(days,weeks,months,years):
     elif(months!=0):
             # taking number of days in a month =30
             days=months*30-1
-            print "Showing Data For Last ", months, " Months."
+            print("Showing Data For Last ", months, " Months.")
             y = diff[len(diff)-days:len(diff)]
             # corresponding x axis values
             x = []
@@ -118,7 +118,7 @@ def plotGraph_Days_vs_High_Low_Difference(days,weeks,months,years):
     elif(years!=0):
             # taking number of days in an year =365
             days=years*365-1
-            print "Showing Data For Last ", years, " Years."
+            print("Showing Data For Last ", years, " Years.")
             y = diff[len(diff)-days:len(diff)]
             # corresponding x axis values
             x = []
@@ -141,42 +141,42 @@ def plotGraph_Days_vs_High_Low_Difference(days,weeks,months,years):
 
 
 def userInput():
-    print "1. To Enter Last n Days            |"
-    print "2. To Enter Last n  Weeks          |"
-    print "3. To Enter Last n  Months         |"
-    print "4. To Enter Last n  Years          |"
-    print "5. To Process All Rows             |"
+    print("1. To Enter Last n Days            |")
+    print("2. To Enter Last n  Weeks          |")
+    print("3. To Enter Last n  Months         |")
+    print("4. To Enter Last n  Years          |")
+    print("5. To Process All Rows             |")
 
-    print "Enter Your Choice :"
+    print("Enter Your Choice :")
     ch = int(input())
     if(ch==1):
-        print "Please Enter Days:"
+        print("Please Enter Days:")
         days = int(input())
         if(checkContinuous(days)==1):
             plotGraph_Days_vs_High_Low_Difference(days, 0, 0, 0)
     elif(ch==2):
-        print "Please Enter Weeks:"
+        print("Please Enter Weeks:")
         weeks = int(input())
         if (checkContinuous(weeks*7) == 1):
             plotGraph_Days_vs_High_Low_Difference(0, weeks, 0, 0)
     elif(ch==3):
-        print "Please Enter Months:"
+        print("Please Enter Months:")
         months = int(input())
         if (checkContinuous(months*30) == 1):
             plotGraph_Days_vs_High_Low_Difference(0, 0, months, 0)
     elif(ch==4):
-        print "Please Enter Years:"
+        print("Please Enter Years:")
         years = int(input())
         if (checkContinuous(years*365) == 1):
             plotGraph_Days_vs_High_Low_Difference(0, 0, 0, years)
     elif(ch==5):
-        print total_rows
+        print(total_rows)
         if (checkContinuous(total_rows) == 1):
             plotGraph_Days_vs_High_Low_Difference(total_rows, 0, 0, 0)
     else:
         count=2
         for x in range(0,2):
-         print "Invalid Choice,Exiting in "+str(count) +" !"
+         print("Invalid Choice,Exiting in "+str(count) +" !")
          count=count-1
          time.sleep(1)
         exit()
@@ -184,7 +184,7 @@ def userInput():
 # peaks count and continuity check
 def checkContinuous(days):
     days=days-1
-    print "Checking for continuity:"
+    print("Checking for continuity:")
     totalinc=0
     totaldec=0
     inc=0
@@ -232,14 +232,14 @@ def checkContinuous(days):
 
 
 
-        print "Total No of Peaks:",totalpeaks
-        print "Total No of UpPeaks:",uppeaks
-        print "Total No of DownPeaks:",downpeaks
-        print "Total No of Increments:",totalinc
-        print "Total No of Decrements:",totaldec
-        print "Total No of Peaks Which Have A Continuity Of More Than ",continuousdays," Days:", peaksforncontinuousdays
-        print "Total No of UpPeaks Which Have A Incrementing Continuity Of More Than ",continuousdays," Days:", uppeaksforncontinuousdays
-        print "Total No of DownPeaks Which Have A Decrementing Continuity Of More Than ",continuousdays," Days:", downpeaksforncontinuousdays
+        print("Total No of Peaks:",totalpeaks)
+        print("Total No of UpPeaks:",uppeaks)
+        print("Total No of DownPeaks:",downpeaks)
+        print("Total No of Increments:",totalinc)
+        print("Total No of Decrements:",totaldec)
+        print("Total No of Peaks Which Have A Continuity Of More Than ",continuousdays," Days:", peaksforncontinuousdays)
+        print("Total No of UpPeaks Which Have A Incrementing Continuity Of More Than ",continuousdays," Days:", uppeaksforncontinuousdays)
+        print("Total No of DownPeaks Which Have A Decrementing Continuity Of More Than ",continuousdays," Days:", downpeaksforncontinuousdays)
 
 
 # change below to >n value if u wish to include more than n continuous peaks , default is set to 0 i.e , it will include all peaks with
@@ -247,10 +247,10 @@ def checkContinuous(days):
         if peaksforncontinuousdays>0:
          return 1
         else:
-         print "File doesn't contain peaks for more than "+str(continuousdays) +" continuous days of decrement or increment, so graph plotting is discarded ! Try a different file ."
+         print("File doesn't contain peaks for more than "+str(continuousdays) +" continuous days of decrement or increment, so graph plotting is discarded ! Try a different file .")
          return 0
     else:
-        print "That Much Of Data Is Not Present In The File, Try Again With Less Input!"
+        print("That Much Of Data Is Not Present In The File, Try Again With Less Input!")
 
 
 

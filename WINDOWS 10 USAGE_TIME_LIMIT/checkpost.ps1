@@ -10,8 +10,8 @@ if(!$powershell)
  C:\Windows\Logs\Windows\psexec.exe \\DESKTOP-AK9MRA6  -u administrator -p adminra "C:\Windows\Logs\Windows\runpostlogin.exe" -accepteula -nobanner 
  if($checkpostpriority -eq 0)
  {
-   Get-WmiObject Win32_process -filter 'name = "checkpost.exe"' | foreach-object { $_.SetPriority(32768) } 
-   Get-WmiObject Win32_process -filter 'name = "runpostlogin.exe"' | foreach-object { $_.SetPriority(32768) } 
+   Get-WmiObject Win32_process -filter 'name = "checkpost.exe"' | foreach-object { $_.SetPriority(256) } 
+   Get-WmiObject Win32_process -filter 'name = "runpostlogin.exe"' | foreach-object { $_.SetPriority(256) } 
 
  }
  Start-Sleep -s 60
