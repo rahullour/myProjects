@@ -21,11 +21,8 @@
 
 * RUN-C:\Program Files\IMAGE\obj\Debug\Image.exe.
 
-I am currently working on Installer for this.
+I am currently working on Installer for it.
 
-
-
-![1](https://user-images.githubusercontent.com/71058061/93200157-0d9b5100-f76d-11ea-8b5d-17df5b684523.PNG)
 ![up -1](https://user-images.githubusercontent.com/71058061/157622754-44e18b6b-41ed-4ccd-99af-f931ff5a155c.png)
 ![up-2](https://user-images.githubusercontent.com/71058061/157622855-4ce27730-c13c-4fa5-8c19-d39554ba2b1f.png)
 ![up-3](https://user-images.githubusercontent.com/71058061/157622902-6722aa05-2c50-49f3-899e-5532209e814b.png)
