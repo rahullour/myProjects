@@ -26,5 +26,13 @@ I am currently working on Installer for this.
 
 
 ![1](https://user-images.githubusercontent.com/71058061/93200157-0d9b5100-f76d-11ea-8b5d-17df5b684523.PNG)
+![up -1](https://user-images.githubusercontent.com/71058061/157622754-44e18b6b-41ed-4ccd-99af-f931ff5a155c.png)
+![up-2](https://user-images.githubusercontent.com/71058061/157622855-4ce27730-c13c-4fa5-8c19-d39554ba2b1f.png)
+![up-3](https://user-images.githubusercontent.com/71058061/157622902-6722aa05-2c50-49f3-899e-5532209e814b.png)
+![up-4](https://user-images.githubusercontent.com/71058061/157622914-9772e5c8-09f8-424d-b6c3-10326d9c23c1.png)
+![up-5](https://user-images.githubusercontent.com/71058061/157622941-af4a1bcc-b668-4c1d-9608-54c0d9867d9a.png)
+![up-6](https://user-images.githubusercontent.com/71058061/157623010-6c5419ca-d93b-49ed-9958-899db712a6f2.png)
+![up-7](https://user-images.githubusercontent.com/71058061/157623082-936ac323-654f-49af-915c-ca3c02fb5e96.png)
+
 
 
