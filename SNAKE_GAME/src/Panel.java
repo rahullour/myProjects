@@ -7,8 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -22,7 +21,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
     private static int[] snakeylength = new int[1080];
 
     static ButtonGroup bg = new ButtonGroup();
-
 
     private static boolean left = false;
     private static boolean right = false;
@@ -67,7 +65,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
     private static int gameover = 0;
 
     private int[] enemyxpos = {25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775, 800, 825, 850, 875, 900, 925, 950, 975, 1000, 1025, 1050, 1075, 1100, 1125, 1150, 1175, 1200, 1225, 1250, 1275, 1300, 1325, 1350, 1375, 1400, 1425, 1450, 1475, 1500};
-    private int[] enemyypos = {75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775};
+    private int[] enemyypos = {25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775};
     private static int[] backimages={0,1,2,3,4,5,6,7,8,9};
 
     private static Random random = new Random();
@@ -351,7 +349,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
          }
 
 
-         System.out.println("Goodbye!");
+         System.out.println("End Of Database Code!");
 
          threadstart=1;
         JMenu menu1, menu2, menu3;
@@ -612,6 +610,8 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
         }
         g.drawImage(enemy,enemyxpos[xpos], enemyypos[ypos],30,25,null);
+
+        // for game over
 
         for (int b = 1; b < lengthofsnake; b++) {
             if (snakexlength[b] == snakexlength[0] && snakeylength[b] == snakeylength[0]) {

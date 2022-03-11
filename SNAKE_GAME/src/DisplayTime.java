@@ -16,7 +16,7 @@ public class DisplayTime implements Runnable{
 
         try
         {    sec++;
-            System.out.println("me"+sec);
+            //System.out.println("me"+sec);
             Thread.sleep(1000);
 
                 run();
@@ -29,7 +29,7 @@ public class DisplayTime implements Runnable{
 
         catch (Exception e)
         {
-            System.out.println("Exception Occured");
+            System.out.println("Exception Occurred");
         }
 
 
