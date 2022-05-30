@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 30, 2022 at 11:01 AM
+-- Generation Time: May 30, 2022 at 03:15 PM
 -- Server version: 10.5.12-MariaDB
 -- PHP Version: 7.3.32
 
@@ -176,6 +176,12 @@ ALTER TABLE `Books`
 --
 ALTER TABLE `Books_lent`
   ADD PRIMARY KEY (`bookname`,`id`);
+
+--
+-- Indexes for table `Books_return_requests`
+--
+ALTER TABLE `Books_return_requests`
+  ADD PRIMARY KEY (`id`,`bookname`);
 
 --
 -- Indexes for table `user`
