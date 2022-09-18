@@ -156,7 +156,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         public void run() {
                             try {
                                 
-                                String login_url="https://rahullour.000webhostapp.com/signup.php";
+                                String login_url="https://stalinism-noun.000webhostapp.com/signup.php";
                                 //System.out.println("running-----------------------------------------------------------------------");
                                 URL url=new URL(login_url);
                                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();

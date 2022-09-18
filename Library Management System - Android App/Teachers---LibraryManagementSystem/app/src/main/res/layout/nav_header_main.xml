@@ -34,12 +34,12 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:paddingLeft="5dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:paddingRight="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textStyle="bold" />
 
     <TextView
@@ -49,10 +49,10 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
+        android:background="#000000"
         android:paddingLeft="5dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:paddingRight="5dp"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textStyle="italic" />
 </LinearLayout>

@@ -208,7 +208,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
 
 
                 try {
-                    String login_url = "https://rahullour.000webhostapp.com/update_late_fee.php";
+                    String login_url = "https://stalinism-noun.000webhostapp.com/update_late_fee.php";
                     //System.out.println("running-----------------------------------------------------------------------");
 
                     URL url=new URL(login_url);
@@ -245,7 +245,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
             @Override
             public void run() {
                 try {
-                    String login_url = "https://rahullour.000webhostapp.com/get_late_fee_student_late_fee.php";
+                    String login_url = "https://stalinism-noun.000webhostapp.com/get_late_fee_student_late_fee.php";
                     //System.out.println("running-----------------------------------------------------------------------");
 
                     URL url = new URL(login_url);
@@ -253,7 +253,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                     httpURLConnection.setRequestMethod("POST");
                     httpURLConnection.setDoOutput(false);
                     httpURLConnection.setDoInput(true);
-                    
+
 
 
                     InputStream inputStream = httpURLConnection.getInputStream();
@@ -291,7 +291,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                             @Override
                             public void run() {
                                 try {
-                                    String login_url = "https://rahullour.000webhostapp.com/get_late_fee_student_id.php";
+                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_late_fee_student_id.php";
                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                     URL url = new URL(login_url);
@@ -299,7 +299,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                     httpURLConnection.setRequestMethod("POST");
                                     httpURLConnection.setDoOutput(false);
                                     httpURLConnection.setDoInput(true);
-                                    
+
 
 
                                     InputStream inputStream = httpURLConnection.getInputStream();
@@ -337,7 +337,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                             @Override
                                             public void run() {
                                                 try {
-                                                    String login_url = "https://rahullour.000webhostapp.com/get_late_fee_student_course.php";
+                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_late_fee_student_course.php";
                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                     URL url = new URL(login_url);
@@ -345,7 +345,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                     httpURLConnection.setRequestMethod("POST");
                                                     httpURLConnection.setDoOutput(false);
                                                     httpURLConnection.setDoInput(true);
-                                                    
+
 
 
                                                     InputStream inputStream = httpURLConnection.getInputStream();
@@ -373,7 +373,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                 }
 
 
-                                                
+
 
 
                                                 getActivity().runOnUiThread(new Runnable() {
@@ -386,7 +386,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                             @Override
                                                             public void run() {
                                                                 try {
-                                                                    String login_url = "https://rahullour.000webhostapp.com/get_late_fee_student_name.php";
+                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_late_fee_student_name.php";
                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                     URL url = new URL(login_url);
@@ -394,7 +394,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                                     httpURLConnection.setRequestMethod("POST");
                                                                     httpURLConnection.setDoOutput(false);
                                                                     httpURLConnection.setDoInput(true);
-                                                                    
+
 
 
                                                                     InputStream inputStream = httpURLConnection.getInputStream();
@@ -433,7 +433,7 @@ public class LateFeeFragment extends Fragment implements AdapterView.OnItemSelec
                                                                             @Override
                                                                             public void run() {
                                                                                 try {
-                                                                                    String login_url = "https://rahullour.000webhostapp.com/get_late_fee_student_book_count.php";
+                                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_late_fee_student_book_count.php";
                                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                     URL url = new URL(login_url);

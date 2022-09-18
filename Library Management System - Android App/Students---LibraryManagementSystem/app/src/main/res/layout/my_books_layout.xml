@@ -54,7 +54,7 @@
                     android:gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -68,9 +68,9 @@
                 <TextView
                     android:id="@+id/borrow_date"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:text=" Borrow Date:"
+                    android:text="Borrow :"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:foregroundGravity="center"
                     android:gravity="center"
                     android:text="TextView"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:background="#FFFFFF"
-                    android:text=" Return Date :"
+                    android:text="Return :"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -130,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:foregroundGravity="center"
                     android:gravity="center"
                     android:text="TextView"
@@ -141,8 +141,8 @@
                     android:id="@+id/available"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text=" Available : "
+                    android:layout_weight="0"
+                    android:text=" Available:"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -170,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:foregroundGravity="center"
                     android:gravity="center"
                     android:text="TextView"
@@ -182,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="                         Late Fee : "
+                    android:text="  Late Fee : "
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -191,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:foregroundGravity="left"
                     android:gravity="left"
                     android:text="TextView"

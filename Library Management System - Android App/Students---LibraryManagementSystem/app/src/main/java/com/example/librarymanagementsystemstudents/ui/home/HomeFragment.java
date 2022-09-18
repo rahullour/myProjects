@@ -120,7 +120,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                 public void run() {
 
                     try {
-                        String login_url = "https://rahullour.000webhostapp.com/get_home_book_name.php";
+                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_book_name.php";
                        // System.out.println("running-----------------------------------------------------------------------");
 
                         URL url = new URL(login_url);
@@ -130,6 +130,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                         httpURLConnection.setDoInput(true);
                         OutputStream outputStream=httpURLConnection.getOutputStream();
                         BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                       System.out.println("checking:"+user_id);
                         String post_data= URLEncoder.encode("user_id","UTF-8")+"="+URLEncoder.encode(user_id,"UTF-8");
 
 
@@ -179,7 +180,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                 public void run() {
                                     home_my_pending_book_name=new String[100];
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/get_pending_return_book_name.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_pending_return_book_name.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url = new URL(login_url);
@@ -235,7 +236,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                     try {
-                                                        String login_url = "https://rahullour.000webhostapp.com/get_home_course.php";
+                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_course.php";
                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                         URL url = new URL(login_url);
@@ -292,7 +293,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                     try {
-                                                                        String login_url = "https://rahullour.000webhostapp.com/get_home_book_borrow_date.php";
+                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_book_borrow_date.php";
                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                         URL url = new URL(login_url);
@@ -346,7 +347,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                     try {
-                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_home_book_return_date.php";
+                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_book_return_date.php";
                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                         URL url = new URL(login_url);
@@ -401,7 +402,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                     try {
-                                                                                                        String login_url = "https://rahullour.000webhostapp.com/update_late_fee.php";
+                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/update_late_fee.php";
                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                         URL url=new URL(login_url);
@@ -436,7 +437,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
                                                                                                                 public void run() {
 
                                                                                                         try {
-                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_home_book_late_fee.php";
+                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_book_late_fee.php";
                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                         URL url = new URL(login_url);
@@ -491,7 +492,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                     try {
-                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_home_yop.php";
+                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_yop.php";
                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                         URL url = new URL(login_url);
@@ -544,7 +545,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                                     try {
-                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_home_available_count.php";
+                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_available_count.php";
                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                         URL url = new URL(login_url);
@@ -597,7 +598,7 @@ public class HomeFragment  extends Fragment implements AdapterView.OnItemSelecte
 
 
                                                                                                                                                     try {
-                                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_home_book_images.php";
+                                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_home_book_images.php";
                                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                         URL url = new URL(login_url);

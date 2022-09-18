@@ -380,7 +380,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
         //   tvname.setText(downloadimageresult[0]);
 
 
-        //System.out.println("----------------" + user_name);
+       // System.out.println("--" + user_name + "--" + user_id + "--" + user_course );
         tvid.setText(Globals.user_id);
 
 
@@ -479,7 +479,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
                     try {
 
-                        String login_url = "https://rahullour.000webhostapp.com/downloadimage.php";
+                        String login_url = "https://stalinism-noun.000webhostapp.com/downloadimage.php";
                         //System.out.println("running-----------------------------------------------------------------------");
                         URL url = new URL(login_url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -629,7 +629,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
                         try {
 
 
-                            String login_url="https://rahullour.000webhostapp.com/uploadimage.php";
+                            String login_url="https://stalinism-noun.000webhostapp.com/uploadimage.php";
                             //System.out.println("running-----------------------------------------------------------------------");
                             URL url=new URL(login_url);
                             HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();

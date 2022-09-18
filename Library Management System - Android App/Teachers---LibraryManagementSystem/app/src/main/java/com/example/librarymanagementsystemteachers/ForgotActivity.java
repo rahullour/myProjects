@@ -122,7 +122,7 @@ public class ForgotActivity extends AppCompatActivity {
 
                             try {
 
-                                String login_url="https://rahullour.000webhostapp.com/sendlinkteacher.php";
+                                String login_url="https://stalinism-noun.000webhostapp.com/sendlinkteacher.php";
                                 //System.out.println("running-----------------------------------------------------------------------");
                                 URL url=new URL(login_url);
                                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
@@ -300,7 +300,7 @@ public class ForgotActivity extends AppCompatActivity {
                             try {
 
 
-                                String login_url="https://rahullour.000webhostapp.com/resetpassteacher.php";
+                                String login_url="https://stalinism-noun.000webhostapp.com/resetpassteacher.php";
                                 //System.out.println("running-----------------------------------------------------------------------");
                                 URL url=new URL(login_url);
                                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();

@@ -255,7 +255,7 @@ public class AllottedBooksCustomAdapter extends RecyclerView.Adapter<AllottedBoo
 
 
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/allotted_return_book.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/allotted_return_book.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url=new URL(login_url);

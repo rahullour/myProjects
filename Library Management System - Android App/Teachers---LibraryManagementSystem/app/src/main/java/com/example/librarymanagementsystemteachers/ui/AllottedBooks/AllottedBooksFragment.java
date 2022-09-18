@@ -252,7 +252,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                     try {
-                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_student_course.php";
+                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_student_course.php";
                         //System.out.println("running-----------------------------------------------------------------------");
 
                         URL url = new URL(login_url);
@@ -260,7 +260,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                         httpURLConnection.setRequestMethod("POST");
                         httpURLConnection.setDoOutput(false);
                         httpURLConnection.setDoInput(true);
-                       
+
 
 
                         InputStream inputStream = httpURLConnection.getInputStream();
@@ -303,7 +303,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_student_name.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_student_name.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url = new URL(login_url);
@@ -311,7 +311,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
                                         httpURLConnection.setRequestMethod("POST");
                                         httpURLConnection.setDoOutput(false);
                                         httpURLConnection.setDoInput(true);
-                                       
+
 
 
                                         InputStream inputStream = httpURLConnection.getInputStream();
@@ -353,7 +353,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                     try {
-                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_student_id.php";
+                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_student_id.php";
                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                         URL url = new URL(login_url);
@@ -400,7 +400,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                     try {
-                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_book_name.php";
+                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_book_name.php";
                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                         URL url = new URL(login_url);
@@ -447,7 +447,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                     try {
-                                                                                        String login_url = "https://rahullour.000webhostapp.com/update_late_fee.php";
+                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/update_late_fee.php";
                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                         URL url=new URL(login_url);
@@ -486,7 +486,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                     try {
-                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_book_late_fee.php";
+                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_book_late_fee.php";
                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                         URL url=new URL(login_url);
@@ -537,7 +537,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                                     try {
-                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_course.php";
+                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_course.php";
                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                         URL url = new URL(login_url);
@@ -588,7 +588,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                                                     try {
-                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_book_borrow_date.php";
+                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_book_borrow_date.php";
                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                         URL url = new URL(login_url);
@@ -635,7 +635,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                                                                     try {
-                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_book_return_date.php";
+                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_book_return_date.php";
                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                         URL url = new URL(login_url);
@@ -694,7 +694,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                                                                                                     try {
-                                                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_yop.php";
+                                                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_yop.php";
                                                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                                         URL url = new URL(login_url);
@@ -740,7 +740,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                                                                                                                     try {
-                                                                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_available_count.php";
+                                                                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_available_count.php";
                                                                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                                                         URL url = new URL(login_url);
@@ -786,7 +786,7 @@ public class AllottedBooksFragment extends Fragment implements AdapterView.OnIte
 
 
                                                                                                                                                                                                     try {
-                                                                                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_allotted_book_images.php";
+                                                                                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_allotted_book_images.php";
                                                                                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                                                                         URL url = new URL(login_url);

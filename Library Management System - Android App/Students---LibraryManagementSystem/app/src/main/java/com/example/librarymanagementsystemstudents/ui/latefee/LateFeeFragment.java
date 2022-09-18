@@ -60,7 +60,7 @@ public class LateFeeFragment extends Fragment {
 
 
                 try {
-                    String login_url = "https://rahullour.000webhostapp.com/get_late_fee.php";
+                    String login_url = "https://stalinism-noun.000webhostapp.com/get_late_fee.php";
                     //System.out.println("running-----------------------------------------------------------------------");
 
                     URL url=new URL(login_url);

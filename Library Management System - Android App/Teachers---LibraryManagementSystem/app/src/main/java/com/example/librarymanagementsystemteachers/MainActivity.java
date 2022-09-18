@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                         try {
-                                            String login_url="https://rahullour.000webhostapp.com/admin_login.php";
+                                            String login_url="https://stalinism-noun.000webhostapp.com/admin_login.php";
                                             //System.out.println("running-----------------------------------------------------------------------");
 
                                             URL url=new URL(login_url);
@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                             try {
-                                String login_url="https://rahullour.000webhostapp.com/admin_login.php";
+                                String login_url="https://stalinism-noun.000webhostapp.com/admin_login.php";
                                 //System.out.println("running-----------------------------------------------------------------------");
 
                                 URL url=new URL(login_url);

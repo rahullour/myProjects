@@ -31,29 +31,27 @@
         android:id="@+id/home_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_gravity="left"
         android:layout_marginTop="10dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
+        android:foregroundGravity="left"
+        android:gravity="left"
         android:paddingLeft="5dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:paddingRight="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/home_userid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
-        android:paddingLeft="5dp"
+        android:background="#000000"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:paddingRight="5dp"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textStyle="italic" />
 
 

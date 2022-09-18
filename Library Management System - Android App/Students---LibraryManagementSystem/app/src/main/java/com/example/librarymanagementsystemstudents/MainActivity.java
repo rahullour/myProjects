@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                         try {
-                                            String login_url="https://rahullour.000webhostapp.com/login.php";
+                                            String login_url="https://stalinism-noun.000webhostapp.com/login.php";
                                             //System.out.println("running-----------------------------------------------------------------------");
 
                                             URL url=new URL(login_url);
@@ -303,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                     Context context = getApplicationContext();
                     CharSequence text = ":( PLease Fill Remaining Fields ! ):";
                     int duration = Toast.LENGTH_SHORT;
-
+                   // System.out.println("Here");
                     Toast toast = Toast.makeText(context, Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
 
                     toast.show();
@@ -341,9 +342,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                             try {
-                                String login_url="https://rahullour.000webhostapp.com/login.php";
-                                //System.out.println("running-----------------------------------------------------------------------");
+                                String login_url="https://stalinism-noun.000webhostapp.com/login.php";
+                                System.out.println("running-----------------------------------------------------------------------");
 
+                                Log.d("Test","running");
                                 URL url=new URL(login_url);
                                 HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
                                 httpURLConnection.setRequestMethod("POST");
@@ -370,6 +372,7 @@ public class MainActivity extends AppCompatActivity {
                                     loginresult[i] += line;
                                     i++;
                                 }
+                               // System.out.println("login result:"+loginresult[0]);
                                 bufferedReader.close();
                                 inputStream.close();
                                 httpURLConnection.disconnect();
@@ -381,7 +384,7 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
 
                             }
-                            //System.out.println("login result:"+loginresult[0]);
+                           // System.out.println("login result:"+loginresult[0]);
 
                        runOnUiThread(new Runnable() {
                            @Override
@@ -391,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
 
                                    CharSequence text = ":( Incorrect UserId/Password ! ): ";
                                    int duration = Toast.LENGTH_SHORT;
-                                   //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
+                                  // System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
                                    Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
 
                                    toast.show();
@@ -401,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
 
                                    CharSequence text = ":) Please Register ! (: ";
                                    int duration = Toast.LENGTH_SHORT;
-                                   //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
+                                  //System.out.println("result[0]==" + loginresult[0] + "result[1]==" + loginresult[1]);
                                    Toast toast = Toast.makeText(context[0], Html.fromHtml("<font color='#FF0000' > <b>" + text + "</b> </font>"), duration);
 
                                    toast.show();
@@ -417,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                    startActivity(intent);
                                    finish();
-                                   //System.out.println("result[0]=="+loginresult[0]+"result[1]=="+ loginresult[1]);
+                                  // System.out.println("result[0]=="+loginresult[0]+"result[1]=="+ loginresult[1]);
                                    Globals.user_name=loginresult[0];
                                    Globals.user_course=loginresult[1];
                                    CharSequence text = loginresult[0];

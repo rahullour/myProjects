@@ -228,7 +228,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                     try {
-                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_student_name.php";
+                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_student_name.php";
                         //System.out.println("running-----------------------------------------------------------------------");
 
                         URL url = new URL(login_url);
@@ -275,7 +275,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_student_id.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_student_id.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url = new URL(login_url);
@@ -322,7 +322,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                     try {
-                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_student_course.php";
+                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_student_course.php";
                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                         URL url = new URL(login_url);
@@ -369,7 +369,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                                     try {
-                                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_book_name.php";
+                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_book_name.php";
                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                         URL url = new URL(login_url);
@@ -420,7 +420,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                                                     try {
-                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_book_author.php";
+                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_book_author.php";
                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                         URL url = new URL(login_url);
@@ -470,7 +470,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                                                                     try {
-                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_book_publisher.php";
+                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_book_publisher.php";
                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                         URL url = new URL(login_url);
@@ -519,7 +519,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                                                                                     try {
-                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_book_course.php";
+                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_book_course.php";
                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                         URL url = new URL(login_url);
@@ -567,7 +567,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                                                                                                     try {
-                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_book_yop.php";
+                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_book_yop.php";
                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                         URL url = new URL(login_url);
@@ -614,7 +614,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                                                                                                                     try {
-                                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_book_available_count.php";
+                                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_book_available_count.php";
                                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                         URL url = new URL(login_url);
@@ -661,7 +661,7 @@ public class ReturnBooksRequestsFragment extends Fragment implements AdapterView
 
 
                                                                                                                                                                     try {
-                                                                                                                                                                        String login_url = "https://rahullour.000webhostapp.com/get_return_requested_book_images.php";
+                                                                                                                                                                        String login_url = "https://stalinism-noun.000webhostapp.com/get_return_requested_book_images.php";
                                                                                                                                                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                                         URL url = new URL(login_url);

@@ -216,7 +216,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                 try {
-                    String login_url = "https://rahullour.000webhostapp.com/get_browse_book_name.php";
+                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_book_name.php";
                     //System.out.println("running-----------------------------------------------------------------------");
 
                     URL url = new URL(login_url);
@@ -267,7 +267,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                                 try {
-                                    String login_url = "https://rahullour.000webhostapp.com/get_browse_author.php";
+                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_author.php";
                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                     URL url = new URL(login_url);
@@ -317,7 +317,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                                                 try {
-                                                    String login_url = "https://rahullour.000webhostapp.com/get_browse_publisher.php";
+                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_publisher.php";
                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                     URL url = new URL(login_url);
@@ -367,7 +367,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                                                                 try {
-                                                                    String login_url = "https://rahullour.000webhostapp.com/get_browse_course.php";
+                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_course.php";
                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                     URL url = new URL(login_url);
@@ -415,7 +415,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                                                                                 try {
-                                                                                    String login_url = "https://rahullour.000webhostapp.com/get_browse_yop.php";
+                                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_yop.php";
                                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                     URL url = new URL(login_url);
@@ -460,7 +460,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
                                                                                             public void run() {
 
                                                                                                 try {
-                                                                                                    String login_url = "https://rahullour.000webhostapp.com/get_pending_book_name.php";
+                                                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_pending_book_name.php";
                                                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                     URL url = new URL(login_url);
@@ -515,7 +515,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                                                                                                                 try {
-                                                                                                                    String login_url = "https://rahullour.000webhostapp.com/get_browse_available_count.php";
+                                                                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_available_count.php";
                                                                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                     URL url = new URL(login_url);
@@ -562,7 +562,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                                                                                                                                 try {
-                                                                                                                                    String login_url = "https://rahullour.000webhostapp.com/get_browse_get_button_book_name.php";
+                                                                                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_get_button_book_name.php";
                                                                                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                     URL url = new URL(login_url);
@@ -619,7 +619,7 @@ public class BrowseFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                                                                                                                                                 try {
-                                                                                                                                                    String login_url = "https://rahullour.000webhostapp.com/get_browse_book_images.php";
+                                                                                                                                                    String login_url = "https://stalinism-noun.000webhostapp.com/get_browse_book_images.php";
                                                                                                                                                     //System.out.println("running-----------------------------------------------------------------------");
 
                                                                                                                                                     URL url = new URL(login_url);

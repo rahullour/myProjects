@@ -51,7 +51,7 @@
                     android:gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -76,24 +76,12 @@
                         android:id="@+id/requested_student_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="left"
                         android:layout_weight="1"
-                        android:foregroundGravity="center"
-                        android:gravity="center"
+                        android:foregroundGravity="left"
+                        android:gravity="left"
                         android:text="TextView"
                         android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/student_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:foregroundGravity="center"
-                        android:gravity="center"
-                        android:text="Student Course :"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/requested_student_course"
@@ -124,7 +112,7 @@
                         android:foregroundGravity="right"
                         android:gravity="right"
                         android:text="Student Id :  "
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -155,6 +143,7 @@
                     android:foregroundGravity="center"
                     android:gravity="center"
                     android:text="   BY : "
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -164,8 +153,8 @@
                     android:layout_height="50dp"
                     android:layout_gravity="left"
                     android:layout_weight="1"
-                    android:foregroundGravity="center"
-                    android:gravity="center"
+                    android:foregroundGravity="left"
+                    android:gravity="center|left"
                     android:text="TextView"
                     android:textSize="14sp"
                     android:textStyle="italic" />
@@ -194,16 +183,17 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0"
                     android:text="  YOP : "
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/requested_yop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="left"
                     android:layout_weight="1"
-                    android:foregroundGravity="center"
-                    android:gravity="center"
+                    android:foregroundGravity="left"
+                    android:gravity="left"
                     android:text="TextView"
                     android:textSize="14sp"
                     android:textStyle="italic" />
@@ -232,7 +222,8 @@
                     android:layout_height="match_parent"
                     android:foregroundGravity="center"
                     android:gravity="center"
-                    android:text="                             Available : "
+                    android:text="  Available : "
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView

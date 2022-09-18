@@ -257,7 +257,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
 
 
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/grant_requested_book.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/grant_requested_book.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url=new URL(login_url);
@@ -350,7 +350,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
                                                     requested_book_publisher[i]=requested_book_publisher[i+1];
                                                     requested_book_course[i]=requested_book_course[i+1];
                                                     requested_book_image[i]=requested_book_image[i+1];
-                                                    requested_book_yop[i]=requested_book_yop[i+1];                                                    
+                                                    requested_book_yop[i]=requested_book_yop[i+1];
                                                     requested_book_student_name[i]=requested_book_student_name[i+1];
                                                     requested_book_student_id[i]=requested_book_student_id[i+1];
                                                     requested_book_student_course[i]=requested_book_student_course[i+1];
@@ -521,7 +521,7 @@ public class BooksRequestsCustomAdapter extends RecyclerView.Adapter<BooksReques
 
 
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/deny_requested_book.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/deny_requested_book.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url=new URL(login_url);

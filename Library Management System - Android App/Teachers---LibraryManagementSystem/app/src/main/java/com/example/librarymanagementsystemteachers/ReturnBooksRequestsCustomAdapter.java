@@ -256,7 +256,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
 
 
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/grant_return_requested_book.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/grant_return_requested_book.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url=new URL(login_url);
@@ -521,7 +521,7 @@ public class ReturnBooksRequestsCustomAdapter extends RecyclerView.Adapter<Retur
 
 
                                     try {
-                                        String login_url = "https://rahullour.000webhostapp.com/deny_return_requested_book.php";
+                                        String login_url = "https://stalinism-noun.000webhostapp.com/deny_return_requested_book.php";
                                         //System.out.println("running-----------------------------------------------------------------------");
 
                                         URL url=new URL(login_url);
