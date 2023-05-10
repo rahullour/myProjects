@@ -1,0 +1,20 @@
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/bg-02.jpg');">
+        <div class="wrap-login100 p-l-110 p-r-110 p-t-10 p-b-60">
+          <div class="card">
+            <div class="text-center card-header">Verify Otp</div>
+            <div class="card-body">
+              <%= simple_form_for phone_otp_reg_path, method: :post, data:{turbo: false} do |f| %>
+                <%= f.input :otp_attempt, label: 'OTP', placeholder: "OTP =>" %>
+               <%= link_to 'Resend Otp?', phone_otp_reg_path, id: "otp_link", data: { turbo: "false" }, style: "color:blue;", onclick: "link_click()" %> <span id="link_timer"></span> <br>
+              <%= link_to 'Go back to SignUp page', new_user_registration_path, data: { turbo: "false" }, style: "color:blue;" %>
+                <br>
+                <div class="actions text-center">
+                  <%= f.submit 'Verify', class: 'btn btn-primary mt-2' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>

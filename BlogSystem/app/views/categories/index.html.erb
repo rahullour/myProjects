@@ -1,0 +1,33 @@
+<div class="text-center" >
+<% if params[:trigger_alert_category] %>
+<div class="alert alert-danger alert-dismissible fade show text-center container" role="alert">
+  <strong><%= alert %> </strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+
+
+
+
+<h1 class="text-center mt-4" > Categories : </h1>
+<br><br>
+
+<div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info @categories %>
+    </div>
+    <%= will_paginate @categories, :container => false %>
+  </div>
+
+  <%= render 'category' %>
+
+<div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info @categories %>
+    </div>
+    <%= will_paginate @categories, :container => false %>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div></div>

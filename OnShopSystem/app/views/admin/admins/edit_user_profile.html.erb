@@ -1,0 +1,101 @@
+<% resource = $resource%>
+<% resource_name = :user %>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/bg-02.jpg'); padding-top:0px; padding-bottom:10vh;">
+        <div class="wrap-login100-signup p-l-80 p-r-80 p-t-10 mt-5 p-b-10">
+                      <%= form_for(resource, as: resource_name, url: update_user_path, html: { method: :put }) do |f| %>
+                        <div class="login100-form validate-form flex justify-content-center">
+                            <%= render "devise/shared/error_messages", resource: resource %>
+                                <span class="login100-form-title p-b-1">
+                                    <h2 style="font-size:30px; color:black;"> Edit <span><%=  resource.username.capitalize %> 's Profile</h2>
+                                </span>    
+                                 <div class="container text-center">
+                                    <% if resource.image.attached? %>
+                                      <div class="mb-4 mt-1">
+                                        <%= image_tag url_for(resource.image), size: "150x150", alt: "Upload Image", style: "border-radius:50%;", id: "profile_pic" %>                                  
+                                      </div>
+                                    <% end %>
+                                    <div class="mb-5 ml-5">                           
+                                      <%= f.file_field :image, id: "pic_sel", onchange:"preview(this);" , accept: "image/png"  %>
+                                    </div>
+                                 </div>                              
+                                  
+                                  <%= hidden_field_tag 'country_code_symbol', '' %>
+                                  <%= hidden_field_tag 'phone_number', '' %>                               
+                                
+                            <div style="display:flex;">
+                                <div class="pt-3 mr-1 pb-3 mb-1 col-md-6 mr-0" style="border-radius:5px; border:2px solid indigo;">
+
+
+                                    <%= f.text_field :first_name, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:410px; height:50px;", placeholder: "* First Name :" %>                      
+                                    <%= f.text_field :last_name, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:410px; height:50px;", placeholder: "* Last Name :" %>
+                                    <%= f.text_field :username, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:410px; height:50px;", placeholder: "* Username :" %>
+                                    <%= f.text_area :address, :value => @city+" "+@state+" "+@zipcode+" "+@country , class: "form-control mt-2 mb-1", style: "margin-left:50px; width:410px; height:125px;", placeholder: "* Address :" %>
+                                    <i class="ml-5">(leave blank if you don't want to change it)</i><br />
+                                    <%= f.password_field :password, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:410px; height:50px;", placeholder: "New Password(6 chars min) :" %>
+                                    <i class="ml-5">(leave blank if you don't want to change it)</i><br />
+                                    <%= f.password_field :password_confirmation, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:410px; height:50px;", placeholder: "New Password Confirm(6 chars min) :" %>
+                                    <i class="ml-5">(we need admin's current password to confirm your changes)</i><br />
+                                    <%= f.password_field :current_password, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:410px; height:50px;", placeholder: "* Current Password :" %>
+
+
+                                </div>
+
+                                <div class="pt-3 pr-3 pb-3 mb-1 col-md-6 mr-0" style="width:500px; height:250px; border-radius:5px; border:2px solid indigo;">
+                                    
+                                      <div class="card">
+                                          <div class="card-header text-white bg-secondary">
+                                           Update Telephone Number !
+                                          </div>
+                                          <div class="card-body">
+                                          <p>New Telephone Number, leave blank if you don't want to change.</p>
+                                          <%= f.text_field :telephone, id: "phone", class: "form-control", style: "margin-bottom:0px; margin-left:50px; width:410px; height:50px;", placeholder: "New Tel Num With Country Code :" %>                           
+                                           </div>
+                                      </div>
+
+                                       <div class="container text-center pt-5 mt-5">
+                                        <div class="actions">
+                                          <%= f.submit "Update Profile", class: "btn btn-primary", onclick: "setPageLoadOnce(); setHiddenFields();" %>
+                                          <%= link_to "Download Profile As Pdf", user_pdf_path, method: :post, class: "btn btn-success" %>
+                                        </div>
+
+                                        </div>
+
+                                </div>
+
+                                     
+                            </div>
+                                    <br>                     
+
+                          
+                                <div style="margin-top:25px; margin-left:410px;"> All fields marked with * are mandatory . </div> 
+                      
+                <% end %>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

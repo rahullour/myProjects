@@ -1,0 +1,56 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-primary mb-5">
+        <div class="container-fluid">
+              <a class="navbar-brand" href="/"> &nbsp;&nbsp; Finance Tracker</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      
+                                  <li class="nav-item"  >
+                                  <a class="nav-link <%= 'active' if request.path == my_portfolio_path %>" href="/my_portfolio" >My_Portfolio</a>
+                                  </li>
+
+                                  <li class="nav-item"  >
+                                  <a class="nav-link <%= 'active' if request.path == my_friends_path %>" href="/my_friends" >My_Friends</a>
+                                  </li>
+
+                                  <li class="nav-item" >
+                                  <a class="nav-link <%= 'active' if request.path == new_user_registration_path %>" href="/users/sign_up">Sign_Up</a>
+                                  </li>
+
+                                  <li class="nav-item" >
+                                  <a class="nav-link <%= 'active' if request.path == new_user_session_path %>" href="/users/sign_in">Sign_In</a>
+                                  </li>
+
+                            
+                              
+                                      <select  name="formal" style="color:white; background-color: blue" onchange="javascript:handleSelect(this)">
+                                      <option value="home">Profile</option>
+                                      <option value="contact">Edit Profile</option>
+                                      </select>
+                                      
+                                      <script type="text/javascript">
+                                        function handleSelect(elm)
+                                        {
+                                           window.location = "/users/edit";
+                                        }
+                                      </script>
+
+
+                                      
+                         </ul>
+                           
+                            
+                            <% if user_signed_in? %>
+                              
+                            <li class='nav-item user-name'>
+                            <%= current_user.full_name if current_user%>
+                            </li>
+
+                              <%= button_to 'Sign_out', destroy_user_session_path, method: :delete, class: "btn btn-danger", data: {turbo: false} %> 
+                             
+                              <% end %>
+              </div>
+        </div>
+</nav>

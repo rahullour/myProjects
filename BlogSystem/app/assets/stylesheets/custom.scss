@@ -1,0 +1,149 @@
+
+.navbar {
+  width: 100vw;
+    background-color: #FDF6EA !important;
+    background-color: black !important;
+    justify-content: space-between !important;
+  }
+  
+  .navbar-brand {
+
+margin-left: 5vw;
+
+  }
+
+  .form-inline{
+      margin-left: 100px;
+      flex: none;
+  }
+
+  .nav-link{
+    font-size: 1.2rem;
+  }
+
+#bloggers_btn{
+  position: relative;
+  color: gold !important;
+  margin-right: 10vw;
+  margin-left: 30vw;
+}
+
+  #search_inp{
+      position: absolute !important;
+      left: 100px;
+  }
+  
+  #search_btn{
+      position: absolute !important;
+      left: 200px;
+  }
+  
+  .nav-link {
+    color: rgb(255, 255, 255) !important;
+  }
+  
+#logout_btn{
+ margin-left: 50px;
+  color: red !important;
+}
+
+  #logo {
+    float: left;
+    font-size: 1.7em;
+    font-style: italic;
+    color: rgb(218, 33, 33);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-weight: bold;
+  }
+  
+  #home-container {
+    margin-top: 25px;
+  }
+  
+  .jumbotron {
+      text-align: center;
+    background-image: asset-url('home_pic.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  #page-content {
+    flex: 1 0 auto;
+    background-color: lightgrey;
+  }
+  
+  #sticky-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+
+  } 
+  
+  #delete_button_index{
+      margin-top: 30px;
+  }
+  
+  #root_p1{
+      margin-left: 20vw;
+      width: 40vw;
+      border:solid 2px black;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+  }
+  
+  #root_p2{
+      margin-left: 20vw;
+      width: 40vw;
+      border:solid 2px black;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+  }
+  
+  #home_button{
+      margin-top: 40px;
+  }
+
+
+
+  .apple_pagination {
+    background: #f1f1f1;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    padding: 1em;
+    cursor: default; }
+    .apple_pagination a, .apple_pagination span {
+      padding: 0.2em 0.3em; }
+    .apple_pagination .disabled {
+      color: #aaaaaa; }
+    .apple_pagination .current {
+      font-style: normal;
+      font-weight: bold;
+      background-color: #bebebe;
+      display: inline-block;
+      width: 1.4em;
+      height: 1.4em;
+      line-height: 1.5;
+      -moz-border-radius: 1em;
+      -webkit-border-radius: 1em;
+      border-radius: 1em;
+      text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+    .apple_pagination a {
+      text-decoration: none;
+      color: black; }
+      .apple_pagination a:hover, .apple_pagination a:focus {
+        text-decoration: underline; }

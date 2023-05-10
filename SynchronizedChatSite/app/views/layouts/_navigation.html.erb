@@ -1,0 +1,71 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-primary container-fluid">
+       
+             <div>
+              <a class="navbar-brand" href="/"> &nbsp;&nbsp; Message Me</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+  </div>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      
+                       
+                                  <li class="nav-item" >
+                                  <a class="nav-link <%= 'active' if request.path == chatrooms_path %>" href="/chatrooms">Messages</a>
+                                  </li>
+                                  
+
+                                  <li class="user_name nav-item">
+                                    <%= current_user.first_name+" "+current_user.last_name if current_user%>
+                                  </li>
+          
+                                 
+
+                                 
+
+                                      <select  name="formal" class="select-border" style="<%= 'margin-left: 15vw;' if !current_user %>"  onchange="javascript:handleSelect(this)">
+                                      <option value="account">Account</option>
+                                      <option value="login">LogIn</option>
+                                      <option value="signup">SignUp</option>
+                                      </select>
+                                      
+                                      <script type="text/javascript">
+                                        function handleSelect(elm)
+                                        {  
+
+
+                                           if (elm.value == 'account')
+                                            {
+                                              window.location = "/users/edit";
+                                            }
+                                            if (elm.value == 'login')
+                                              {
+                                                window.location = "/users/sign_in";
+                                              }
+                                              
+                                                if (elm.value == 'signup')
+                                                  {
+                                                    window.location = "/users/sign_up";
+                                                  }
+
+                                                
+                                        }
+                                      </script>
+
+                                      <% if user_signed_in? %>
+                                    
+                                        <%= button_to 'Sign_out', destroy_user_session_path, method: :delete, class: "btn btn-danger", data: {turbo: false} %> 
+                                       
+                                        <% end %>
+
+
+                                      
+                         </ul>
+                                                  
+                                     
+
+                             
+                           
+              </div>
+    
+</nav>

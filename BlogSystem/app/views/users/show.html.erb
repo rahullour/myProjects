@@ -1,0 +1,44 @@
+<% if params[:trigger_alert_user_new_valid] || params[:trigger_alert_login_valid]  %>
+<div class="alert alert-success alert-dismissible fade show text-center container" role="alert">
+  <strong> <%= notice %></strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+
+
+<div class="text-center" >
+<h3> <%= @user.username %> 's Profile </h3>
+<%= gravatar_for @user, size: 200 %>
+<% if logged_in? && @user == current_user || current_user.admin?  %>
+  <div class="text-center mt-4 mb-4">
+    <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-success" %>
+  </div>
+<% end %>
+<h3> Articles : </h3>
+
+
+
+<div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info @articles %>
+    </div>
+    <%= will_paginate @articles, :container => false %>
+  </div>
+
+<%= render 'articles/article' %>
+<div>
+| <%= link_to "Back to users", users_path %> |
+</div>
+<br>
+
+<div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info @articles %>
+    </div>
+    <%= will_paginate @articles, :container => false %>
+  </div>
+<br>
+<br>
+<br>
+
+</div>

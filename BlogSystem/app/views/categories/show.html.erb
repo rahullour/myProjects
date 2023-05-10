@@ -1,0 +1,44 @@
+<% if params[:trigger_alert_category_edit_valid]  || params[:trigger_alert_category_create_valid] %>
+<div class="alert alert-success alert-dismissible fade show text-center container" role="alert">
+  <strong><%= notice %> </strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+
+<div class="text-center" >
+                  <h1 class="text-center mt-4" > Showing Category : <%=@category.name %> </h1>
+
+
+
+                  <% if logged_in? &&  current_user.admin?  %>
+                  <div class="text-center mt-4 mb-4">
+                        <%= link_to "Edit this category", edit_category_path(@category), class: "btn btn-outline-success" %>
+                  </div>
+                  <% end %>
+
+                  <h3> Articles : </h3>
+
+                  <div class="apple_pagination">
+                        <div class="page_info">
+                              <%= page_entries_info @category_articles %>
+                        </div>
+                        <%= will_paginate @category_articles, :container => false %>
+                  </div>
+                  
+                   <%= render partial: 'articles/article', locals: {articles: @category_articles} %>
+                  <div>
+                        | <%= link_to "Back to categories", categories_path %> |
+                  </div>
+                  <br>
+
+                  <div class="apple_pagination">
+                        <div class="page_info">
+                              <%= page_entries_info @category_articles  %>
+                        </div>
+                        <%= will_paginate @category_articles , :container => false %>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+
+</div>

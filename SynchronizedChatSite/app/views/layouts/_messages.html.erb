@@ -1,0 +1,24 @@
+
+
+<div class=" container text-center">
+
+<% if alert %>
+<div  class="home-alert alert alert-primary" role="alert">
+  <%= alert %>
+</div>
+<% end %>
+
+<% if notice %>
+<div  class="home-notice alert alert-primary" role="alert">
+  <%= notice %>
+</div>
+<% end %>
+</div>
+
+<script>
+window.onload = function() {
+    document.body.className += ".home-alert";
+    document.body.className += ".home-notice";
+}
+
+</script>

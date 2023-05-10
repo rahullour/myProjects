@@ -1,0 +1,55 @@
+ <% @unique_order_ids.each do |unique_order_id| %>
+    <% user_id = UserOrder.find_by(order_id: unique_order_id).user_id %>
+    <br>
+    <b class="p-3" style="color:white; background-color:black;"> Orders From <%= User.find(user_id).username.capitalize %>  </b> 
+    <% @all_orders.each do |user_order| %>
+                
+        <%if  (user_order.order_id == unique_order_id)  %>
+            <% product = user_order.product %>
+            <table id="order_table">
+            <tr>
+                <th> Order Id</th>
+                <th> Image</th>
+                <th> Name</th>
+                <th> Description</th>
+                <th> Color</th>
+                <th> Weight</th>
+                <th> MFG Date</th>
+                <th> EXP Date</th>
+                <th> Price</th>
+                <th> Quantity</th>
+                <th> Options </th>
+            </tr>
+            <tr>
+                <td><%= user_order.order_id %></td>
+                <td><%= image_tag url_for(product.image), size: "50x50", alt: "Upload Image" %> </td>
+                <td><%= product.product_name %></td>
+                <td><%= truncate(product.description, length: 20)%></td>
+                <td><%= product.color %></td>
+                <td><%= product.weight %> Kg </td>
+                <td><%= product.mfg_date %></td>
+                <td><%= product.exp_date %></td>
+                <td><%= product.price %></td>
+                <td><%= user_order.quantity %></td>
+                <td> <%= button_to 'Cancel Item Order', user_order_path(user_order),
+                method: :delete,
+                form: { data: { turbo_confirm: "Are you sure you want to cancel #{product.product_name}'s order for #{User.find(user_id).username} ?" } }, class: "btn btn-danger", id: "delete_button_index" %>
+                </td>
+            </tr>
+            
+            </table>                        
+            <div class="card-footer text-white mb-5"  style="background-color:black; opacity: 0.8;">
+                <small><b> Created On : <%=user_order.created_at%> , <%= time_ago_in_words(user_order.created_at) %> ago </b></small>
+            </div>                
+        <% end %>
+    <% end %> 
+
+    <div class="mb-5 container text-center" >    
+        <%= button_to "Cancel #{User.find(user_id).username.capitalize}'s Order #{unique_order_id}", cancelorder_path,
+        method: :post,
+        form: { data: { turbo_confirm: "Are you sure you want to cancel Order No: #{unique_order_id} for #{User.find(user_id).username.capitalize} ?" } }, class: "btn btn-primary btn-lg", id: "delete_button_index", params: { unique_order_id: unique_order_id} %>
+    </div>
+<% end %>
+
+
+
