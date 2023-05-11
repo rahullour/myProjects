@@ -1,0 +1,39 @@
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/bg-02.jpg'); padding-bottom:20vh;">
+        <div class="wrap-login100-signin p-l-70 p-r-70 p-t-10 p-b-10" style= "width:570px; height:600px;">
+            <%= form_with(model: product, class: "mb-0 p-3", local: true) do |f| %>
+                <div class="login100-form validate-form flex-sb flex-w" style= "height:550px; width:400px;">
+                                                    
+                    <div class="form-group row">    
+
+                        <div class="col-md-12" style="margin-right:40px; border-radius:5px;  border:2px solid indigo;">
+
+                        <span class="login100-form-title p-t-5 p-b-1">
+                            <h2 style="font-size:30px; color:black;"> Product Details </h2>
+                        </span>  
+
+                        <div class="mb-4 mt-4" style="margin-left:150px;">
+                        <%= image_tag url_for(product.image), size: "100x100", alt: "Upload Image" %>                                
+                        </div>
+                    
+                        <div style="margin-left: 80px;">
+                            <b> Product Name : </b> <span> <%= @product.product_name %> </span> <br>
+                            <b> Product Description : </b> <span> <%= @product.description %> </span> <br>
+                            <b> Product Quantity : </b> <span>  <%= @product.product_quantity %> </span> <br>
+                            <b> Product Color : </b> <span> <%= @product.color %> </span> <br>
+                            <b> Product Weight : </b> <span> <%= @product.weight %> </span> <br>
+                            <b> Product MFG Date : </b> <span> <%= @product.mfg_date %> </span> <br>
+                            <b> Product EXP Date : </b> <span> <%= @product.exp_date %> </span> <br>
+                        </div>                                   
+                                
+                    </div>
+
+                </div>    
+            <% end %>
+            <% if admin_user? == false %>
+             <%= button_to "Add To Cart", user_carts_path, class: "btn btn-primary btn-lg", params: { product:  @product} %>
+             <%= link_to 'Explore Products', products_path, data: { turbo: "false" }, class: "btn btn-success btn-lg", style: "height:50px;" %>
+            <% end %>
+        </div>
+    </div>
+</div>

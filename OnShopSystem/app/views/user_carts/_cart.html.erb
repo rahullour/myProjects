@@ -1,0 +1,42 @@
+<% @user_carts.each do |cart_item| %>
+    <%if (cart_item[:user_id]== current_user.id)%>
+        <% product = Product.find(cart_item[:product_id]) %>
+        <div class="row justify-content-md-center">
+            <div class="mt-4">
+                <div class="card text-center shadow-sm mb-5 bg-body rounded">
+                    <div class="card-header fst-italic">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <%= image_tag url_for(product.image), size: "170x150", alt: "Upload Image", :style => "margin-right :0 !important; padding-right :0 !important;"  %>                                
+                                </div>
+                                <div class="col-md-4 text-md-left">
+                                    <div class="card-text"><b>Product Name : </b><%= product.product_name %></div>
+                                    <div class="card-text"><b>Description : </b><%= truncate(product.description, length: 100)%></div>
+                                    <div class="card-text"><b>Product Quatity In Store : </b><%= product.product_quantity %></div>
+                                    <div class="card-text"><b>Product Color : </b><%= product.color %></div>
+                                    <div class="card-text"><b>Product Weight : </b><%= product.weight %></div>
+                                    <div class="card-text"><b>Product MFG Date : </b><%= product.mfg_date %></div>
+                                    <div class="card-text"><b>Product EXP Date : </b><%= product.exp_date %></div>
+                                    <div class="card-text"><b>Product Price : </b><%= product.price %></div>
+                                    <div class="card-text"><b>Product Quantity : </b><%= cart_item.quantity %></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="container_buttons">            
+                                        <%= button_to 'Remove From Cart', user_cart_path(cart_item),
+                                        method: :delete,
+                                        form: { data: { turbo_confirm: "Are you sure you want to remove #{product.product_name} from your cart?" } }, class: "btn btn-danger", id: "delete_button_index" %> 
+                                    </div>                    
+                                </div>
+                            </div>                     
+                        </div>
+                        <div class="card-footer text-white mb-1"  style="background-color:black; opacity: 0.8;">
+                            <small><b> Added To Cart On : <%=cart_item.created_at%> , <%= time_ago_in_words(cart_item.created_at) %> ago </b></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    <% end %>
+<% end %>
+
