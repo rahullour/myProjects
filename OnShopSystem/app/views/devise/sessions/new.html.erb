@@ -1,0 +1,87 @@
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/bg-02.jpg'); padding-top:1vh; padding-bottom:10vh;">
+        <div class="wrap-login100-signin mt-1 p-l-110 p-r-110 p-t-20 p-b-10">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), data:{turbo: false}) do |f| %>
+                <div class="login100-form validate-form flex-sb flex-w">
+                    <%= render "devise/shared/error_messages", resource: resource %>
+                    <span class="login100-form-title p-b-1">
+                        <h2 style="font-size:30px; color:black;">  Sign In </h2>
+                    </span>                                  
+                    
+                    <div class="pt-1 pb-1 mb-1 col-md-12" style="border-radius:5px;  border:2px solid indigo;">
+                        <%= f.email_field :email, autocomplete: "email", class: "form-control mt-2 mb-1",  style: "margin-left:50px; width:350px; height:45px;", placeholder: "Email :" %>                      
+                        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                                <%= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path(resource_name), style: "margin-bottom:0px; margin-left:50px;" %>
+                        <% end %>                                    
+                    
+                        <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb-1", style: "margin-left:50px; margin-top:0px; width:350px; height:45px;", placeholder: "Password(6 chars min) :" %>
+                        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                            <%= link_to "Forgot your password?", new_password_path(resource_name), style: "margin-left:50px;" %>
+                        <% end %>       
+                    </div>
+
+                    <div class="mt-3 pt-3 pb-3 mb-1 col-md-12" style="border-radius:5px;  border:2px solid indigo;">
+                        <%= f.text_field :telephone, id: "phone", class: "form-control mb-1", style: "margin-bottom:0px; margin-left:50px; width:350px; height:50px;", placeholder: "Tel Num With Country Code :" %>
+                    </div>
+
+                    <%= hidden_field_tag 'country_code_symbol', '' %>
+                    <%= hidden_field_tag 'phone_number', '' %>
+                 
+                    <%- if devise_mapping.omniauthable? %>
+                    <div class="col-md-6" style= "display: none;" >
+                        <%- resource_class.omniauth_providers.each do |provider| %>
+                            <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %><br />
+                        <% end %>
+                    </div>    
+                    <% end %> 
+
+                    <%- if devise_mapping.omniauthable? %>
+                        <div class="mt-3 col-md-1">
+                            <%= button_to image_tag("/assets/icons/facebook.png"), user_facebook_omniauth_authorize_path, class: "btn-google", style: "margin-left:4vw;", method: :post %> &nbsp
+                        </div>    
+
+                        <div class="mt-3 col-md-1">
+                            <%= button_to image_tag("/assets/icons/github.png"), user_github_omniauth_authorize_path, class: "btn-google", style: "margin-left:4vw;", method: :post %> &nbsp
+                        </div>  
+
+                        <div class="mt-3 col-md-1">
+                            <%= button_to image_tag("/assets/icons/google-icon.png"), user_google_oauth2_omniauth_authorize_path, class: "btn-google", style: "margin-left:4vw;", method: :post %> &nbsp
+                        </div>  
+
+                        <div class="mt-3 col-md-5">
+                            <%= button_to image_tag("/assets/icons/twitter.png"), user_twitter_omniauth_authorize_path, class: "btn-google", style: "margin-left:4vw;", method: :post  %> &nbsp
+                        </div> 
+                    <% end %> 
+                
+                    <% if devise_mapping.rememberable? %>
+                        <div class="col-md-5" style= "margin-left:10vw;">
+                            <%= f.check_box :remember_me %>
+                            <%= f.label :remember_me, class: "form-check-label" %>
+                        </div>
+                    <% end %>
+
+                    <br>
+            
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" onclick="setHiddenFields(); setPageLoadOnce();">
+                                Login
+                            </button>
+                        </div>
+                    </div>                            
+
+                    <div class="w-full text-center p-t-5">
+                        <span class="txt2">
+                            Not a member? &nbsp
+                        </span>
+                        <a href="/users/sign_up" class="txt2 bo1" style="color: blue;">
+                            Sign Up
+                        </a>
+                    </div>                                  
+                    <div style="margin-top:25px; margin-left:50px;"> You can login with either Email or Phone Number .</div>  
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

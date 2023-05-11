@@ -1,0 +1,63 @@
+ <% @users.each do |user| %>
+
+  <table id="user_table">
+    <tr>
+      <% if current_user.image.present? %>
+          <th> Profile Pic </th>
+      <% end %>    
+      <th> First Name </th>
+      <th> Last Name </th>
+      <th> Username </th>
+      <% if user.email != ""%>
+        <th> Email </th>
+      <% end %>
+      <% if user.telephone && user.telephone.sub("+91","") != ""%>
+        <th> Telephone </th>
+      <% end %>
+      <% if user.admin == true %>
+        <th> Admin </th>
+      <% end %>
+      <% if user.admin != true %>
+        <th> Options </th>
+      <% end %>
+    </tr>
+    <tr>   
+      <% if current_user.image.present? %>
+        <td><%= image_tag url_for(user.image), size: "100x100", alt: "Upload Image", style: "border-radius:50%;" %></td>
+      <% end %>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.username %></td>
+      <% if user.email != ""%>
+        <td><%= user.email %></td>
+      <% end %>
+      <% if user.telephone && user.telephone.sub("+91","") != ""%>
+        <td><%= user.telephone %></td>
+      <% end %>
+      <% if user.admin == true %>
+        <td><%= user.admin %></td>
+      <% end %>     
+      
+      <% if user.admin != true %>
+        <td> 
+          <%= button_to 'Edit User', edit_user_profile_path(:id => user.id) ,
+          method: :get, class: "mb-2 btn btn-primary" %>
+          <%= button_to 'Delete User', delete_user_path , params: {user_id: user.id, user_edit: true},
+          method: :post,
+          form: { data: { turbo_confirm: "Are you sure to delete #{user.username}'s account and all the associated data with it ?" } }, class: "btn btn-danger" %>
+        </td>
+      <% end %>      
+    </tr>
+  
+  </table>        
+   <% if user.telephone && user.telephone.sub("+91","") != "" && user.email != "" %>   
+    <div class="card-footer text-white mb-5"  style="background-color:black; opacity: 0.8; width:102.5%;">
+      <small><b> User Added On : <%=user.created_at%> , <%= time_ago_in_words(user.created_at) %> ago </b></small>  
+    </div>
+   <% else %>
+    <div class="card-footer text-white mb-5"  style="background-color:black; opacity: 0.8;">
+      <small><b> User Added On : <%=user.created_at%> , <%= time_ago_in_words(user.created_at) %> ago </b></small>  
+    </div>
+   <% end %>       
+ 
+ <% end %>

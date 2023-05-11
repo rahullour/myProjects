@@ -1,0 +1,36 @@
+ <% if alert %>        
+   <div  class="home-alert alert alert-danger container text-center" role="alert">
+      <% if alert.class == Array %>
+         <% alert.each do |message| %>
+            * <%= message %>
+            <br>
+         <% end %>   
+      <% else %>
+         <%= alert %>   
+      <% end %> 
+   </div>
+ <% end %>  
+            
+<% if notice %>
+
+   <div  class="home-notice alert alert-success container text-center" role="alert">         
+      <% if notice.class == Array %>
+         <% notice.each do |message| %>
+            * <%= message %>
+            <br>
+         <% end %>   
+      <% else %>
+         <%= notice %>   
+      <% end %> 
+   </div>      
+
+<% end %> 
+
+
+<script>
+window.onload = function() {
+    document.body.className += ".home-alert";
+    document.body.className += ".home-notice";
+}
+
+</script>
