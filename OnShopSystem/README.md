@@ -1,5 +1,5 @@
 # OnShopSystem
-A basic shopping website including stripe payment gateway, social login, opt login , admin management and much more 
+A basic shopping website including stripe payment gateway, social media/otp login,two-fator auth, admin management and much more .
 # Project Link - https://onshopsystem.onrender.com - site might be down at some times
 Admin User - email - rahullour01@gmail.com
              password - admin             
