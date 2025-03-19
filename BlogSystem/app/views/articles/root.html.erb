@@ -1,0 +1,19 @@
+<% if params[:logged_out]  %>
+<div class="alert alert-success alert-dismissible fade show text-center container" role="alert">
+      <strong> <%= notice %> </strong> 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+
+<div  class="text-center mt-5" >
+    <h1>Welcome to the Homepage</h1>
+        <div  style="padding-bottom:80px;" class="container" id="home-container" >
+            <div class="jumbotron text-center text-white">
+            
+            <p id="root_p1" class="lead">This website will help you to create blogs .</p>
+            <hr class="my-4">
+            <p id="root_p2" >Feel free to start below .</p>
+            <a id="home_button" class="btn btn-info btn-lg" href="signup" role="button">SignUp Here!</a>
+    </div>
+</div>
+

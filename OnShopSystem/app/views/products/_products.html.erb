@@ -1,0 +1,41 @@
+<% @products.each do |product| %>
+  <div class="row justify-content-md-center">
+    <div class="mt-4">
+      <div class="card text-center shadow-sm mb-5 bg-body rounded">
+        <div class="card-header fst-italic">
+          <div class="card-body">                      
+            <div class="row">
+              <div class="col-md-5">
+                <%= image_tag url_for(product.image), size: "170x150", alt: "Upload Image", :style => "margin-right :0 !important; padding-right :0 !important;"  %>                                
+              </div>
+              <div class="col-md-4 text-md-left">
+                <div class="card-text"><b>Product Name : </b><%= product.product_name %></div>
+                <div class="card-text"><b>Description : </b><%= truncate(product.description, length: 100)%></div>
+                <div class="card-text"><b>Product Quatity In Store : </b><%= product.product_quantity %></div>
+                <div class="card-text"><b>Product Color : </b><%= product.color %></div>
+                <div class="card-text"><b>Product Weight : </b><%= product.weight %> Kg</div>
+                <div class="card-text"><b>Product MFG Date : </b><%= product.mfg_date %></div>
+                <div class="card-text"><b>Product EXP Date : </b><%= product.exp_date %></div>
+                <div class="card-text"><b>Product Price : </b><%= product.price %> Rs</div>
+              </div>
+              <div class="col-md-3">
+                <div class="container_buttons">
+                  <%= button_to "Add To Cart", user_carts_path, class: "mb-3 btn btn-outline-primary", params: { product: product} %>
+                  <% if admin_user? %>
+                    <%= link_to "Edit product", edit_product_path(product), class: "btn btn-outline-info" %>
+                    <%= button_to 'Delete product', product_path(product),
+                    method: :delete,
+                    form: { data: { turbo_confirm: "Are you sure you want to remove #{product.product_name} from your website?" } }, class: "mt-3 btn btn-outline-danger", id: "delete_button_index" %>
+                  <% end %>                        
+                </div>                  
+              </div>
+            </div>                  
+          </div>
+          <div class="card-footer text-white mb-1"  style="background-color:black; opacity: 0.8;">
+            <small><b> Added On : <%=product.created_at%> , <%= time_ago_in_words(product.created_at) %> ago </b></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

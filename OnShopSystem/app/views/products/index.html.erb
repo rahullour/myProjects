@@ -1,0 +1,42 @@
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('/assets/bg-02.jpg'); background-size: auto; background-repeat: repeat-y; padding-top:0px; padding-bottom:7vh;">
+    <div class="container text-center" style="max-width: 950px; min-height:60vh;">   
+      <h2 class="mt-2 pt-2" style="margin-left:15vw; width:30vw; margin-bottom:2vh; background-color:white;  border-radius:10px; font-size:30px; color:black;">All Products</h2>
+      <%= form_tag product_search_path, method: :post, remote: true do %>     
+        <div class="form-group row">
+          <div class="no-right-padding" style="margin-left:10vw; width:40vw;">
+            <%= text_field_tag :searched_product, params[:stock], placeholder: "Enter @ To Show All | Enter Product Name :  ", class: "form-control form-control-lg" %>
+          </div>
+          <div class="col-sm-1 max-width: 10%; no-left-padding">
+            <%= button_tag type: :submit,remote: true, class: "btn btn-success" do %>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if (@products.count > 0) %>
+        <div class="apple_pagination">
+          <div class="page_info">
+            <%= page_entries_info @products %>
+          </div>
+          <%= will_paginate @products, :container => false %>
+        </div>
+        <%= render 'products' %>
+
+        <div class="apple_pagination">
+          <div class="page_info">
+            <%= page_entries_info @products %>
+          </div>
+          <%= will_paginate @products, :container => false %>
+        </div>
+      <% else %> 
+      <h2 class="mt-2 pt-2" style="margin-left:15vw; width:30vw; margin-bottom:2vh; background-color:white;  border-radius:50px; font-size:30px; color:black;">No Product Available !</h2>
+      <% end %>    
+      <div class="pb-5"></div>
+    </div>
+ </div>
+</div>
+

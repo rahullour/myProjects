@@ -1,0 +1,39 @@
+ <% @user_carts.each do |cart_item| %>                             
+    <% product = Product.find(cart_item[:product_id]) %>
+    <table id="order_now">
+      <tr>
+        <th> Image</th>
+        <th> Name</th>
+        <th> Description</th>
+        <th> Color</th>
+        <th> Weight</th>
+        <th> MFG Date</th>
+        <th> EXP Date</th>
+        <th> Price</th>
+        <th> Quantity</th>
+        <th> Options </th>
+      </tr>
+      <tr>
+        <td><%= image_tag url_for(product.image), size: "50x50", alt: "Upload Image" %> </td>
+        <td><%= product.product_name %></td>
+        <td><%= truncate(product.description, length: 20)%></td>
+        <td><%= product.color %></td>
+        <td><%= product.weight %> Kg </td>
+        <td><%= product.mfg_date %></td>
+        <td><%= product.exp_date %></td>
+        <td><%= product.price %> Rs</td>
+        <td><%= cart_item.quantity %></td>
+        <td> <%= button_to 'Remove From Cart', user_cart_path(cart_item),
+        method: :delete,
+        form: { data: { turbo_confirm: "Are you sure you want to remove #{product.product_name} from your cart?" } }, class: "btn btn-danger", id: "delete_button_index" %> </td>
+      </tr>                     
+    </table> 
+    <div class="card-footer text-white mb-5"  style="background-color:black; opacity: 0.8;">
+        <small><b> Added To Cart On : <%=cart_item.created_at%> , <%= time_ago_in_words(cart_item.created_at) %> ago </b></small>
+    </div>               
+<% end %>
+<% if @user_carts.count > 0 %>
+  <div class="mb-3">
+    <%=  button_to "Buy Now", checkouts_path , method: :get, class: "btn btn-primary btn-lg mb-5", id: "checkout_btn", params: {id: Product.third.id}, local: false %>
+  </div>
+<% end %>

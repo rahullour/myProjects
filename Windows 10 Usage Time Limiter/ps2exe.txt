@@ -1,0 +1,1 @@
+ps2exe -inputFile 'C:\Windows\Logs\Windows\runpostlogin.ps1' -outputFile 'C:\Windows\Logs\Windows\runpostlogin.exe' -noConsole -noVisualStyles -noOutput

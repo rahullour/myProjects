@@ -1,0 +1,22 @@
+
+
+<% if @trigger_alert_category_edit_invalid %>
+<div class="alert alert-danger alert-dismissible fade show text-center container" role="alert">
+  <strong><%= alert %> </strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+
+<div class="text-center">
+
+<h1>Editing category</h1>
+
+<%= render "form", category: @category %>
+
+<br>
+
+<div class="text-center">
+  <%= link_to "Show this category", @category %> |
+  <%= link_to "Back to categories", categories_path %>
+</div>
+</div>

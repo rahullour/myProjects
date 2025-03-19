@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CONNECT_FOUR GAME:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CONNECT_FOUR_GAME_jar</output-path>
+    <root id="archive" name="CONNECT_FOUR GAME.jar">
+      <element id="module-output" name="CONNECT_FOUR GAME" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JAVAFX/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JAVAFX/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JAVAFX/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JAVAFX/lib/javafx.base.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

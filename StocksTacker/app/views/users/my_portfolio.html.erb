@@ -1,0 +1,27 @@
+<div class='search-area'>
+        <h3>Search Stocks :</h3>
+            <%= form_tag search_stock_path, method: :get, remote: true do %>     
+                         <div class="form-group row">
+                            <div class="col-sm-9 no-right-padding">
+                              <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol | like 'AMZN','AAPL','WB'", autofocus: true, class: "form-control form-control-lg" %>
+                            </div>
+                            <div class="col-sm-3 no-left-padding">
+                                    <%= button_tag type: :submit,remote: true, class: "btn btn-success" do %>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                    </svg>
+                                    <% end %>
+                            </div>
+                    </div>
+            <% end %>
+</div>
+
+<br>
+
+<div id="results"> </div>
+
+<div>
+<% if !@tracked_stocks.empty? %>
+  <%= render 'stocks/list'%>
+<% end %>
+</div>

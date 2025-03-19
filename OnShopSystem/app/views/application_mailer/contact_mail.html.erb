@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <%= yield %>
+    <h3 style="color:green;"> Your Query Has Been Submitted Successfully On OnShopSystem ! </h3>
+    <b> Title:</b><span> <%=Contact.where(id: @contact_id).last.title%></span><br>
+    <b> Query:</b><span> <%=Contact.where(id: @contact_id).last.description%></span>
+    <p><b> We will get back to you within a week. </b></p>
+    <span> Please note down your <b> Query ID </b> mentioned in email's subject for further communitation with us regarding the same query . </span><br>
+    <span> Do mention your <b> Query ID </b> in Title of Contact Form if you have a query in reference to your current query in future . Enter Title Like 'Query ID:XXX, Your Title'. </span>
+    <p> Team OnShopSystem </p>
+  </body>
+</html>

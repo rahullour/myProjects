@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.BooksRequests.BooksRequestsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/requested_find_by_id"
+                android:layout_width="wrap_content"
+                android:layout_height="57dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hint="FIND BY ID"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/requested_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/search_ripple_effect"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:text="Search"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+
+        <Spinner
+            android:id="@+id/requested_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:background="@drawable/spinner_ripple_effect"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/requested_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:clickable="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

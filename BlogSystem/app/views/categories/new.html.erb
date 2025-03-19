@@ -1,0 +1,16 @@
+
+<% if  @trigger_alert_category_create_invalid==true %>
+<div class="alert alert-danger alert-dismissible fade show text-center container" role="alert">
+  <strong> <%= alert %> </strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+
+<div class="text-center container" >
+<h1 style="color:Green;">New Category :</h1>
+</div>
+
+<%= render "form", category: @category %>
+
+<br>
+</div>

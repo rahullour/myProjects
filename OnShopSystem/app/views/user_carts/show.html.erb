@@ -1,0 +1,7 @@
+<p style="color: green"><%= notice %></p>
+<%= render @user_cart %>
+<div>
+  <%= link_to "Edit this user cart", edit_user_cart_path(@user_cart) %> |
+  <%= link_to "Back to user carts", user_carts_path %>
+  <%= button_to "Destroy this user cart", @user_cart, method: :delete %>
+</div>

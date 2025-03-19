@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_mybooks"
+            android:clickable="true"
+            android:foreground="@drawable/ripple_effect"
+            android:title="@string/menu_allotted_books" />
+
+
+        <item
+            android:id="@+id/nav_browse"
+            android:clickable="true"
+            android:foreground="@drawable/ripple_effect"
+            android:iconTint="@color/black"
+            android:title="@string/menu_books_requests" />
+
+        <item
+            android:id="@+id/nav_return_books_requests"
+            android:clickable="true"
+            android:foreground="@drawable/ripple_effect"
+            android:iconTint="@color/black"
+            android:title="@string/menu_return_books_requests" />
+
+        <item
+            android:id="@+id/nav_late_fee"
+            android:clickable="true"
+            android:foreground="@drawable/ripple_effect"
+            android:iconTint="@color/black"
+            android:title="@string/menu_latefee" />
+
+        <item
+            android:id="@+id/nav_sign_out"
+            android:clickable="true"
+            android:foreground="@drawable/ripple_effect"
+            android:iconTint="@color/black"
+            android:title="@string/menu_signout" />
+
+    </group>
+</menu>

@@ -1,0 +1,3 @@
+<% article.categories.each do |category| %>
+<%= link_to category.name, category_path(category), class: "badge rounded-pill text-bg-warning mr-1" %> 
+<% end %>

@@ -1,0 +1,34 @@
+
+<div class="text-center container" >
+<%= form_with(model: category, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |form| %>
+  <% if category.errors.any? %>
+  <div style="color: white", class="form-group rows">
+    <h2><%= pluralize(category.errors.count, "errors") %> prohibited this category from being saved:</h2>
+
+    <ul>
+      <% category.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-group row">
+<%= form.label :name, "Category Name", class: "col-2 col-form-label text-light" %>
+<div class="col-10">
+  <%= form.text_field :name, class: "form-control shadow rounded", placeholder: "Name Of Category :" %>
+  <br>
+  </div>
+</div>
+
+
+<div class="form-group row justify-content-center">
+<%= form.submit "Update Category",class: "btn btn-outline-light btn-lg" %>
+</div>
+<% end %>
+</div>
+<div style="padding-bottom:80px;" class="text-center">
+<%= link_to '[ Cancel and return to category listing ]', categories_path, class: "text-danger" %>
+</div>
+</div>
+</div>

@@ -1,0 +1,42 @@
+
+<h1 class="text-center mt-4" > Showing Article : <%=@article.title %> </h1>
+<br><br>
+<div class="container">
+      <div class="row justify-content-md-center">
+            <div class="col-8 mt-4">
+                  <div class="card  shadow-sm mb-5 bg-body rounded">
+                                  <div class="card-header fst-italic text-center">
+                                  <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+                                  <br>
+                                  By <%= link_to @article.user.username, user_path(@article.user) %>
+
+                                  <% if @article.categories.any? %>
+                                  <div class="mt-2"><%= render partial: 'categories/categories_badge', locals: {article: @article}  %></div> 
+                                  <% end %>
+                                
+                                  </div>
+                                  <div class="card-body ">
+                                        <div class="card-text text-right"><%= simple_format(@article.des) %></div>
+                                        
+                                        
+                                              <div class="container_buttons text-center" >
+                                              <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+                                                  <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-outline-info" %>
+                                                  <%= button_to 'Delete Article', article_path(@article),
+                                                    method: :delete,
+                                                    form: { data: { turbo_confirm: 'Are you sure?' } }, class: "btn btn-outline-danger", id: "delete_button_index" %>
+                                              <% end %>
+                                              </div>    
+                                        
+                                        </div>
+                                        <div class="card-footer text-muted mb-3 text-center">
+                                        <small> Created <%= time_ago_in_words(@article.created_at) %> ago , Edited <%= time_ago_in_words(@article.updated_at) %> ago </small>
+                                        </div>
+                                  </div>
+                      </div>
+            </div>
+      </div>
+</div>
+
+
+

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back2"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/home_userid"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#000000"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/emailresetfield"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="76dp"
+                android:autofillHints=""
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hint="Enter Email :"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:id="@+id/sendlinkbutton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="64dp"
+                android:background="@drawable/ripple_effect"
+                android:clickable="true"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hapticFeedbackEnabled="true"
+                android:text="SEND OTP"
+                app:backgroundTint="#FFFFFF"
+                app:rippleColor="#00E1FD" />
+
+            <EditText
+                android:id="@+id/otpfield"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="64dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:foregroundGravity="center_vertical|center"
+                android:gravity="center"
+                android:hint="Enter OTP :"
+                android:inputType="textPersonName"
+                android:textColor="#000000" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/resetpasswordfieldlayout1"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="#FFFFFF"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:textColor="#000000"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/resetpasswordfield1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="#FFFFFF"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:hint="Enter New Password :"
+
+                    android:inputType="textPassword"
+                    android:paddingLeft="40dp"
+                    android:textColor="#000000" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/resetpasswordfieldlayout2"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="#FFFFFF"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:textColor="#000000"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/resetpasswordfield2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="#FFFFFF"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:hint="Confirm New Password :"
+                    android:inputType="textPassword"
+                    android:paddingLeft="40dp"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/resetpasswordbutton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/ripple_effect"
+                android:clickable="true"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hapticFeedbackEnabled="true"
+                android:text="Reset Password"
+                app:backgroundTint="#FFFFFF"
+                app:rippleColor="#00E1FD" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="16dp"
+                android:background="#FF0000"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:hapticFeedbackEnabled="false"
+                android:text="All Fields Are Case-Sensitive !"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

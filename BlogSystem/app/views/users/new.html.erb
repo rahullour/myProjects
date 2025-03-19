@@ -1,0 +1,18 @@
+<div style="height: auto;">
+      <% if  @trigger_alert_user_new_invalid==true %>
+          <div class="alert alert-danger alert-dismissible fade show text-center container" role="alert">
+                <strong> <%= alert %> </strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      <% end %>
+
+      <br>
+
+      <div class="text-center container mt-4">
+          <h2 class="mb-4", style="color: turquoise; font-size: 42px; font-style: italic;" >Welcome To Alpha Blog</h2>
+          <%= render "form", user: @user %>
+          <div class="text-center pt-5 mt-4" style="height: 200px;">
+            <%= link_to "Back To Users", users_path %>
+          </div>
+      </div>
+</div>

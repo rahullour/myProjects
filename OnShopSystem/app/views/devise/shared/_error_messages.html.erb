@@ -1,0 +1,20 @@
+<% if defined?(resource) && resource.errors.any? %>
+  <div id="error_explanation">   
+    <% if alert %>
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+        <% flash_message :alert, "#{message}" %>
+        <% end %>
+      </ul>
+      <% flash_clear :alert %>
+    <% end %>
+    <% if notice %>
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+        <% flash_message :notice, "#{message}" %>
+        <% end %>
+      </ul>
+      <% flash_clear :notice %>
+    <% end %>    
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hash_entry:
+  username: MyString
+  email: MyString
+ password: MyString

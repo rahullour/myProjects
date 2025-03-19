@@ -1,0 +1,44 @@
+*{
+    overflow-x: hidden;
+}
+
+.no-right-padding {
+    padding-right: 0 !important;
+}
+
+.no-left-padding {
+    padding-left: 0 !important;
+}
+
+
+
+.logout-button {
+    margin-right: 5px;
+}
+
+.user-name {
+    color: rgb(224, 236, 48);
+    padding-right: 15px;
+}
+
+.home{
+  background-image: asset-url('home.png');
+  width: 100vw;
+  height: 100vh;
+  padding-left: 20px;
+  padding-top: 20vh;
+  background-size: 100%,100%;
+  
+  background-repeat: no-repeat;
+
+}
+
+.myflexbox{
+    display: flex;
+    margin-bottom: 30px;
+}
+.myflexitem{
+   
+    width: 20vw;
+   
+  }

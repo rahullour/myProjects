@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back_image"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingLeft="85dp"
+    android:paddingBottom="30dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/home_user_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:background="#03A9F4"
+        android:clickable="true"
+        android:contentDescription="@string/nav_header_desc"
+        android:focusable="auto"
+        android:foreground="?attr/selectableItemBackground"
+        android:hapticFeedbackEnabled="true"
+        android:scaleType="centerInside"
+        app:shapeAppearanceOverlay="@style/Circular"
+        app:srcCompat="@drawable/default_image" />
+
+
+    <TextView
+        android:id="@+id/home_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:foregroundGravity="left"
+        android:gravity="left"
+        android:paddingLeft="5dp"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingRight="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/home_userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#000000"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingRight="5dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic" />
+
+
+
+</LinearLayout>

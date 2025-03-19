@@ -1,0 +1,60 @@
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('/assets/bg-02.jpg'); padding-top:1vh; padding-bottom:10vh;">
+    <div class="wrap-login100-signin p-l-110 p-r-110 p-t-0 p-b-0">
+      <%= form_with(model: product, class: "shadow p-3 mb-0 rounded", local: true) do |f| %>
+         <% if product.errors.any? %>
+            <div style="color: white", class="form-group rows">
+              <%  flash_clear :alert %>
+              <%  flash.clear %>              
+              <% @flashes = [] %>
+                <% product.errors.each do |error| %>
+                  <%  @flashes  << error.full_message  %>        
+                <% end %>
+              <%  flash[:alert] = @flashes  %>
+            
+            </div>
+          <% end %>
+        <div class="login100-form validate-form flex-sb flex-w", style= "height:615px; width:400px;">
+       
+      
+          <div class="form-group row">     
+            <div class="pl-0 pt-1 pb-0 mb-0 col-md-12" style="margin-right:40px; border-radius:5px;  border:2px solid indigo;">
+
+            <span class="login100-form-title p-b-1">
+                <h2 style="font-size:30px; color:black; margin-bottom:0; padding-bottom-0;">  Create Product </h2>
+            </span>  
+
+            <%= f.text_field :product_name, class: "form-control mt-2 mb-1",style: "margin-left:50px; width:350px; height:45px;", placeholder: "Name of product :" %>
+            
+            <%= f.text_field :description, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:350px; height:45px;", placeholder: "Description of product :" %>
+
+            <%= f.text_field :image, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:350px; height:45px;", placeholder: "Full image name of product :" %>
+
+            <%= f.number_field :product_quantity, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:350px; height:45px;", placeholder: "Quantity of product :" %>
+
+            <%= f.text_field :color, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:350px; height:45px;", placeholder: "Color of product :" %>
+
+            <%= f.number_field :weight, step: 0.01, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:350px; height:45px;", placeholder: "Weight of product (in Kg) :" %>
+
+            <%= f.date_field :mfg_date, class: "form-control mt-2 mb-1",style: "margin-left:50px; width:350px; height:45px;", placeholder: "MFG date of product :" %>
+
+            <%= f.date_field :exp_date, class: "form-control mt-2 mb-1",style: "margin-left:50px; width:350px; height:45px;", placeholder: "EXP date of product :" %>
+
+            <%= f.number_field :price, class: "form-control mt-2 mb-1", style: "margin-left:50px; width:350px; height:45px;", placeholder: "Price of product :" %>
+
+             <br>
+  
+            <div class="container mt-0 pt-0">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button class="login100-form-btn" style="margin-right:50px;">
+                    Add Product
+                </button>
+              </div>
+           </div>
+          </div>                                
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

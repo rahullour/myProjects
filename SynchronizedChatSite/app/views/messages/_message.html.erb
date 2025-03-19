@@ -1,0 +1,15 @@
+<div class="event">
+  <div class="content">
+    <div class="summary">
+            <em> <%= message.user.first_name %> </em>  <em> <%= message.user.last_name %> :</em> <em> <%= message.body %> </em>
+      </div>
+  </div>
+</div>
+
+
+<script>
+$('#messages').scrollTop($('#messages')[0].scrollHeight);
+console.log($('#messages')[0].scrollHeight);
+</script>
+
+

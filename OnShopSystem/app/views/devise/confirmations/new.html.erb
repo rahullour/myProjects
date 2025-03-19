@@ -1,0 +1,30 @@
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/bg-02.jpg'); padding-bottom:20vh;">
+        <div class="wrap-login100-signin p-l-110 p-r-110 p-t-10 p-b-10">
+            <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+                        <div class="login100-form validate-form flex-sb flex-w">
+                            <span class="login100-form-title p-b-1">
+                                <h2 style="font-size:30px; color:black;">  Resend Email Verification Link </h2>
+                            </span>                 
+                            
+
+                            <div class="pt-3 pb-3 mb-1 col-md-12" style="border-radius:5px;  border:2px solid indigo;">
+                                <%= f.email_field :email, autocomplete: "email", class: "form-control mt-2 mb-1",  style: "margin-left:50px; width:350px; height:45px;", placeholder: "Email :" %>                                               
+                                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                                    <%= link_to "Forgot your password?", new_password_path(resource_name), style: "margin-left:50px;" %>
+                                <% end %>                           
+                            </div>
+                            <br>                        
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn">
+                                        Send Link
+                                    </button>
+                                </div>
+                            </div>
+                        </div>                                                                               
+            <% end %>
+        </div>
+    </div>
+</div>

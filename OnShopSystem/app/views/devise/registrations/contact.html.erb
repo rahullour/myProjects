@@ -1,0 +1,38 @@
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/bg-02.jpg'); padding-top:1vh; padding-bottom:10vh;">
+        <div class="wrap-login100-signin p-l-110 p-r-110 p-t-0 p-b-0">
+            <%= form_with(url: contact_submit_path) do |f| %>
+                <div class="login100-form validate-form flex-sb flex-w", style= "height:650px; width:400px;">                                 
+                    <div class="form-group row">    
+                        <div class="pl-0 mr-2 pt-1 pr-4 pb-0 mb-0 col-md-12 mt-3" style="border-radius:5px;  border:2px solid indigo;">
+
+                            <span class="login100-form-title p-b-1">
+                                <h2 style="font-size:30px; color:black; margin-bottom:0; margin-top:5px; padding-bottom-0;">  Contact Us  </h2>
+                            </span>  
+
+            
+                            <%= f.text_field :first_name, class: "form-control mt-2 mb-1", style: "margin-left:40px; width:410px; height:45px;", placeholder: "* First Name :" %>                      
+                            <%= f.text_field :last_name, class: "form-control mt-2 mb-1", style: "margin-left:40px; width:410px; height:45px;", placeholder: "* Last Name :" %>
+                            <%= f.text_area :address, :value => @city+" , "+@state+" , "+@country+" , "+@zipcode, class: "form-control mt-2 mb-1", style: "margin-left:40px; width:410px; height:125px;", placeholder: "* Address :" %>
+                            <%= f.text_field :title, class: "form-control mt-2 mb-1", style: "margin-left:40px; width:410px; height:45px;", placeholder: "* Title Of Query :" %>
+                            <%= f.text_area :description, class: "form-control mt-2 mb-1", style: "margin-left:40px; width:410px; height:125px;", placeholder: "* Brief Description Of Query :" %>
+                            <%= f.email_field :email, class: "form-control mb-1", style: "margin-bottom:0px; margin-left:40px; width:410px; height:50px;", placeholder: "* Email :" %>
+
+                            <br>
+                    
+                            <div class="ml-1 container mt-0 pt-0">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" style="margin-right:50px;">
+                                        Submit Query
+                                    </button>
+                                </div>
+                            </div>  
+
+                        </div> 
+                    </div>
+                </div>                                                    
+            <% end %>
+        </div>
+    </div>
+</div>

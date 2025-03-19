@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_mybooks">
+
+    <fragment
+        android:id="@+id/nav_mybooks"
+        android:name="com.example.librarymanagementsystemteachers.ui.AllottedBooks.AllottedBooksFragment"
+        android:label="@string/menu_allotted_books"
+        tools:layout="@layout/fragment_alotted_books" />
+
+    <fragment
+        android:id="@+id/nav_browse"
+        android:name="com.example.librarymanagementsystemteachers.ui.BooksRequests.BooksRequestsFragment"
+        android:label="@string/menu_books_requests"
+        tools:layout="@layout/fragment_books_requests" />
+
+    <fragment
+        android:id="@+id/nav_return_books_requests"
+        android:name="com.example.librarymanagementsystemteachers.ui.ReturnBooksRequests.ReturnBooksRequestsFragment"
+        android:label="@string/menu_return_books_requests"
+        tools:layout="@layout/fragment_return_books_requests" />
+
+    <fragment
+        android:id="@+id/nav_late_fee"
+        android:name="com.example.librarymanagementsystemteachers.ui.LateFee.LateFeeFragment"
+        android:label="@string/menu_latefee"
+        tools:layout="@layout/fragment_late_fee" />
+</navigation>

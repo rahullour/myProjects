@@ -1,0 +1,38 @@
+<resources>
+
+    <string name="app_name">Students - Library Management System </string>
+    <string name="emailresetfield">emailresetfield</string>
+    <string name="sendlinkbutton">sendlinkbutton</string>
+    <string name="otpfield">otpfield</string>
+    <string name="resetpasswordfield1">resetpasswordfield1</string>
+    <string name="resetpasswordfield2">resetpasswordfield2</string>
+    <string name="textView2">textView2</string>
+    <string name="mainenrollmentnofield">mainenrollmentnofield</string>
+    <string name="mainpasswordfield">mainpasswordfield</string>
+    <string name="loginbutton">loginbutton</string>
+    <string name="forgotbutton">forgotbutton</string>
+    <string name="registerbutton">registerbutton</string>
+    <string name="textView3">textView3</string>
+    <string name="registernamefield">registernamefield</string>
+    <string name="registerpasswordfield1">registerpasswordfield1</string>
+    <string name="registerpasswordfield2">registerpasswordfield2</string>
+    <string name="registerenrollmentnofield">registerenrollmentnofield</string>
+    <string name="registeremailfield">registeremailfield</string>
+    <string name="signupbutton">signupbutton</string>
+    <string name="textView4">textView4</string>
+    <string name="forgotpassword">forgotpassword</string>
+    <string name="title_activity_inside">activity_inside</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="by"><b>What</b> <i>the</i> <u>Html</u></string>
+
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_mybooks">MY BOOKS</string>
+    <string name="menu_browsebooks">BROWSE BOOKS</string>
+    <string name="menu_latefee">PAYABLE AMOUNT</string>
+    <string name="menu_signout">SIGN OUT</string>
+    <string name="menu_itemlist">Items_List</string>
+
+</resources>

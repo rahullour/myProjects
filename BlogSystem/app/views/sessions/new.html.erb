@@ -1,0 +1,14 @@
+<% if @trigger_alert_login_invalid==true %> 
+<div class="alert alert-danger alert-dismissible fade show text-center container" role="alert">
+<strong><%= alert %> </strong> 
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% end %>
+
+<div class="text-center mt-4">
+<h1 style="color:Green; font-style: italic;">Login</h1>
+
+ <%= render "form", user: @user %>
+
+<br>
+</div>
