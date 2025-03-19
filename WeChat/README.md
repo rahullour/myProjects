@@ -1,4 +1,6 @@
-## ChatAPP
+## WeChat - Created a chatting site using RAD framework Spring Boot & Firebase, for real time experience, deployed on aws .
+* Tech : Java, Spring Boot, Hibernate, Spring MVC, Thymeleaf, Firebase Firestore, Cloudﬂare R2 .
+
 # Here are a few screenshots of the website deployed on aws -
 ![1](https://github.com/user-attachments/assets/5f1dfd21-54d1-44a8-868e-1712ec485956)
 ![2](https://github.com/user-attachments/assets/603d3d5a-47cb-40aa-b016-f13c9869d047)
