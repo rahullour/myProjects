@@ -1,1 +1,1 @@
-This repository contains projects which I have created till date.
+This repository serves as a portfolio of my projects to date.
