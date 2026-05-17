@@ -1,7 +1,7 @@
 ## WeChat - Created a chatting site using RAD framework Spring Boot & Firebase, for real time experience, deployed on Koyeb .
 * Tech : Java, Spring Boot, Hibernate, Spring MVC, Thymeleaf, Firebase Firestore, Cloudﬂare R2 .
 
-# Here are a few screenshots of the website deployed on aws -
+# Here are a few screenshots of the website previously deployed on aws, now hosted on render -
 ![1](https://github.com/user-attachments/assets/5f1dfd21-54d1-44a8-868e-1712ec485956)
 ![2](https://github.com/user-attachments/assets/603d3d5a-47cb-40aa-b016-f13c9869d047)
 ![3](https://github.com/user-attachments/assets/8f7047db-1397-475b-895e-b609164c01e6)
@@ -32,3 +32,4 @@
 ![28](https://github.com/user-attachments/assets/2c23cf7e-2af4-421a-b8a8-fdcc81a80af8)
 ![29](https://github.com/user-attachments/assets/e60b0452-2784-4c34-96dd-f1878c0e8dd0)
 ![30](https://github.com/user-attachments/assets/d85cdceb-2ce7-4c38-89de-581102696a3b)
+
