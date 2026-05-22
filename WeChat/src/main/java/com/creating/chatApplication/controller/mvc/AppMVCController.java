@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,7 +47,7 @@ public class AppMVCController {
     private UserService userService;
 
     @Autowired
-    private EmailService emailService;
+    private GmailEmailServiceImpl emailService;
 
     @Autowired
     private InviteService inviteService;
@@ -96,7 +97,7 @@ public class AppMVCController {
         if(!isEnabled){
             new SecurityContextLogoutHandler().logout(request, response, authentication);
             notificationManager.clearNotifications();
-            notificationManager.sendFlashNotification("Your account is disabled for now, have you verified your email via the link we sent you?, else please contact admin support wechatcorporations@gmail.com.","alert-danger", "medium-noty");
+            notificationManager.sendFlashNotification("Your account is disabled for now, have you verified your email via the link we sent you ?, else please contact admin support @wechatcorporations@gmail.com","danger", "medium-noty");
             return "redirect:/loginPage";
         }
 
@@ -145,13 +146,13 @@ public class AppMVCController {
 
         // Check for existing user
         if (userService.getUserByEmail(user.getEmail()) != null) {
-            errors.add("User already exists!");
+            errors.add("User already exists");
         }
 
         // If any errors were found, add them all to notifications at once
         if (!errors.isEmpty()) {
             for (String error : errors) {
-                notificationManager.sendFlashNotification(error, "alert-danger", "medium-noty");
+                notificationManager.sendFlashNotification(error, "danger", "medium-noty");
             }
             model.addAttribute("notifications", notificationManager.getNotifications());
             notificationManager.clearNotifications();
@@ -161,7 +162,9 @@ public class AppMVCController {
         user.setPassword(hashedPassword);
         try {
             if(profilePicture.isEmpty()){
-                String profileImageUrl = convertImageToBase64("src/main/resources/static/images/profile-image.png");
+                ClassPathResource resource = new ClassPathResource("static/images/profile-image.png");
+                byte[] bytes = resource.getInputStream().readAllBytes();
+                String profileImageUrl = Base64.getEncoder().encodeToString(bytes);
                 user.setProfilePictureUrl(profileImageUrl);
             }
             else{
@@ -180,11 +183,16 @@ public class AppMVCController {
         authorities.add(userAuthority);
         user.setAuthorities(authorities);
         String token = tokenGenerationService.generateVerificationToken(user);
-        String verificationLink = "http://52.90.139.68:8080/verifyEmail?user_id=" + user.getId() +"&token=" + token;
+
+        String verificationLink = String.format(
+                "https://chatappspringboot.onrender.com/verifyEmail?user_id=%d&token=%s",
+                user.getId(),
+                token
+        );
         emailService.sendVerificationEmail(user.getEmail(), verificationLink);
-        String notificationMessage = "We have sent an email, please verify your email id, link valid for 5 minutes !";
-        notificationManager.sendFlashNotification(notificationMessage, "alert-success", "medium-noty");
-        notificationManager.sendFlashNotification("Registration successful!", "alert-success", "short-noty");
+        String notificationMessage = "We have sent an email, please verify your email id, link valid for 5 minutes";
+        notificationManager.sendFlashNotification(notificationMessage, "success", "medium-noty");
+        notificationManager.sendFlashNotification("Registration successful", "success", "short-noty");
         return "redirect:/loginPage";
     }
 
@@ -223,7 +231,7 @@ public class AppMVCController {
         // If any errors were found, add them all to notifications at once
         if (!errors.isEmpty()) {
             for (String error : errors) {
-                notificationManager.sendFlashNotification(error, "alert-danger", "medium-noty");
+                notificationManager.sendFlashNotification(error, "danger", "medium-noty");
             }
             model.addAttribute("notifications", notificationManager.getNotifications());
             notificationManager.clearNotifications();
@@ -240,12 +248,12 @@ public class AppMVCController {
                 String profilePictureBase64 = Base64.getEncoder().encodeToString(imageBytes);
                 current_user.setProfilePictureUrl(profilePictureBase64);
             } else if (current_user.getProfilePictureUrl() == null) {
-                String profileImageUrl = convertImageToBase64("src/main/resources/static/images/profile-image.png");
+                String profileImageUrl = convertImageToBase64("/images/profile-image.png");
                 current_user.setProfilePictureUrl(profileImageUrl);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            notificationManager.sendFlashNotification("Error updating profile picture", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Error updating profile picture", "danger", "short-noty");
         }
 
         boolean needsRelogin = false;
@@ -256,15 +264,15 @@ public class AppMVCController {
             if (!hashedPassword.equals(current_user.getPassword())) {
                 current_user.setPassword(hashedPassword);
                 needsRelogin = true;
-                notificationManager.sendFlashNotification("Password updated successfully. Please login with your new password.",
-                        "alert-success", "medium-noty");
+                notificationManager.sendFlashNotification("Password updated successfully, please login with your new password",
+                        "success", "medium-noty");
             }
         }
 
         userService.saveUser(current_user);
 
         if (!needsRelogin) {
-            notificationManager.sendFlashNotification("Profile updated successfully!", "alert-success", "short-noty");
+            notificationManager.sendFlashNotification("Profile updated successfully", "success", "short-noty");
             return "redirect:/";
         } else {
             userDataService.logUserLogout(current_user.getId());
@@ -286,15 +294,19 @@ public class AppMVCController {
     public String verifyResetEmail(@RequestParam String email) {
         User user = userService.getUserByEmail(email);
         if (user == null) {
-            notificationManager.sendFlashNotification("Invalid email !", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Invalid email", "danger", "short-noty");
             return "redirect:/loginPage";
         }
         else {
             String token = tokenGenerationService.generateVerificationToken(user);
-            String verificationLink = "http://52.90.139.68:8080/resetPassword?user_id=" + user.getId() +"&token=" + token;
+            String verificationLink = String.format(
+                    "https://chatappspringboot.onrender.com/resetPassword?user_id=%d&token=%s",
+                    user.getId(),
+                    token
+            );
             emailService.sendPasswordResetEmail(user.getEmail(), verificationLink);
-            String notificationMessage = "We have sent an email, please verify yourself, link valid for 5 minutes !";
-            notificationManager.sendFlashNotification(notificationMessage, "alert-success", "medium-noty");
+            String notificationMessage = "We have sent an email, please verify yourself, link valid for 5 minutes";
+            notificationManager.sendFlashNotification(notificationMessage, "success", "medium-noty");
         }
         return "redirect:/loginPage";
     }
@@ -303,15 +315,15 @@ public class AppMVCController {
     public String resetPassword(@RequestParam int user_id, @RequestParam String token, RedirectAttributes redirectAttributes, Model model) {
         User user = userService.findByVerificationTokenAndUserId(user_id, token);
         if (user == null) {
-            notificationManager.sendFlashNotification("Invalid verification token/user_id !", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired", "danger", "short-noty");
             return "redirect:/loginPage";
         }
         else if (user.getTokenExpiration().isBefore(LocalDateTime.now())) {
-            notificationManager.sendFlashNotification("Verification token has expired, please re-create reset password request !", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired, please re-create reset password request", "danger", "short-noty");
             return "redirect:/loginPage";
         }
 
-        notificationManager.sendFlashNotification("Please enter new password details !", "alert-success", "short-noty");
+        notificationManager.sendFlashNotification("Please enter new password details", "success", "short-noty");
         model.addAttribute("user_id", user_id);
         model.addAttribute("token", token);
         model.addAttribute("notifications", notificationManager.getNotifications());
@@ -324,28 +336,28 @@ public class AppMVCController {
     public String passwordResetFormSubmit(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, @RequestParam int user_id, @RequestParam String token, HttpServletResponse response) throws IOException {
         boolean errors = false;
         if (user.getPassword() == null || user.getPassword().isEmpty()) {
-            notificationManager.sendFlashNotification("Password is required", "alert-danger", "medium-noty");
+            notificationManager.sendFlashNotification("Password is required", "danger", "medium-noty");
             errors = true;
         } else if (user.getPassword().length() < 6 || user.getPassword().length() > 100) {
-            notificationManager.sendFlashNotification("Password must be between 6 and 100 characters", "alert-danger", "medium-noty");
+            notificationManager.sendFlashNotification("Password must be between 6 and 100 characters", "danger", "medium-noty");
             errors = true;
         }
 
         if (errors) {
             model.addAttribute("notifications", notificationManager.getNotifications());
-            response.sendRedirect("http://52.90.139.68:8080/resetPassword?user_id=" + user_id + "&token=" + token);
+            response.sendRedirect("https://chatappspringboot.onrender.com/resetPassword?user_id=" + user_id + "&token=" + token);
             return null;
         }
 
         User sent_user = userService.findByVerificationTokenAndUserId(user_id, token);
         if (sent_user == null) {
-            notificationManager.sendFlashNotification("Invalid verification token/user_id !", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired", "danger", "short-noty");
             model.addAttribute("notifications", notificationManager.getNotifications());
             notificationManager.clearNotifications();
             return "redirect:/loginPage";
         }
         else if (sent_user.getTokenExpiration().isBefore(LocalDateTime.now())) {
-            notificationManager.sendFlashNotification("Verification token has expired, please re-create reset password request !", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired, please re-create reset password request", "danger", "short-noty");
             model.addAttribute("notifications", notificationManager.getNotifications());
             notificationManager.clearNotifications();
             return "redirect:/loginPage";
@@ -354,7 +366,7 @@ public class AppMVCController {
         sent_user.setPassword(hashedPassword);
         userService.saveUser(sent_user);
         tokenGenerationService.generateVerificationToken(sent_user);
-        notificationManager.sendFlashNotification("Your password has been reset !", "alert-success", "short-noty");
+        notificationManager.sendFlashNotification("Your password has been reset", "success", "short-noty");
         model.addAttribute("notifications", notificationManager.getNotifications());
         return "redirect:/loginPage";
     }
@@ -363,31 +375,31 @@ public class AppMVCController {
     public String verifyEmail(@RequestParam int user_id, @RequestParam String token) {
         User user = userService.findByVerificationTokenAndUserId(user_id, token);
         if (user == null) {
-            notificationManager.sendFlashNotification("Invalid verification token/user_id !", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired", "danger", "short-noty");
             return "redirect:/loginPage";
         }
 
         if (user.getTokenExpiration().isBefore(LocalDateTime.now())) {
-            notificationManager.sendFlashNotification("Verification token has expired, please re-signup !", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired, please re-signup", "danger", "short-noty");
             userService.DeleteUserById(user_id);
             return "signup-form";
         }
 
         user.setEnabled(true);
         tokenGenerationService.generateVerificationToken(user);
-        notificationManager.sendFlashNotification("Your account is now verified, please login .", "alert-success", "short-noty");
+        notificationManager.sendFlashNotification("Your account is now verified, please login", "success", "short-noty");
         return "redirect:/loginPage";
     }
 
     @GetMapping("/verifyInviteUser")
-    public String verifyChatJoin(@RequestParam String token, @RequestParam int type, @RequestParam int sender_id, @RequestParam int user_id, @RequestParam String groupName) {
+    public String verifyChatJoin(@RequestParam String token, @RequestParam int type, @RequestParam int sender_id, @RequestParam int user_id, @RequestParam String groupName, String roomId) {
         Token stored_token = tokenService.findByUserTokenAndType(sender_id, token, "invite");
 
         if (stored_token == null) {
-            notificationManager.sendFlashNotification("Invalid verification token/user_id.", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired", "danger", "short-noty");
         }
         else if (stored_token.getExpire_at().isBefore(LocalDateTime.now())) {
-            notificationManager.sendFlashNotification("Verification token has expired.", "alert-danger", "short-noty");
+            notificationManager.sendFlashNotification("Your link has expired", "danger", "short-noty");
         }
         else{
             User user = userService.getUserById(user_id);
@@ -400,7 +412,7 @@ public class AppMVCController {
                 i.setAccepted(true);
             }
             tokenService.delete(stored_token.getId());
-            notificationManager.sendFlashNotification("Chat join complete, please login!", "alert-success", "short-noty");
+            notificationManager.sendFlashNotification("Chat join complete, please login", "success", "short-noty");
 
             // Check if user already exists in Firestore
             Firestore db = this.firestore;
@@ -418,9 +430,9 @@ public class AppMVCController {
 
                     // Add user to Firestore
                     userRef.set(userData);
-                    System.out.println("New user created in Firestore.");
+                    System.out.println("New user created in firestore");
                 } else {
-                    System.out.println("User already exists in Firestore.");
+                    System.out.println("User already exists in firestore");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -442,26 +454,24 @@ public class AppMVCController {
 
                     // Add sender to Firestore
                     senderRef.set(senderData);
-                    System.out.println("Sender user created in Firestore.");
+                    System.out.println("Sender user created in firestore");
                 } else {
-                    System.out.println("Sender user already exists in Firestore.");
+                    System.out.println("Sender user already exists in firestore");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             // Proceed to create or check rooms
-            createOrCheckRoom(type, sender_id, user_id, groupName);
+            createOrCheckRoom(type, sender_id, user_id, groupName, roomId);
         }
         return "redirect:/loginPage";
     }
 
-    private void createOrCheckRoom(int type, int senderId, int recipient_id, String groupName) {
+    private void createOrCheckRoom(int type, int senderId, int recipient_id, String groupName, String roomId) {
         Firestore db = this.firestore;
-        String roomId;
 
         if (type == 0) { // Single chat
-            roomId = "single_" + senderId + "_" + recipient_id; // Unique ID for single chat
             DocumentReference roomRef = db.collection("Rooms").document(roomId);
             ApiFuture<DocumentSnapshot> roomDocument = roomRef.get();
 
@@ -481,7 +491,6 @@ public class AppMVCController {
                 e.printStackTrace();
             }
         } else if (type == 1) { // Group chat
-            roomId = "group_" + groupName + "_" + senderId; // Use sender's ID as the room ID
             DocumentReference roomRef = db.collection("Rooms").document(roomId);
             ApiFuture<DocumentSnapshot> roomDocument = roomRef.get();
 
@@ -491,7 +500,7 @@ public class AppMVCController {
                     // Create new group room
                     Map<String, Object> roomData = new HashMap<>();
                     roomData.put("userIds", Arrays.asList(senderId, recipient_id)); // Store user IDs
-                    roomData.put("name", "Group Chat"); // Set a default name
+                    roomData.put("name", groupName);
                     roomRef.set(roomData);
                     System.out.println("Group room created.");
                 } else {

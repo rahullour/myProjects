@@ -4,23 +4,22 @@ import com.creating.chatApplication.entity.Invite;
 import com.creating.chatApplication.entity.InviteGroup;
 import com.creating.chatApplication.entity.User;
 import com.creating.chatApplication.entity.UserGroup;
+import com.creating.chatApplication.repository.UserGroupRepository;
 import com.creating.chatApplication.service.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailSendException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashSet;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -30,13 +29,19 @@ public class InviteController {
     private NotificationManager notificationManager;
 
     @Autowired
-    private EmailService emailService;
+    private GmailEmailServiceImpl emailService;
 
     @Autowired
     private UserService userService;
 
     @Autowired
     private InviteService inviteService;
+
+    @Autowired
+    private TokenServiceImpl tokenServiceImpl;
+
+    @Autowired
+    private InviteServiceImpl inviteServiceImpl;
 
     @Autowired
     private TokenGenerationService tokenGenerationService;
@@ -46,6 +51,16 @@ public class InviteController {
 
     @Autowired
     private InviteGroupService inviteGroupService;
+
+    @Autowired
+    private InviteGroupServiceImpl inviteGroupServiceImpl;
+
+    @Autowired
+    private UserGroupServiceImpl userGroupServiceImpl;
+
+    @Autowired
+    private TokenService tokenService;
+
 
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
@@ -59,140 +74,278 @@ public class InviteController {
     }
 
     @PostMapping("/invites")
-    public ResponseEntity<Void> sendInvite(@RequestParam String senderEmail, @RequestParam String emails, @RequestParam(required = false) boolean type, @RequestParam(required = false) String groupName, @RequestParam(required = false) MultipartFile profilePicture) {
+    public ResponseEntity<Map<String, String>> sendInvite(@RequestParam String senderEmail, @RequestParam String emails, @RequestParam(required = false) boolean type, @RequestParam(required = false) String groupName, @RequestParam(required = false) MultipartFile profilePicture) {
         ObjectMapper objectMapper = new ObjectMapper();
-        List<String> receiverEmails = null;
         UserGroup newUserGroup = null;
+        Map<String, String> responseData = new HashMap<>();
         try {
-            receiverEmails = objectMapper.readValue(emails, new TypeReference<List<String>>() {});
+            List<String> receiverEmails = new ArrayList<>();
+            String[] emailArray = {};
+            // Error Checks -
+            // Checks for bad email ids, already registered users
+            if (emails != null && !emails.trim().isEmpty()) {
+                try {
+                    // Split the string by commas and clean up any accidental spaces, reuse below
+                    emailArray = emails.split(",");
+                    ArrayList<String> invalidEmails = new ArrayList<>();
+                    for (String email : emailArray) {
+                        if (!email.trim().isEmpty()) {
+                            if(!isValidEmail(email)) {
+                                invalidEmails.add(email);
+                            }
+                            // add all emails to array first
+                            receiverEmails.add(email.trim());
+                        }
+                    }
+                    if(!invalidEmails.isEmpty()){
+                        String notificationMessage = "Invalid email id/s: " + invalidEmails;
+                        responseData.put("message", notificationMessage);
+                        responseData.put("type", "danger");
+                        responseData.put("durationType", "medium-noty");
+                        return ResponseEntity.badRequest().body(responseData);
+                    }
+                } catch (Exception e) {
+                    String notificationMessage = e.getMessage();
+//                    notificationManager.sendFlashNotification(notificationMessage, "danger", "medium-noty");
+                    responseData.put("message", notificationMessage);
+                    responseData.put("type", "danger");
+                    responseData.put("durationType", "medium-noty");
+                    return ResponseEntity.badRequest().body(responseData); // Return a clean error response
+                }
+            } else {
+                responseData.put("message", "Email list cannot be empty");
+                responseData.put("type", "danger");
+                responseData.put("durationType", "medium-noty");
+                return ResponseEntity.badRequest().body(responseData);
+            }
+            // Checks for bad email ids, already registered users - ends
+
+            boolean foundSelfInvite = false;
+            ArrayList<String> unregisteredUsers = new ArrayList<>();
+            ArrayList<Integer> groupNameSuffix = new ArrayList<>();
             for(String email: receiverEmails) {
+                groupNameSuffix.add(userService.getUserByEmail(email).getId());
                 if(senderEmail.equals(email)){
-                    String notificationMessage = "You cannot invite yourself !";
-                    notificationManager.sendFlashNotification(notificationMessage, "alert-danger", "short-noty");
-                    return ResponseEntity.status(HttpStatus.FOUND)
-                            .header("Location", "/")
-                            .build();
+                    foundSelfInvite = true;
+                }
+                if (userService.getUserByEmailAndStatus(email, true) == null) {
+                    unregisteredUsers.add(email);
+                    String link = "https://chatappspringboot.onrender.com/signup-form";
+                    emailService.sendInviteEmail(email, userService.getUserByEmail(senderEmail).getUsername(), senderEmail, link, type);
                 }
             }
+
+            // response for foundSelfInvite And unregisteredUserInvite
+            ArrayList<String> selfAndUnregisteredInviteResponse = new ArrayList<>();
+            if(foundSelfInvite){
+                selfAndUnregisteredInviteResponse.add("You cannot invite yourself !");
+            }
+            if(!unregisteredUsers.isEmpty()){
+                selfAndUnregisteredInviteResponse.add("User/s with email Id/s: " + unregisteredUsers + " not registered, sending join link, please resend invite later");
+            }
+            if(foundSelfInvite || !unregisteredUsers.isEmpty()){
+                responseData.put("message", String.join(", ", selfAndUnregisteredInviteResponse));
+                responseData.put("type", "danger");
+                responseData.put("durationType", "medium-noty");
+                return ResponseEntity.badRequest().body(responseData);
+            }
+            // group names creation
+
+            // add sender id to groupNameSuffix at end
+            groupNameSuffix.add(userService.getUserByEmail(senderEmail).getId());
+            // sort the groupNameSuffix
+            Collections.sort(groupNameSuffix);
+            // group name structure - "groupType" + "_" + "groupName" + "_" + "groupNameSuffix i.e Sorted Receivers' Ids"
+            String groupNameFormed =
+                    "group_" +
+                            groupName +
+                            "_" +
+                            groupNameSuffix.stream()
+                                    .map(String::valueOf)
+                                    .collect(Collectors.joining(""));
+
+            // group name structure - "groupType" + "_" + "groupNameSuffix i.e Receiver Id"
+            String inviteRoomId = "single_" + groupNameSuffix.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(""));
+
+            // Checks for already connected users
+            ArrayList<String> alreadyConnectedUsers = new ArrayList<>();
+            HashSet<String> acceptedUniqueEmails = new HashSet<>();
+
+            HashSet<String> invitesUniqueRoomsNamesWithAcceptedStatus = new HashSet<>();
+            ArrayList<Invite> allInvites = new ArrayList<>();
+            ArrayList<Invite> invitesWithCommonGroupNameAccepted = new ArrayList<>();
+
             if(type){
-                List<Invite> invites = inviteService.getInvitesAccepted(senderEmail, 1);
-                List<Integer> inviteIds = new ArrayList<>();
-                for(Invite i: invites){
-                    inviteIds.add(i.getId());
+                List<UserGroup> userGroups = userGroupServiceImpl.getAllUserGroupsByName(groupName);
+                for(UserGroup ug:userGroups){
+                   List<InviteGroup> inviteGroups = inviteGroupServiceImpl.getAllInviteGroupByGroupId(ug.getId());
+                   for(InviteGroup ig: inviteGroups){
+                       if(ig.getInvite().isAccepted()){
+                           invitesUniqueRoomsNamesWithAcceptedStatus.add(ig.getInvite().getRoomId());
+                       }
+                       allInvites.add(ig.getInvite());
+                   }
+
                 }
-                HashSet<String> groupNames = new HashSet<>();
-                if(inviteIds != null){
-                    List<InviteGroup> inviteGroupsAttached = inviteGroupService.findInviteGroupsByInviteId(inviteIds);
-                    for(InviteGroup ig: inviteGroupsAttached){
-                        groupNames.add(ig.getUserGroup().getName());
+                // get accepted/notaccepted invites by roomIds
+                for(Invite i: allInvites){
+                    if(invitesUniqueRoomsNamesWithAcceptedStatus.contains(i.getRoomId())){
+                        invitesWithCommonGroupNameAccepted.add(i);
+                        acceptedUniqueEmails.add(i.getSenderEmail());
+                        acceptedUniqueEmails.add(i.getRecipientEmail());
                     }
                 }
-                if(groupNames.contains(groupName)){
-                    notificationManager.sendFlashNotification(groupName + " group already exists, please delete chat and retry!", "alert-error", "short-noty");
-                    return ResponseEntity.status(HttpStatus.FOUND)
-                            .header("Location", "/")
-                            .build();
+                alreadyConnectedUsers.addAll(acceptedUniqueEmails);
+            }
+            else{
+                for (String email : emailArray) {
+                    // checking both ways
+                    List<Invite> connections = inviteService.getInvites(senderEmail, email, 0);
+                    if (!connections.isEmpty() && connections.getLast().isAccepted()) {
+                        alreadyConnectedUsers.add(email);
+                    }
+                    List<Invite> connections2 = inviteService.getInvites(email, senderEmail, 0);
+                    if (!connections2.isEmpty() && connections2.getLast().isAccepted()) {
+                        alreadyConnectedUsers.add(email);
+                    }
                 }
+            }
+            List<String>  receiverEmailsCopy=
+                    new ArrayList<>(receiverEmails);
+            // also add sender email if not present
+            if(!receiverEmailsCopy.contains(senderEmail)){
+                receiverEmailsCopy.add(senderEmail);
+            }
+            //to get already connected emails present in receiverEmails
+            receiverEmailsCopy.retainAll(alreadyConnectedUsers);
+            // add you to list if you are part of the group
+            if(!receiverEmailsCopy.contains(senderEmail) && alreadyConnectedUsers.contains(senderEmail)){
+                    receiverEmailsCopy.add("You");
+            }
+            for(int i=0; i<receiverEmailsCopy.size(); i++){
+                if(receiverEmailsCopy.get(i) == senderEmail){
+                    receiverEmailsCopy.set(i, "You");
+                }
+            }
+            String messagereceiverEmailsCopy = receiverEmailsCopy + " is/are connected already or chat joins pending, please delete chat and retry. ";
+            if(!receiverEmailsCopy.contains("You")){
+                messagereceiverEmailsCopy = messagereceiverEmailsCopy + "If you are not part of the group please ask either of them to send you the join link";
+            }
+            else{
+                messagereceiverEmailsCopy = receiverEmailsCopy + " is/are connected already or chat joins pending, please delete chat and retry. If you wish to add someone else, please send them an invite from within the group's add member option";
+            }
+            if(!alreadyConnectedUsers.isEmpty()){
+                responseData.put("message",  messagereceiverEmailsCopy);
+                responseData.put("type", "danger");
+                responseData.put("durationType", "medium-noty");
+                return ResponseEntity.badRequest().body(responseData);
+            }
+
+            // group invite related data config
+
+            if(type){
                 newUserGroup = new UserGroup();
                 newUserGroup.setName(groupName); // Set the name of the new UserGroup
                 try {
-                    byte[] imageBytes = profilePicture.getBytes();
-                    String profilePictureBase64 = Base64.getEncoder().encodeToString(imageBytes);
+                    byte[] imageBytes;
+                    String profilePictureBase64 = "";
+                    if(profilePicture == null){
+                        ClassPathResource resource = new ClassPathResource("static/images/profile-image.png");
+                        imageBytes = resource.getInputStream().readAllBytes();
+                        profilePictureBase64 = Base64.getEncoder().encodeToString(imageBytes);
+                    }
+                    else{
+                        imageBytes = profilePicture.getBytes();
+                        profilePictureBase64 = Base64.getEncoder().encodeToString(imageBytes);
+
+                    }
                     newUserGroup.setProfilePictureUrl(profilePictureBase64);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                String groupNameFormed = "group_" + groupName + "_" + userService.getUserByEmail(senderEmail).getId();
-                for(String email: receiverEmails){
-                    if(userService.getUserByEmail(email) != null) {
-                        groupNameFormed = groupNameFormed + "_" + userService.getUserByEmail(email).getId();
-                    }
-                    else{
-                        for (String emailAddress : receiverEmails) {
-                            User user = userService.getUserByEmail(emailAddress);
-                            if (user == null) {
-                                String notificationMessage = "User with email ID: " + emailAddress + " not registered! Sending join link! Please resend invite later!";
-                                notificationManager.sendFlashNotification(notificationMessage, "alert-danger", "medium-noty");
-                                emailService.sendInviteEmail(emailAddress, userService.getUserByEmail(senderEmail).getUsername(), "http://52.90.139.68:8080/signup-form", type);
-                                continue;
-                            }
-                        }
-                        return ResponseEntity.status(HttpStatus.FOUND)
-                                .header("Location", "/")
-                                .build();
-
-                    }
-                }
                 newUserGroup.setRoomId(groupNameFormed);
             }
+
+            // clear prev invites data
+
+            List<Integer> not_accepted_ids = inviteServiceImpl.getAllInviteIdsByRoomIdAndNotAccepted(type ? groupNameFormed : inviteRoomId);
+            for(Integer x: not_accepted_ids) {
+                inviteGroupServiceImpl.rejectInviteGroupByInviteId(x);
+                inviteServiceImpl.rejectInvite(x);
+                // expire old invites for the group before sending new invites for the group
+                tokenServiceImpl.deleteByRoomId(type ? groupNameFormed : inviteRoomId);
+            }
+
+            // send invites
+
+            ArrayList<String> invitesSentEmails = new ArrayList<>();
             for (String emailAddress : receiverEmails) {
                 User user = userService.getUserByEmail(emailAddress);
                 try {
-                    if(isValidEmail(emailAddress)) {
-                        if (user == null) {
-                            String notificationMessage = "User with email ID: " + emailAddress + " not registered! Sending join link! Please resend invite later!";
-                            notificationManager.sendFlashNotification(notificationMessage, "alert-danger", "medium-noty");
-                            emailService.sendInviteEmail(emailAddress, userService.getUserByEmail(senderEmail).getUsername(), "http://52.90.139.68:8080/signup-form", type);
-                            continue;
-                        }
-                        if (type) {
-                            // Create the invite
-                            Invite invite = inviteService.createInvite(senderEmail, emailAddress, 1, null, "group_" + groupName + "_" + String.valueOf(userService.getUserByEmail(senderEmail).getId()));
-                            // Create a new InviteGroup
-                            InviteGroup inviteGroup = new InviteGroup();
-                            inviteGroup.setInvite(invite); // Set the Invite for the InviteGroup
+                    String tokenRoomId = "";
+                    if (type) {
+                        // Create the invite
+                        Invite invite = inviteService.createInvite(senderEmail, emailAddress, 1, null, groupNameFormed);
+                        // Create a new InviteGroup
+                        InviteGroup inviteGroup = new InviteGroup();
+                        inviteGroup.setInvite(invite); // Set the Invite for the InviteGroup
 
-                            // Create the user group
-                            userGroupService.saveUserGroup(newUserGroup);
-                            List<InviteGroup> inviteGroups = new ArrayList<>();
-                            inviteGroup.setUserGroup(newUserGroup); // Set the UserGroup for the InviteGroup
-                            // Save the InviteGroup
-                            inviteGroupService.saveInviteGroup(inviteGroup);
-                        } else {
-                            List<Invite> connections = inviteService.getInvites(senderEmail, emailAddress,  0);
-                            if (!connections.isEmpty() && connections.getLast().isAccepted()) {
-                                notificationManager.sendFlashNotification(emailAddress + " is connected already, please delete chat and retry!", "alert-error", "short-noty");
-                                return ResponseEntity.status(HttpStatus.FOUND)
-                                        .header("Location", "/")
-                                        .build();
-                            } else {
-                                inviteService.createInvite(senderEmail, emailAddress, 0, null, "single_" + String.valueOf(userService.getUserByEmail(senderEmail).getId()) + "_" + String.valueOf(user.getId()));
-                            }
-
-                        }
-                        String token = tokenGenerationService.generateToken(userService.getUserByEmail(senderEmail), "invite");
-                        String verificationLink = "http://52.90.139.68:8080/verifyInviteUser?token=" + token + "&type=" + (type ? 1 : 0) + "&sender_id=" + userService.getUserByEmail(senderEmail).getId() + "&user_id=" + user.getId() + "&groupName=" + groupName;
-                        String notificationMessage = "Chat with " + emailAddress + " will be enabled after verification by joinee via their email!";
-                        notificationManager.sendFlashNotification(notificationMessage, "alert-success", "medium-noty");
-                        emailService.sendInviteEmail(emailAddress, userService.getUserByEmail(senderEmail).getUsername(), verificationLink, type);
+                        // Create the user group
+                        userGroupService.saveUserGroup(newUserGroup);
+                        List<InviteGroup> inviteGroups = new ArrayList<>();
+                        inviteGroup.setUserGroup(newUserGroup); // Set the UserGroup for the InviteGroup
+                        // Save the InviteGroup
+                        inviteGroupService.saveInviteGroup(inviteGroup);
+                        tokenRoomId = invite.getRoomId();
+                    } else {
+                            inviteService.createInvite(senderEmail, emailAddress, 0, null, inviteRoomId);
+                            tokenRoomId = inviteRoomId;
                     }
-                    else{
-                        String notificationMessage = "Invalid email id: " + emailAddress;
-                        notificationManager.sendFlashNotification(notificationMessage, "alert-danger", "medium-noty");
-                    }
-
-                } catch (MailSendException e) {
+                    String token = tokenGenerationService.generateToken(userService.getUserByEmail(senderEmail), "invite", tokenRoomId);
+                    String verificationLink = String.format(
+                            "https://chatappspringboot.onrender.com/verifyInviteUser?token=%s&type=%d&sender_id=%d&user_id=%d&groupName=%s&roomId=%s",
+                            token,
+                            type ? 1 : 0,
+                            userService.getUserByEmail(senderEmail).getId(),
+                            user.getId(),
+                            groupName,
+                            type ? groupNameFormed : inviteRoomId
+                    );
+                    invitesSentEmails.add(emailAddress);
+                    emailService.sendInviteEmail(emailAddress, userService.getUserByEmail(senderEmail).getUsername(), senderEmail, verificationLink, type);
+                } catch (Exception e) {
                     String notificationMessage = "Failed to send invite to " + emailAddress + ": " + e.getMessage();
-                    notificationManager.sendFlashNotification(notificationMessage, "alert-danger", "medium-noty");
+                    responseData.put("message", notificationMessage);
+                    responseData.put("type", "danger");
+                    responseData.put("durationType", "medium-noty");
+                    return ResponseEntity.badRequest().body(responseData);
                 }
             }
+            String notificationMessage = "Chat with " + invitesSentEmails + " will be enabled after verification by joinee via their email";
+            responseData.put("message", notificationMessage);
+            responseData.put("type", "success");
+            responseData.put("durationType", "medium-noty");
         } catch (Exception e) {
             String notificationMessage = e.getMessage();
-            notificationManager.sendFlashNotification(notificationMessage, "alert-danger", "medium-noty");
+//            notificationManager.sendFlashNotification(notificationMessage, "danger", "medium-noty");
+            responseData.put("message", notificationMessage);
+            responseData.put("type", "danger");
+            responseData.put("durationType", "medium-noty");
+            return ResponseEntity.badRequest().body(responseData);
         }
+//        notificationManager.clearNotifications();
+        return ResponseEntity.ok(responseData);
 
-
-        return ResponseEntity.status(HttpStatus.FOUND)
-                .header("Location", "/")
-                .build();
     }
     @GetMapping("/invites/single")
     public List<Invite> getSingleInvites(){
-        return inviteService.getInvitesAccepted(userService.getCurrentUser().getEmail(), 0);
+        return inviteService.getInvitesBySenderOrReceiverEmailAccepted(userService.getCurrentUser().getEmail(), 0);
     }
     @GetMapping("/invites/group")
     public List<Invite> getGroupInvites(){
-        return inviteService.getInvitesAccepted(userService.getCurrentUser().getEmail(), 1);
+        return inviteService.getInvitesBySenderOrReceiverEmailAccepted(userService.getCurrentUser().getEmail(), 1);
     }
     @GetMapping("/user_groups")
     public UserGroup getUserGroups(@RequestParam int groupId){
