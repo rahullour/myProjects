@@ -1,5 +1,6 @@
 body{
     height: 100vh;
+    overflow: hidden;
 }
 
 * {
@@ -43,6 +44,10 @@ body{
 .invite-btn{
     margin-top: 3px;
 }
+
+.invite-wrapper{
+    display: flex;
+}
 .message {
     margin-bottom: 10px;
     padding: 10px;
@@ -82,6 +87,9 @@ body{
     }
 }
 .user-status{
+    color: #FFB300;
+    font-size: 0.85em !important;
+    margin-top: 2px;
     font-size: large;
     img{
         filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
@@ -94,10 +102,16 @@ body{
     }
 }
 
+#myStatus{
+    vertical-align: middle;
+    margin: auto;
+    font-size: 16px;
+}
+
 .message-wrapper {
     display: flex;
     align-items: flex-start;
-    margin: 10px 0;
+    margin: 12px 0;
     padding: 22px 40px;
 }
 
@@ -360,9 +374,15 @@ trix-editor .attachment{
     width: 37px;
     height: 37px;
     border-radius: 50%;
-    margin: 0px 8px;
+    margin: 0px 6px;
     object-fit: cover; /* Ensures the image covers the container */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.invite-item-profile-pic{
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin: 5px;
 }
 .invite-item{
     border-bottom: 1px solid #ffffff;
@@ -390,6 +410,8 @@ trix-editor .attachment{
 
 #single-list, #group-list{
     margin-top: 1px;
+    overflow-y: auto;
+    max-height: 85vh;
 }
 
 .modal {
@@ -572,7 +594,7 @@ trix-editor .attachment{
 }
 
 .loading-chat-notification {
-    background-color: #24da72;
+    background-color: #14ae33;
     color: white;
     padding: 10px;
     margin: 10px;
@@ -594,7 +616,7 @@ trix-editor .attachment{
     border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 50%;
     border-top-color: #fff;
-    animation: spin 1s linear infinite;
+    animation: spin 0.5s linear infinite;
     vertical-align: middle;
     margin-left: 5px;
     margin-top: 0px !important;
@@ -604,6 +626,7 @@ trix-editor .attachment{
 
 #trix-editor-box{
     box-shadow: 1px 1px 8px #888888 !important;
+    display: none;
 }
 
 .input-group .btn {
@@ -911,23 +934,50 @@ trix-editor .attachment{
 }
 
 .reaction-picker {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.reaction-picker {
     position: absolute;
     width: 228px;
-    overflow-y: scroll;
+    max-width: 228px;
     bottom: 100%;
-    top: -68px;
+    margin-bottom: 8px;
     transform: translateX(-50%);
     background: white;
     padding: 5px;
-    height: fit-content;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    display: none;
     z-index: 10;
-    gap: 5px;
+
+    display: none;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
     white-space: nowrap;
-    scrollbar-color: black grey;
+
+    /* Hide scrollbars */
     scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /* Smooth transition for the mask fade */
+    transition: mask-image 0.2s ease, -webkit-mask-image 0.2s ease;
+}
+
+.reaction-picker::-webkit-scrollbar {
+    display: none;
+}
+
+.reaction-picker.has-overflow {
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+.reaction-picker > * {
+    flex-shrink: 0 !important;
+    display: inline-block;
+    width: 32px; 
+    height: 32px;
 }
 
 .reaction-display-left {

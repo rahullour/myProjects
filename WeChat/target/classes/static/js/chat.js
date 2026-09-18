@@ -853,6 +853,25 @@ document.addEventListener('DOMContentLoaded', async function() {
             fetchInvites('api/invites/group')
         ]);
 
+        // Handle case when no invites are available
+        if (singleInvites.length === 0 && groupInvites.length === 0) {
+            const chatMessagesBox = document.querySelector('.chat-messages');
+            $('.chat-screen').parent().css('height', '92%');
+            if (chatMessagesBox) {
+                chatMessagesBox.innerText = "You don't have any conversation, feel free to invite someone";
+                chatMessagesBox.style.verticalAlign = 'middle';
+                chatMessagesBox.style.textAlign = 'center';
+                chatMessagesBox.style.margin = 'auto';
+                chatMessagesBox.style.color = 'white'
+                chatMessagesBox.style.background = '#00000052';
+                chatMessagesBox.style.boxShadow = '0 4px 20px rgb(0 0 0 / 0%)';
+            }
+        }
+        else{
+            const trixEditorBox= document.querySelector('#trix-editor-box');
+            trixEditorBox.style.display = 'block';
+        }
+
         // Event listeners for tab clicks to select first chat if available
         document.querySelector('#one-to-one-tab').addEventListener('click', async () => {
             await displayInvites(singleInvites, 'single'); // Ensure invites are displayed before selecting
@@ -877,17 +896,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             document.querySelector('#group-chats-tab').click();
         }
 
-        // Handle case when no invites are available
-        if (singleInvites.length === 0 && groupInvites.length === 0) {
-            const chatMessagesBox = document.querySelector('.chat-messages');
-            $('.chat-screen').parent().css('height', '92%');
-            if (chatMessagesBox) {
-                chatMessagesBox.innerText = "You don't have any conversation, feel free to invite someone!";
-                chatMessagesBox.style.verticalAlign = 'middle';
-                chatMessagesBox.style.textAlign = 'center';
-                chatMessagesBox.style.margin = 'auto';
-            }
-        }
     } catch (error) {
         console.log('Error fetching invites:', error);
     }
@@ -1073,8 +1081,12 @@ const renderReactions = async (messageWrapper, messageId) => {
             }
 
             // Show usernames on hover
-            emojiWrapper.title = usernames.join(", ");
-
+            // replace current username name with 'you'
+            const currentUserName = document.querySelector("#currentUserName").textContent;
+            const updatedUsernames = usernames.map(user =>
+                user === currentUserName.trim() ? "you" : user
+            );
+            emojiWrapper.title = updatedUsernames.join(", ");
             reactionDisplay.appendChild(emojiWrapper);
             // Check if reactionDisplay contains any <span> elements
             if (reactionDisplay.querySelector("span")) {
@@ -1133,68 +1145,66 @@ const getCurrentUserEmail = () => {
     return "user1@example.com"; // Replace with actual authentication logic
 };
 
-
 async function displayInvites(invites, type) {
     const listId = type === 'single' ? 'single-list' : 'group-list';
     const inviteList = document.getElementById(listId);
     inviteList.innerHTML = '';
 
     if (type === "single") {
-        for (const invite of invites) {
+        for (const item of invites) {
+            // Extract wrapped DTO properties
+            const invite = item.invite;
+            const statusMessage = item.statusMessage || "Available";
+            const username = item.userName || "Unknown User";
+            const userIdChosen = item.userId;
+
             const inviteItem = document.createElement('li');
             inviteItem.classList.add('invite-item');
             inviteItem.style.cursor = 'pointer';
 
             try {
-                // Fetch user ID
-                const userId = await fetchCurrentUserId();
-                if (userId === -1) { // Check if userId is valid
-                    console.error('Invalid user ID, db issue, please contact admin');
-                    return;
-                }
-                // Fetch user email
-                const userEmail = await fetchUserEmail(userId);
-                if (userEmail === -1) { // Check if fetchCurrentUserId is valid
-                    console.error('Invalid user email, db issue, please contact admin');
-                    return;
-                }
-
-                const emailChosen = userEmail === invite.senderEmail ? invite.recipientEmail : invite.senderEmail;
-                const userIdChosenResponse = await fetch(`api/users/getId?email=${emailChosen}`);
-                const userIdChosen = await userIdChosenResponse.json(); // Assuming this returns the ID
-
                 // Create a wrapper for the invite item
                 const inviteWrapper = document.createElement('div');
                 inviteWrapper.classList.add('invite-wrapper');
 
-                if (userId) {
+                // 1. Render Profile Picture if user ID exists
+                if (userIdChosen) {
                     const profilePicBase64 = await getProfilePic(userIdChosen);
                     const imgElement = document.createElement("img");
                     imgElement.src = `data:image/png;base64,${profilePicBase64}`;
                     imgElement.classList.add("profile-pic");
+                    imgElement.classList.add("invite-item-profile-pic");
                     inviteWrapper.appendChild(imgElement);
                 }
 
-                const usernameResponse = await fetch(`api/users/getUserNameByEmail?email=${emailChosen}`);
-                if (!usernameResponse.ok) {
-                    throw new Error('getUserNameByEmail response was not ok');
-                }
-                const username = await usernameResponse.text();
+                // 2. Create container for Text (Name + Status) to layout cleanly
+                const textContainer = document.createElement("div");
+                textContainer.classList.add("text-container");
+                textContainer.style.display = "flex";
+                textContainer.style.flexDirection = "column";
+                textContainer.style.marginLeft = "5px";
 
                 // Create a span for the username
                 const usernameElement = document.createElement("span");
                 usernameElement.textContent = username;
                 usernameElement.classList.add("username");
+                textContainer.appendChild(usernameElement);
 
-                inviteWrapper.appendChild(usernameElement);
-                inviteItem.appendChild(inviteWrapper); // Append the wrapper to the invite item
+                // Create a small/span for the status message
+                const statusElement = document.createElement("small");
+                statusElement.textContent = statusMessage;
+                statusElement.classList.add("user-status");
+                textContainer.appendChild(statusElement);
+
+                inviteWrapper.appendChild(textContainer);
+                inviteItem.appendChild(inviteWrapper);
 
                 inviteItem.setAttribute('data-room-id', `${invite.roomId}`);
                 inviteItem.onclick = () => openChat(`${invite.roomId}`);
                 inviteList.appendChild(inviteItem);
 
             } catch (error) {
-                console.error('Error fetching user data:', error);
+                console.error('Error rendering single user item:', error);
             }
         }
     } else {
@@ -1212,8 +1222,6 @@ async function displayInvites(invites, type) {
         // Create a single invite item for each unique roomId
         for (const roomId in groupedInvites) {
             const groupInviteItems = groupedInvites[roomId];
-
-            // Assuming we only need one of the invites to get the group info
             const firstInvite = groupInviteItems[0];
 
             try {
@@ -1221,22 +1229,18 @@ async function displayInvites(invites, type) {
                 if (!groupResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
-
                 const inviteGroup = await groupResponse.json();
 
-                // Fetch user group information
                 const userGroupResponse = await fetch(`api/user_groups?groupId=${inviteGroup.userGroup.id}`);
                 if (!userGroupResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const userGroup = await userGroupResponse.json();
 
-                // Create a single invite item for the group
                 const inviteItem = document.createElement('li');
                 inviteItem.classList.add('invite-item');
                 inviteItem.style.cursor = 'pointer';
 
-                // Create a wrapper for the invite item
                 const inviteWrapper = document.createElement('div');
                 inviteWrapper.classList.add('invite-wrapper');
 
@@ -1246,17 +1250,16 @@ async function displayInvites(invites, type) {
                 imgElement.classList.add("profile-pic");
                 inviteWrapper.appendChild(imgElement);
 
-                // Create a span for the username
                 const usernameElement = document.createElement("span");
                 usernameElement.textContent = `${userGroup.name}`;
                 usernameElement.classList.add("username");
+                usernameElement.style.margin = '6px';
 
                 inviteWrapper.appendChild(usernameElement);
-                inviteItem.appendChild(inviteWrapper); // Append the wrapper to the invite item
+                inviteItem.appendChild(inviteWrapper);
 
                 inviteItem.setAttribute('data-room-id', `${roomId}`);
                 inviteItem.onclick = () => openChat(`${roomId}`);
-                // Append the group invite item to the list
                 inviteList.appendChild(inviteItem);
 
             } catch (error) {
@@ -1611,7 +1614,6 @@ async function handleNewMessages(snapshot, roomId) {
                                 editedIndicator.classList.add('edited-indicator');
                                 editedIndicator.textContent = ' (edited)';
                                 editedIndicator.style.opacity = '0.7';
-                                messageContent.querySelector('.reaction-display').style.marginTop = '32px';
                                 messageContent.appendChild(editedIndicator);
                             }
                         }
@@ -2611,7 +2613,7 @@ async function displayReadByUsersFromRooms(roomId) {
 }
 
 async function markMessagesAsRead(roomId) {
-    showLoadingChatNotification("Updating");
+    // showLoadingChatNotification("Updating");
     const currentUserId = await fetchCurrentUserId();
     if (!currentUserId || currentUserId === -1) return;
     const messagesContainer = document.getElementById("messages");
