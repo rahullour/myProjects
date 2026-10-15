@@ -1,4 +1,4 @@
-## WeChat - Created a chatting site using RAD framework Spring Boot & Firebase, for real time experience, deployed on Koyeb .
+## WeChat - Created a chatting site using RAD framework Spring Boot & Firebase, for real time experience, deployed on Render .
 * Tech : Java, Spring Boot, Hibernate, Spring MVC, Thymeleaf, Firebase Firestore, Cloudﬂare R2 .
 
 # Here are a few screenshots of the website previously deployed on aws, now hosted on render - <a href="https://chatappspringboot.onrender.com" target="_blank">visit WeChat</a>
